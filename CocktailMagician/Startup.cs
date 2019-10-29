@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using CocktailMagician.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CocktailMagician.Data.Models;
 
 namespace CocktailMagician
 {
@@ -38,7 +39,7 @@ namespace CocktailMagician
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<UserEntity>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

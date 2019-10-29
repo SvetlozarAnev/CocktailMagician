@@ -53,11 +53,25 @@ namespace CocktailMagician.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bars", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cocktails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cocktails", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -166,6 +180,30 @@ namespace CocktailMagician.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "BarCocktails",
+                columns: table => new
+                {
+                    BarEntityId = table.Column<int>(nullable: false),
+                    CocktailEntityId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BarCocktails", x => new { x.BarEntityId, x.CocktailEntityId });
+                    table.ForeignKey(
+                        name: "FK_BarCocktails_Bars_BarEntityId",
+                        column: x => x.BarEntityId,
+                        principalTable: "Bars",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BarCocktails_Cocktails_CocktailEntityId",
+                        column: x => x.CocktailEntityId,
+                        principalTable: "Cocktails",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -204,6 +242,11 @@ namespace CocktailMagician.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BarCocktails_CocktailEntityId",
+                table: "BarCocktails",
+                column: "CocktailEntityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -224,13 +267,19 @@ namespace CocktailMagician.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Bars");
+                name: "BarCocktails");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Bars");
+
+            migrationBuilder.DropTable(
+                name: "Cocktails");
         }
     }
 }

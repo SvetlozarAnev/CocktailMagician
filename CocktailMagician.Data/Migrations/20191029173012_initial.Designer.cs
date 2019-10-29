@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CocktailMagician.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191029165713_initial")]
+    [Migration("20191029173012_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,35 @@ namespace CocktailMagician.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("CocktailMagician.Data.Models.BarCocktailEntity", b =>
+                {
+                    b.Property<int>("BarEntityId");
+
+                    b.Property<int>("CocktailEntityId");
+
+                    b.HasKey("BarEntityId", "CocktailEntityId");
+
+                    b.HasIndex("CocktailEntityId");
+
+                    b.ToTable("BarCocktails");
+                });
+
             modelBuilder.Entity("CocktailMagician.Data.Models.BarEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bars");
+                });
+
+            modelBuilder.Entity("CocktailMagician.Data.Models.CocktailEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,7 +59,7 @@ namespace CocktailMagician.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Bars");
+                    b.ToTable("Cocktails");
                 });
 
             modelBuilder.Entity("CocktailMagician.Data.Models.UserEntity", b =>
@@ -197,6 +225,19 @@ namespace CocktailMagician.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CocktailMagician.Data.Models.BarCocktailEntity", b =>
+                {
+                    b.HasOne("CocktailMagician.Data.Models.BarEntity", "BarEntity")
+                        .WithMany("BarCocktails")
+                        .HasForeignKey("BarEntityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CocktailMagician.Data.Models.CocktailEntity", "CocktailEntity")
+                        .WithMany("BarCocktails")
+                        .HasForeignKey("CocktailEntityId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

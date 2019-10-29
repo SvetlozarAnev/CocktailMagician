@@ -4,11 +4,10 @@ using System.Text;
 
 namespace CocktailMagician.Data.Models
 {
-    public class BarEntity
+    public class CocktailEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Address { get; set; }
-        public IEnumerable <BarCocktailEntity> BarCocktails { get; set; } 
+        public IEnumerable<BarCocktailEntity> BarCocktails { get; set; }
     }
 }

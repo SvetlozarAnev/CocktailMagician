@@ -9,6 +9,9 @@ namespace CocktailMagician.Data.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public IEnumerable <BarCocktailEntity> BarCocktails { get; set; } 
+        public double? Rating { get; set; }
+        public IEnumerable <BarCocktailEntity> BarCocktails { get; set; }
+        public IEnumerable<BarReviewEntity> BarReviews { get; set; }
+
     }
 }

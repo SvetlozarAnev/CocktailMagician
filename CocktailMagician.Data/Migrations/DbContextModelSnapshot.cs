@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CocktailMagician.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DbContext))]
+    partial class DbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -42,9 +42,34 @@ namespace CocktailMagician.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<double?>("Rating");
+
                     b.HasKey("Id");
 
                     b.ToTable("Bars");
+                });
+
+            modelBuilder.Entity("CocktailMagician.Data.Models.BarReviewEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BarEntityId");
+
+                    b.Property<int>("Rating");
+
+                    b.Property<string>("Review");
+
+                    b.Property<string>("UserEntityId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BarEntityId");
+
+                    b.HasIndex("UserEntityId");
+
+                    b.ToTable("BarReviews");
                 });
 
             modelBuilder.Entity("CocktailMagician.Data.Models.CocktailEntity", b =>
@@ -55,9 +80,60 @@ namespace CocktailMagician.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<double?>("Rating");
+
                     b.HasKey("Id");
 
                     b.ToTable("Cocktails");
+                });
+
+            modelBuilder.Entity("CocktailMagician.Data.Models.CocktailIngredientEntity", b =>
+                {
+                    b.Property<int>("IngredientEntityId");
+
+                    b.Property<int>("CocktailEntityId");
+
+                    b.HasKey("IngredientEntityId", "CocktailEntityId");
+
+                    b.HasIndex("CocktailEntityId");
+
+                    b.ToTable("CocktaiIngredients");
+                });
+
+            modelBuilder.Entity("CocktailMagician.Data.Models.CocktailReviewEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CocktailEntityId");
+
+                    b.Property<int>("Rating");
+
+                    b.Property<string>("Review");
+
+                    b.Property<string>("UserEntityId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CocktailEntityId");
+
+                    b.HasIndex("UserEntityId");
+
+                    b.ToTable("CocktailReviews");
+                });
+
+            modelBuilder.Entity("CocktailMagician.Data.Models.IngredientEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("CocktailMagician.Data.Models.UserEntity", b =>
@@ -236,6 +312,43 @@ namespace CocktailMagician.Data.Migrations
                         .WithMany("BarCocktails")
                         .HasForeignKey("CocktailEntityId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CocktailMagician.Data.Models.BarReviewEntity", b =>
+                {
+                    b.HasOne("CocktailMagician.Data.Models.BarEntity", "Bar")
+                        .WithMany("BarReviews")
+                        .HasForeignKey("BarEntityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CocktailMagician.Data.Models.UserEntity", "User")
+                        .WithMany("BarReviews")
+                        .HasForeignKey("UserEntityId");
+                });
+
+            modelBuilder.Entity("CocktailMagician.Data.Models.CocktailIngredientEntity", b =>
+                {
+                    b.HasOne("CocktailMagician.Data.Models.CocktailEntity", "CocktailEntity")
+                        .WithMany("CocktailIngredients")
+                        .HasForeignKey("CocktailEntityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CocktailMagician.Data.Models.IngredientEntity", "IngredientEntity")
+                        .WithMany()
+                        .HasForeignKey("IngredientEntityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CocktailMagician.Data.Models.CocktailReviewEntity", b =>
+                {
+                    b.HasOne("CocktailMagician.Data.Models.CocktailEntity", "Cocktail")
+                        .WithMany("CocktailReviews")
+                        .HasForeignKey("CocktailEntityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CocktailMagician.Data.Models.UserEntity", "User")
+                        .WithMany("CocktailReviews")
+                        .HasForeignKey("UserEntityId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

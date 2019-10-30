@@ -1,0 +1,30 @@
+[
+  {
+    "Id": 1,
+    "Name": "Ace of Clubs",
+    "Address": "3483  Stratford Court, Fayetteville, North Carolina",
+    "Rating": null,
+    "IsHidden": false
+  },
+  {
+    "Id": 2,
+    "Name": "The Back Lane Bar",
+    "Address": "3234  Mesa Drive, Las Vegas, Nevada",
+    "Rating": null,
+    "IsHidden": false
+  },
+  {
+    "Id": 3,
+    "Name": "The Brass Lantern",
+    "Address": "3292  Oak Lane, Jamesport, Missouri",
+    "Rating": null,
+    "IsHidden": false
+  },
+  {
+    "Id": 4,
+    "Name": "Blue Boar Inn",
+    "Address": "1957  Braxton Street, Momence, Illinois",
+    "Rating": null,
+    "IsHidden": false
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "Id": "3e4aab82-7dc1-4541-99e4-ade2523d95e9",
+    "Username": "admin@admin.com",
+    "NormalizedUsername": "ADMIN@ADMIN.COM",
+    "Email": "admin@admin.com",
+    "NormalizedEmail": "ADMIN@ADMIN.COM",
+    "PasswordHash": "AQAAAAEAACcQAAAAEPCgsKRJwJYsdiLjYUmnceNDmjGwBHAv2cWSFmPxWO6Nhdgcea6ae6Pema7tRusF+w==",
+    "SecurityStamp": "WDVY5A55O3W647HQWFALI6XUL3HGXVH5",
+    "ConcurrencyStamp": "7860d092-2b7b-43f7-b786-b094814c32a5"
+  },
+  {
+    "Id": "dd6561c5-0244-4303-974b-bb9cdfc79d9a",
+    "Username": "user@user.com",
+    "NormalizedUsername": "USER@USER.COM",
+    "Email": "user@user.com",
+    "NormalizedEmail": "PESHO@PORN.COM",
+    "PasswordHash": "AQAAAAEAACcQAAAAEHjrAvA0Ww9M6riqiuVTSSn+bp0or8KFufgIuHh2t5MQBA3S7/O6xG3R3x33IbChyg==",
+    "SecurityStamp": "7ESQYUICWBMY6LMQNHL7NOCQOF5V7ZNN",
+    "ConcurrencyStamp": "02257977-cd98-4987-890c-e043e5b11b7a"
+  }
+]

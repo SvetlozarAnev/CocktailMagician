@@ -1,0 +1,35 @@
+[
+  {
+    "Id": 1,
+    "Name": "Coca-Cola"
+  },
+  {
+    "Id": 2,
+    "Name": "Coffee Liqueur"
+  },
+  {
+    "Id": 3,
+    "Name": "Lime Juice"
+  },
+  {
+    "Id": 4,
+    "Name": "Milk"
+  },
+  {
+    "Id": 5,
+    "Name": "Kahlua"
+  },
+  {
+    "Id": 6,
+    "Name": "White Rum"
+  },
+  {
+    "Id": 7,
+    "Name": "Whiskey"
+
+  },
+  {
+    "Id": 8,
+    "Name": "Vodka"
+  }
+]

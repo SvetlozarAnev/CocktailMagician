@@ -1,0 +1,10 @@
+[
+  {
+    "RoleId": "959596e5-93e4-4272-8cfb-6e71a4254370", //admin
+    "UserId": "3e4aab82-7dc1-4541-99e4-ade2523d95e9"
+  },
+  {
+    "RoleId": "5197310d-5d42-4337-bb59-2fd06e6a8fcd", //user
+    "UserId": "dd6561c5-0244-4303-974b-bb9cdfc79d9a"
+  }
+]

@@ -30,6 +30,58 @@ namespace CocktailMagician.Data.Migrations
                     b.HasIndex("CocktailEntityId");
 
                     b.ToTable("BarCocktails");
+
+                    b.HasData(
+                        new
+                        {
+                            BarEntityId = 1,
+                            CocktailEntityId = 1
+                        },
+                        new
+                        {
+                            BarEntityId = 1,
+                            CocktailEntityId = 2
+                        },
+                        new
+                        {
+                            BarEntityId = 1,
+                            CocktailEntityId = 3
+                        },
+                        new
+                        {
+                            BarEntityId = 2,
+                            CocktailEntityId = 1
+                        },
+                        new
+                        {
+                            BarEntityId = 2,
+                            CocktailEntityId = 3
+                        },
+                        new
+                        {
+                            BarEntityId = 2,
+                            CocktailEntityId = 4
+                        },
+                        new
+                        {
+                            BarEntityId = 3,
+                            CocktailEntityId = 1
+                        },
+                        new
+                        {
+                            BarEntityId = 3,
+                            CocktailEntityId = 2
+                        },
+                        new
+                        {
+                            BarEntityId = 4,
+                            CocktailEntityId = 3
+                        },
+                        new
+                        {
+                            BarEntityId = 4,
+                            CocktailEntityId = 4
+                        });
                 });
 
             modelBuilder.Entity("CocktailMagician.Data.Models.BarEntity", b =>
@@ -40,6 +92,8 @@ namespace CocktailMagician.Data.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<bool>("IsHidden");
+
                     b.Property<string>("Name");
 
                     b.Property<double?>("Rating");
@@ -47,6 +101,36 @@ namespace CocktailMagician.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Bars");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "3483  Stratford Court, Fayetteville, North Carolina",
+                            IsHidden = false,
+                            Name = "Ace of Clubs"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "3234  Mesa Drive, Las Vegas, Nevada",
+                            IsHidden = false,
+                            Name = "The Back Lane Bar"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "3292  Oak Lane, Jamesport, Missouri",
+                            IsHidden = false,
+                            Name = "The Brass Lantern"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "1957  Braxton Street, Momence, Illinois",
+                            IsHidden = false,
+                            Name = "Blue Boar Inn"
+                        });
                 });
 
             modelBuilder.Entity("CocktailMagician.Data.Models.BarReviewEntity", b =>
@@ -78,13 +162,47 @@ namespace CocktailMagician.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("IsHidden");
+
                     b.Property<string>("Name");
 
                     b.Property<double?>("Rating");
 
+                    b.Property<string>("Recipe");
+
                     b.HasKey("Id");
 
                     b.ToTable("Cocktails");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsHidden = false,
+                            Name = "Black Russian",
+                            Recipe = "Pour the ingredients directly in a lowball glass with ice. Top up with coke. Stir and serve. Simple - yet a classic."
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsHidden = false,
+                            Name = "Whiskey And Coke",
+                            Recipe = "A classic combo, simply add the whisky into the bottom of a lowball glass with some ice cubes, then top up with the desired amount of coke. Classic and simple yet tasty!"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsHidden = false,
+                            Name = "Cuba Libre",
+                            Recipe = "Add the rum and lime juice into a highball glass with ice. Stir and top up with coke."
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IsHidden = false,
+                            Name = "Iceberg Paralyzer",
+                            Recipe = "Fill tall glass with ice to the top before adding the vodka and Kaluha. Next add the coke nearly to the top before adding in the milk to finish. Stir with a barspoon. Just remember to add a lot of ice or the milk can curdle with the coke."
+                        });
                 });
 
             modelBuilder.Entity("CocktailMagician.Data.Models.CocktailIngredientEntity", b =>
@@ -98,6 +216,68 @@ namespace CocktailMagician.Data.Migrations
                     b.HasIndex("CocktailEntityId");
 
                     b.ToTable("CocktaiIngredients");
+
+                    b.HasData(
+                        new
+                        {
+                            IngredientEntityId = 1,
+                            CocktailEntityId = 1
+                        },
+                        new
+                        {
+                            IngredientEntityId = 2,
+                            CocktailEntityId = 1
+                        },
+                        new
+                        {
+                            IngredientEntityId = 8,
+                            CocktailEntityId = 1
+                        },
+                        new
+                        {
+                            IngredientEntityId = 1,
+                            CocktailEntityId = 2
+                        },
+                        new
+                        {
+                            IngredientEntityId = 7,
+                            CocktailEntityId = 2
+                        },
+                        new
+                        {
+                            IngredientEntityId = 1,
+                            CocktailEntityId = 3
+                        },
+                        new
+                        {
+                            IngredientEntityId = 3,
+                            CocktailEntityId = 3
+                        },
+                        new
+                        {
+                            IngredientEntityId = 6,
+                            CocktailEntityId = 3
+                        },
+                        new
+                        {
+                            IngredientEntityId = 1,
+                            CocktailEntityId = 4
+                        },
+                        new
+                        {
+                            IngredientEntityId = 4,
+                            CocktailEntityId = 4
+                        },
+                        new
+                        {
+                            IngredientEntityId = 5,
+                            CocktailEntityId = 4
+                        },
+                        new
+                        {
+                            IngredientEntityId = 8,
+                            CocktailEntityId = 4
+                        });
                 });
 
             modelBuilder.Entity("CocktailMagician.Data.Models.CocktailReviewEntity", b =>
@@ -134,6 +314,48 @@ namespace CocktailMagician.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ingredients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Coca-Cola"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Coffee Liqueur"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Lime Juice"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Milk"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Kahlua"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "White Rum"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Whiskey"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Vodka"
+                        });
                 });
 
             modelBuilder.Entity("CocktailMagician.Data.Models.UserEntity", b =>
@@ -185,6 +407,40 @@ namespace CocktailMagician.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3e4aab82-7dc1-4541-99e4-ade2523d95e9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7860d092-2b7b-43f7-b786-b094814c32a5",
+                            Email = "admin@admin.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN@ADMIN.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPCgsKRJwJYsdiLjYUmnceNDmjGwBHAv2cWSFmPxWO6Nhdgcea6ae6Pema7tRusF+w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "WDVY5A55O3W647HQWFALI6XUL3HGXVH5",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@admin.com"
+                        },
+                        new
+                        {
+                            Id = "dd6561c5-0244-4303-974b-bb9cdfc79d9a",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "02257977-cd98-4987-890c-e043e5b11b7a",
+                            Email = "user@user.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "PESHO@PORN.COM",
+                            NormalizedUserName = "USER@USER.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHjrAvA0Ww9M6riqiuVTSSn+bp0or8KFufgIuHh2t5MQBA3S7/O6xG3R3x33IbChyg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7ESQYUICWBMY6LMQNHL7NOCQOF5V7ZNN",
+                            TwoFactorEnabled = false,
+                            UserName = "user@user.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -209,6 +465,22 @@ namespace CocktailMagician.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "959596e5-93e4-4272-8cfb-6e71a4254370",
+                            ConcurrencyStamp = "20d35162-b35c-4b2e-80c1-81a15bc1b2f3",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "5197310d-5d42-4337-bb59-2fd06e6a8fcd",
+                            ConcurrencyStamp = "a3bc9d45-276b-442f-bc6b-b1a5763df30d",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -282,6 +554,18 @@ namespace CocktailMagician.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "3e4aab82-7dc1-4541-99e4-ade2523d95e9",
+                            RoleId = "959596e5-93e4-4272-8cfb-6e71a4254370"
+                        },
+                        new
+                        {
+                            UserId = "dd6561c5-0244-4303-974b-bb9cdfc79d9a",
+                            RoleId = "5197310d-5d42-4337-bb59-2fd06e6a8fcd"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -319,11 +603,12 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Data.Models.BarEntity", "Bar")
                         .WithMany("BarReviews")
                         .HasForeignKey("BarEntityId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("CocktailMagician.Data.Models.UserEntity", "User")
                         .WithMany("BarReviews")
-                        .HasForeignKey("UserEntityId");
+                        .HasForeignKey("UserEntityId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("CocktailMagician.Data.Models.CocktailIngredientEntity", b =>
@@ -334,7 +619,7 @@ namespace CocktailMagician.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CocktailMagician.Data.Models.IngredientEntity", "IngredientEntity")
-                        .WithMany()
+                        .WithMany("CocktailIngredients")
                         .HasForeignKey("IngredientEntityId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -344,11 +629,12 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Data.Models.CocktailEntity", "Cocktail")
                         .WithMany("CocktailReviews")
                         .HasForeignKey("CocktailEntityId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("CocktailMagician.Data.Models.UserEntity", "User")
                         .WithMany("CocktailReviews")
-                        .HasForeignKey("UserEntityId");
+                        .HasForeignKey("UserEntityId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

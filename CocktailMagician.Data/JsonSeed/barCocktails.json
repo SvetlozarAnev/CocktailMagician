@@ -1,0 +1,43 @@
+[
+  {
+    "BarEntityId": 1,
+    "CocktailEntityId": 1
+  },
+  {
+    "BarEntityId": 1,
+    "CocktailEntityId": 2
+  },
+  {
+    "BarEntityId": 1,
+    "CocktailEntityId": 3
+  },
+  {
+    "BarEntityId": 2,
+    "CocktailEntityId": 1
+  },
+  {
+    "BarEntityId": 2,
+    "CocktailEntityId": 3
+  },
+  {
+    "BarEntityId": 2,
+    "CocktailEntityId": 4
+  },
+  {
+    "BarEntityId": 3,
+    "CocktailEntityId": 1
+  },
+  {
+    "BarEntityId": 3,
+    "CocktailEntityId": 2
+  },
+  {
+    "BarEntityId": 4,
+    "CocktailEntityId": 3
+  },
+  {
+    "BarEntityId": 4,
+    "CocktailEntityId": 4
+
+  }
+]

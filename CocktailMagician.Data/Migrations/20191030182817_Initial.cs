@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CocktailMagician.Data.Migrations
 {
-    public partial class Initial111 : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,7 +55,8 @@ namespace CocktailMagician.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
-                    Rating = table.Column<double>(nullable: true)
+                    Rating = table.Column<double>(nullable: true),
+                    IsHidden = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,7 +70,9 @@ namespace CocktailMagician.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    Rating = table.Column<double>(nullable: true)
+                    Recipe = table.Column<string>(nullable: true),
+                    Rating = table.Column<double>(nullable: true),
+                    IsHidden = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -214,7 +217,7 @@ namespace CocktailMagician.Data.Migrations
                         column: x => x.BarEntityId,
                         principalTable: "Bars",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_BarReviews_AspNetUsers_UserEntityId",
                         column: x => x.UserEntityId,
@@ -266,7 +269,7 @@ namespace CocktailMagician.Data.Migrations
                         column: x => x.CocktailEntityId,
                         principalTable: "Cocktails",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CocktailReviews_AspNetUsers_UserEntityId",
                         column: x => x.UserEntityId,
@@ -297,6 +300,106 @@ namespace CocktailMagician.Data.Migrations
                         principalTable: "Ingredients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "5197310d-5d42-4337-bb59-2fd06e6a8fcd", "a3bc9d45-276b-442f-bc6b-b1a5763df30d", "User", "USER" },
+                    { "959596e5-93e4-4272-8cfb-6e71a4254370", "20d35162-b35c-4b2e-80c1-81a15bc1b2f3", "Admin", "ADMIN" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "dd6561c5-0244-4303-974b-bb9cdfc79d9a", 0, "02257977-cd98-4987-890c-e043e5b11b7a", "user@user.com", false, false, null, "PESHO@PORN.COM", "USER@USER.COM", "AQAAAAEAACcQAAAAEHjrAvA0Ww9M6riqiuVTSSn+bp0or8KFufgIuHh2t5MQBA3S7/O6xG3R3x33IbChyg==", null, false, "7ESQYUICWBMY6LMQNHL7NOCQOF5V7ZNN", false, "user@user.com" },
+                    { "3e4aab82-7dc1-4541-99e4-ade2523d95e9", 0, "7860d092-2b7b-43f7-b786-b094814c32a5", "admin@admin.com", false, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEPCgsKRJwJYsdiLjYUmnceNDmjGwBHAv2cWSFmPxWO6Nhdgcea6ae6Pema7tRusF+w==", null, false, "WDVY5A55O3W647HQWFALI6XUL3HGXVH5", false, "admin@admin.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Bars",
+                columns: new[] { "Id", "Address", "IsHidden", "Name", "Rating" },
+                values: new object[,]
+                {
+                    { 1, "3483  Stratford Court, Fayetteville, North Carolina", false, "Ace of Clubs", null },
+                    { 4, "1957  Braxton Street, Momence, Illinois", false, "Blue Boar Inn", null },
+                    { 3, "3292  Oak Lane, Jamesport, Missouri", false, "The Brass Lantern", null },
+                    { 2, "3234  Mesa Drive, Las Vegas, Nevada", false, "The Back Lane Bar", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cocktails",
+                columns: new[] { "Id", "IsHidden", "Name", "Rating", "Recipe" },
+                values: new object[,]
+                {
+                    { 2, false, "Whiskey And Coke", null, "A classic combo, simply add the whisky into the bottom of a lowball glass with some ice cubes, then top up with the desired amount of coke. Classic and simple yet tasty!" },
+                    { 3, false, "Cuba Libre", null, "Add the rum and lime juice into a highball glass with ice. Stir and top up with coke." },
+                    { 4, false, "Iceberg Paralyzer", null, "Fill tall glass with ice to the top before adding the vodka and Kaluha. Next add the coke nearly to the top before adding in the milk to finish. Stir with a barspoon. Just remember to add a lot of ice or the milk can curdle with the coke." },
+                    { 1, false, "Black Russian", null, "Pour the ingredients directly in a lowball glass with ice. Top up with coke. Stir and serve. Simple - yet a classic." }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Ingredients",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Coca-Cola" },
+                    { 3, "Lime Juice" },
+                    { 4, "Milk" },
+                    { 5, "Kahlua" },
+                    { 6, "White Rum" },
+                    { 7, "Whiskey" },
+                    { 8, "Vodka" },
+                    { 2, "Coffee Liqueur" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[,]
+                {
+                    { "dd6561c5-0244-4303-974b-bb9cdfc79d9a", "5197310d-5d42-4337-bb59-2fd06e6a8fcd" },
+                    { "3e4aab82-7dc1-4541-99e4-ade2523d95e9", "959596e5-93e4-4272-8cfb-6e71a4254370" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "BarCocktails",
+                columns: new[] { "BarEntityId", "CocktailEntityId" },
+                values: new object[,]
+                {
+                    { 4, 4 },
+                    { 2, 4 },
+                    { 4, 3 },
+                    { 2, 3 },
+                    { 1, 1 },
+                    { 3, 2 },
+                    { 1, 2 },
+                    { 3, 1 },
+                    { 2, 1 },
+                    { 1, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CocktaiIngredients",
+                columns: new[] { "IngredientEntityId", "CocktailEntityId" },
+                values: new object[,]
+                {
+                    { 8, 4 },
+                    { 8, 1 },
+                    { 7, 2 },
+                    { 6, 3 },
+                    { 5, 4 },
+                    { 3, 3 },
+                    { 2, 1 },
+                    { 1, 4 },
+                    { 1, 3 },
+                    { 1, 1 },
+                    { 4, 4 },
+                    { 1, 2 }
                 });
 
             migrationBuilder.CreateIndex(

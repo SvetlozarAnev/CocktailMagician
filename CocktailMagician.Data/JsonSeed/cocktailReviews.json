@@ -1,0 +1,30 @@
+[
+  {
+    "Id": 1,
+    "UserEntityId": "3e4aab82-7dc1-4541-99e4-ade2523d95e9",
+    "CocktailEntityId": 1,
+    "Rating": 5,
+    "Review": "My all time favorite drink..."
+  },
+  {
+    "Id": 2,
+    "UserEntityId": "3e4aab82-7dc1-4541-99e4-ade2523d95e9",
+    "CocktailEntityId": 2,
+    "Rating": 4,
+    "Review": "The cocktail was prepared just the way I like it..."
+  },
+  {
+    "Id": 3,
+    "UserEntityId": "dd6561c5-0244-4303-974b-bb9cdfc79d9a",
+    "CocktailEntityId": 3,
+    "Rating": 1,
+    "Review": "This cocktail was a disaster.."
+  },
+  {
+    "Id": 4,
+    "UserEntityId": "dd6561c5-0244-4303-974b-bb9cdfc79d9a",
+    "CocktailEntityId": 4,
+    "Rating": 3,
+    "Review": null
+  }
+]

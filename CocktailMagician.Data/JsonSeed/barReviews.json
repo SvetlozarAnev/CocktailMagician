@@ -1,0 +1,37 @@
+[
+  {
+    "Id": 1,
+    "UserEntityId": "3e4aab82-7dc1-4541-99e4-ade2523d95e9",
+    "BarEntityId": 1,
+    "Rating": 5,
+    "Review": "Great place :) I enjoyed myself a lot!!!"
+  },
+  {
+    "Id": 2,
+    "UserEntityId": "3e4aab82-7dc1-4541-99e4-ade2523d95e9",
+    "BarEntityId": 3,
+    "Rating": 3,
+    "Review": "Grumpy barman. Will not recommend."
+  },
+  {
+    "Id": 3,
+    "UserEntityId": "dd6561c5-0244-4303-974b-bb9cdfc79d9a",
+    "BarEntityId": 1,
+    "Rating": 4,
+    "Review": "Fine place, but the music was too loud."
+  },
+  {
+    "Id": 4,
+    "UserEntityId": "dd6561c5-0244-4303-974b-bb9cdfc79d9a",
+    "BarEntityId": 4,
+    "Rating": 1,
+    "Review": null
+  },
+  {
+    "Id": 5,
+    "UserEntityId": "dd6561c5-0244-4303-974b-bb9cdfc79d9a",
+    "BarEntityId": 3,
+    "Rating": 5,
+    "Review": "Awesome place!!!"
+  }
+]

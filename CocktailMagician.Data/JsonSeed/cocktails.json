@@ -3,7 +3,7 @@
     "Id": 1,
     "Name": "Black Russian",
     "Recipe": "Pour the ingredients directly in a lowball glass with ice. Top up with coke. Stir and serve. Simple - yet a classic.",
-    "Rating": null,
+    "Rating": 5,
     "IsHidden": false
 
   },
@@ -11,21 +11,21 @@
     "Id": 2,
     "Name": "Whiskey And Coke",
     "Recipe": "A classic combo, simply add the whisky into the bottom of a lowball glass with some ice cubes, then top up with the desired amount of coke. Classic and simple yet tasty!",
-    "Rating": null,
+    "Rating": 4,
     "IsHidden": false
   },
   {
     "Id": 3,
     "Name": "Cuba Libre",
     "Recipe": "Add the rum and lime juice into a highball glass with ice. Stir and top up with coke.",
-    "Rating": null,
+    "Rating": 1,
     "IsHidden": false
   },
   {
     "Id": 4,
     "Name": "Iceberg Paralyzer",
     "Recipe": "Fill tall glass with ice to the top before adding the vodka and Kaluha. Next add the coke nearly to the top before adding in the milk to finish. Stir with a barspoon. Just remember to add a lot of ice or the milk can curdle with the coke.",
-    "Rating": null,
+    "Rating": 3,
     "IsHidden": false
   }
 ]

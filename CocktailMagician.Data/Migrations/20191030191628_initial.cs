@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CocktailMagician.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -325,9 +325,9 @@ namespace CocktailMagician.Data.Migrations
                 columns: new[] { "Id", "Address", "IsHidden", "Name", "Rating" },
                 values: new object[,]
                 {
-                    { 1, "3483  Stratford Court, Fayetteville, North Carolina", false, "Ace of Clubs", null },
-                    { 4, "1957  Braxton Street, Momence, Illinois", false, "Blue Boar Inn", null },
-                    { 3, "3292  Oak Lane, Jamesport, Missouri", false, "The Brass Lantern", null },
+                    { 1, "3483  Stratford Court, Fayetteville, North Carolina", false, "Ace of Clubs", 4.5 },
+                    { 4, "1957  Braxton Street, Momence, Illinois", false, "Blue Boar Inn", 1.0 },
+                    { 3, "3292  Oak Lane, Jamesport, Missouri", false, "The Brass Lantern", 4.0 },
                     { 2, "3234  Mesa Drive, Las Vegas, Nevada", false, "The Back Lane Bar", null }
                 });
 
@@ -384,6 +384,18 @@ namespace CocktailMagician.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "BarReviews",
+                columns: new[] { "Id", "BarEntityId", "Rating", "Review", "UserEntityId" },
+                values: new object[,]
+                {
+                    { 5, 3, 5, "Awesome place!!!", "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
+                    { 4, 4, 1, null, "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
+                    { 3, 1, 4, "Fine place, but the music was too loud.", "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
+                    { 2, 3, 3, "Grumpy barman. Will not recommend.", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" },
+                    { 1, 1, 5, "Great place :) I enjoyed myself a lot!!!", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "CocktaiIngredients",
                 columns: new[] { "IngredientEntityId", "CocktailEntityId" },
                 values: new object[,]
@@ -391,15 +403,26 @@ namespace CocktailMagician.Data.Migrations
                     { 8, 4 },
                     { 8, 1 },
                     { 7, 2 },
-                    { 6, 3 },
                     { 5, 4 },
                     { 3, 3 },
                     { 2, 1 },
                     { 1, 4 },
                     { 1, 3 },
+                    { 1, 2 },
                     { 1, 1 },
-                    { 4, 4 },
-                    { 1, 2 }
+                    { 6, 3 },
+                    { 4, 4 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CocktailReviews",
+                columns: new[] { "Id", "CocktailEntityId", "Rating", "Review", "UserEntityId" },
+                values: new object[,]
+                {
+                    { 1, 1, 5, "My all time favorite drink...", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" },
+                    { 2, 2, 4, "The cocktail was prepared just the way I like it...", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" },
+                    { 3, 3, 1, "This cocktail was a disaster..", "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
+                    { 4, 4, 3, null, "dd6561c5-0244-4303-974b-bb9cdfc79d9a" }
                 });
 
             migrationBuilder.CreateIndex(

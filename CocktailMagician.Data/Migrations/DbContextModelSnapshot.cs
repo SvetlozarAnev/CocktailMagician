@@ -108,7 +108,8 @@ namespace CocktailMagician.Data.Migrations
                             Id = 1,
                             Address = "3483  Stratford Court, Fayetteville, North Carolina",
                             IsHidden = false,
-                            Name = "Ace of Clubs"
+                            Name = "Ace of Clubs",
+                            Rating = 4.5
                         },
                         new
                         {
@@ -122,14 +123,16 @@ namespace CocktailMagician.Data.Migrations
                             Id = 3,
                             Address = "3292  Oak Lane, Jamesport, Missouri",
                             IsHidden = false,
-                            Name = "The Brass Lantern"
+                            Name = "The Brass Lantern",
+                            Rating = 4.0
                         },
                         new
                         {
                             Id = 4,
                             Address = "1957  Braxton Street, Momence, Illinois",
                             IsHidden = false,
-                            Name = "Blue Boar Inn"
+                            Name = "Blue Boar Inn",
+                            Rating = 1.0
                         });
                 });
 
@@ -154,6 +157,47 @@ namespace CocktailMagician.Data.Migrations
                     b.HasIndex("UserEntityId");
 
                     b.ToTable("BarReviews");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BarEntityId = 1,
+                            Rating = 5,
+                            Review = "Great place :) I enjoyed myself a lot!!!",
+                            UserEntityId = "3e4aab82-7dc1-4541-99e4-ade2523d95e9"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BarEntityId = 3,
+                            Rating = 3,
+                            Review = "Grumpy barman. Will not recommend.",
+                            UserEntityId = "3e4aab82-7dc1-4541-99e4-ade2523d95e9"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BarEntityId = 1,
+                            Rating = 4,
+                            Review = "Fine place, but the music was too loud.",
+                            UserEntityId = "dd6561c5-0244-4303-974b-bb9cdfc79d9a"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BarEntityId = 4,
+                            Rating = 1,
+                            UserEntityId = "dd6561c5-0244-4303-974b-bb9cdfc79d9a"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BarEntityId = 3,
+                            Rating = 5,
+                            Review = "Awesome place!!!",
+                            UserEntityId = "dd6561c5-0244-4303-974b-bb9cdfc79d9a"
+                        });
                 });
 
             modelBuilder.Entity("CocktailMagician.Data.Models.CocktailEntity", b =>
@@ -301,6 +345,39 @@ namespace CocktailMagician.Data.Migrations
                     b.HasIndex("UserEntityId");
 
                     b.ToTable("CocktailReviews");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CocktailEntityId = 1,
+                            Rating = 5,
+                            Review = "My all time favorite drink...",
+                            UserEntityId = "3e4aab82-7dc1-4541-99e4-ade2523d95e9"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CocktailEntityId = 2,
+                            Rating = 4,
+                            Review = "The cocktail was prepared just the way I like it...",
+                            UserEntityId = "3e4aab82-7dc1-4541-99e4-ade2523d95e9"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CocktailEntityId = 3,
+                            Rating = 1,
+                            Review = "This cocktail was a disaster..",
+                            UserEntityId = "dd6561c5-0244-4303-974b-bb9cdfc79d9a"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CocktailEntityId = 4,
+                            Rating = 3,
+                            UserEntityId = "dd6561c5-0244-4303-974b-bb9cdfc79d9a"
+                        });
                 });
 
             modelBuilder.Entity("CocktailMagician.Data.Models.IngredientEntity", b =>

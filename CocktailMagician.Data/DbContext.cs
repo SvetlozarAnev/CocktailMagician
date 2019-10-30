@@ -51,6 +51,10 @@ namespace CocktailMagician.Data
 
                 var cocktailIngredientsAsJson =
                     File.ReadAllText(@"..\CocktailMagician.Data\JsonSeed\cocktailIngredients.json");
+                var barReviewsAsJson =
+                     File.ReadAllText(@"..\CocktailMagician.Data\JsonSeed\barReviews.json");
+                var cocktailReviewsAsJson =
+                    File.ReadAllText(@"..\CocktailMagician.Data\JsonSeed\cocktailReviews.json");
 
                 var users =
                     JsonConvert.DeserializeObject<UserEntity[]>(usersAsJson);
@@ -74,6 +78,10 @@ namespace CocktailMagician.Data
 
                 var cocktailIngredients =
                     JsonConvert.DeserializeObject<CocktailIngredientEntity[]>(cocktailIngredientsAsJson);
+                var barReviews =
+                    JsonConvert.DeserializeObject<BarReviewEntity[]>(barReviewsAsJson);
+                var cocktailReviews =
+                    JsonConvert.DeserializeObject<CocktailReviewEntity[]>(cocktailReviewsAsJson);
 
                 builder.Entity<UserEntity>()
                     .HasData(users);
@@ -91,6 +99,10 @@ namespace CocktailMagician.Data
                     .HasData(barCocktails);
                 builder.Entity<CocktailIngredientEntity>()
                     .HasData(cocktailIngredients);
+                builder.Entity<BarReviewEntity>()
+                    .HasData(barReviews);
+                builder.Entity<CocktailReviewEntity>()
+                    .HasData(cocktailReviews);
             }
             catch (Exception)
             {

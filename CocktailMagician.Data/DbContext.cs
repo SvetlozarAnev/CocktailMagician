@@ -1,4 +1,5 @@
-﻿using CocktailMagician.Data.Models;
+﻿using CocktailMagician.Data.Configurations;
+using CocktailMagician.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -62,7 +63,7 @@ namespace CocktailMagician.Data
                 var roles =
                     JsonConvert.DeserializeObject<IdentityRole[]>(rolesAsJson);
 
-                var bars = 
+                var bars =
                     JsonConvert.DeserializeObject<BarEntity[]>(barsAsJson);
 
                 var cocktails =
@@ -114,38 +115,16 @@ namespace CocktailMagician.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
             LoadJsonInDb(builder);
 
-            builder.Entity<BarCocktailEntity>()
-                .HasKey(x => new { x.BarEntityId, x.CocktailEntityId });
 
-            builder.Entity<CocktailIngredientEntity>()
-               .HasKey(x => new { x.IngredientEntityId, x.CocktailEntityId });
-
-            builder.Entity<BarReviewEntity>()
-                .HasOne(x => x.User)
-                .WithMany(x => x.BarReviews)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<BarReviewEntity>()
-                .HasOne(x => x.Bar)
-                .WithMany(x => x.BarReviews)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<CocktailReviewEntity>()
-                .HasOne(x => x.User)
-                .WithMany(x => x.CocktailReviews)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<CocktailReviewEntity>()
-                .HasOne(x => x.Cocktail)
-                .WithMany(x => x.CocktailReviews)
-                .OnDelete(DeleteBehavior.Restrict);
+            builder.ApplyConfiguration(new BarReviewConfiguration());
+            builder.ApplyConfiguration(new CocktailReviewConfiguration());
+            builder.ApplyConfiguration(new BarCocktailConfiguration());
+            builder.ApplyConfiguration(new CocktailIngredientConfiguration());
 
             base.OnModelCreating(builder);
         }
-
 
     }
 }

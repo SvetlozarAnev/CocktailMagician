@@ -45,6 +45,12 @@ namespace CocktailMagician
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<Data.DbContext>();
 
+            services.AddAuthentication().AddFacebook(options =>
+            {
+                options.AppId = "517329002425341";
+                options.AppSecret = "88f68cb7b61abd173dbef771b12f5138";
+            });
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

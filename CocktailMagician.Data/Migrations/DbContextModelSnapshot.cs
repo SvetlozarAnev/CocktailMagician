@@ -92,6 +92,8 @@ namespace CocktailMagician.Data.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<string>("ImagePath");
+
                     b.Property<bool>("IsHidden");
 
                     b.Property<string>("Name");
@@ -206,6 +208,8 @@ namespace CocktailMagician.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ImagePath");
+
                     b.Property<bool>("IsHidden");
 
                     b.Property<string>("Name");
@@ -224,6 +228,7 @@ namespace CocktailMagician.Data.Migrations
                             Id = 1,
                             IsHidden = false,
                             Name = "Black Russian",
+                            Rating = 5.0,
                             Recipe = "Pour the ingredients directly in a lowball glass with ice. Top up with coke. Stir and serve. Simple - yet a classic."
                         },
                         new
@@ -231,6 +236,7 @@ namespace CocktailMagician.Data.Migrations
                             Id = 2,
                             IsHidden = false,
                             Name = "Whiskey And Coke",
+                            Rating = 4.0,
                             Recipe = "A classic combo, simply add the whisky into the bottom of a lowball glass with some ice cubes, then top up with the desired amount of coke. Classic and simple yet tasty!"
                         },
                         new
@@ -238,6 +244,7 @@ namespace CocktailMagician.Data.Migrations
                             Id = 3,
                             IsHidden = false,
                             Name = "Cuba Libre",
+                            Rating = 1.0,
                             Recipe = "Add the rum and lime juice into a highball glass with ice. Stir and top up with coke."
                         },
                         new
@@ -245,6 +252,7 @@ namespace CocktailMagician.Data.Migrations
                             Id = 4,
                             IsHidden = false,
                             Name = "Iceberg Paralyzer",
+                            Rating = 3.0,
                             Recipe = "Fill tall glass with ice to the top before adding the vodka and Kaluha. Next add the coke nearly to the top before adding in the milk to finish. Stir with a barspoon. Just remember to add a lot of ice or the milk can curdle with the coke."
                         });
                 });

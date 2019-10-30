@@ -56,7 +56,8 @@ namespace CocktailMagician.Data.Migrations
                     Name = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: true),
-                    IsHidden = table.Column<bool>(nullable: false)
+                    IsHidden = table.Column<bool>(nullable: false),
+                    ImagePath = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -72,7 +73,8 @@ namespace CocktailMagician.Data.Migrations
                     Name = table.Column<string>(nullable: true),
                     Recipe = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: true),
-                    IsHidden = table.Column<bool>(nullable: false)
+                    IsHidden = table.Column<bool>(nullable: false),
+                    ImagePath = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -322,24 +324,24 @@ namespace CocktailMagician.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Bars",
-                columns: new[] { "Id", "Address", "IsHidden", "Name", "Rating" },
+                columns: new[] { "Id", "Address", "ImagePath", "IsHidden", "Name", "Rating" },
                 values: new object[,]
                 {
-                    { 1, "3483  Stratford Court, Fayetteville, North Carolina", false, "Ace of Clubs", 4.5 },
-                    { 4, "1957  Braxton Street, Momence, Illinois", false, "Blue Boar Inn", 1.0 },
-                    { 3, "3292  Oak Lane, Jamesport, Missouri", false, "The Brass Lantern", 4.0 },
-                    { 2, "3234  Mesa Drive, Las Vegas, Nevada", false, "The Back Lane Bar", null }
+                    { 1, "3483  Stratford Court, Fayetteville, North Carolina", null, false, "Ace of Clubs", 4.5 },
+                    { 4, "1957  Braxton Street, Momence, Illinois", null, false, "Blue Boar Inn", 1.0 },
+                    { 3, "3292  Oak Lane, Jamesport, Missouri", null, false, "The Brass Lantern", 4.0 },
+                    { 2, "3234  Mesa Drive, Las Vegas, Nevada", null, false, "The Back Lane Bar", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Cocktails",
-                columns: new[] { "Id", "IsHidden", "Name", "Rating", "Recipe" },
+                columns: new[] { "Id", "ImagePath", "IsHidden", "Name", "Rating", "Recipe" },
                 values: new object[,]
                 {
-                    { 2, false, "Whiskey And Coke", null, "A classic combo, simply add the whisky into the bottom of a lowball glass with some ice cubes, then top up with the desired amount of coke. Classic and simple yet tasty!" },
-                    { 3, false, "Cuba Libre", null, "Add the rum and lime juice into a highball glass with ice. Stir and top up with coke." },
-                    { 4, false, "Iceberg Paralyzer", null, "Fill tall glass with ice to the top before adding the vodka and Kaluha. Next add the coke nearly to the top before adding in the milk to finish. Stir with a barspoon. Just remember to add a lot of ice or the milk can curdle with the coke." },
-                    { 1, false, "Black Russian", null, "Pour the ingredients directly in a lowball glass with ice. Top up with coke. Stir and serve. Simple - yet a classic." }
+                    { 2, null, false, "Whiskey And Coke", 4.0, "A classic combo, simply add the whisky into the bottom of a lowball glass with some ice cubes, then top up with the desired amount of coke. Classic and simple yet tasty!" },
+                    { 3, null, false, "Cuba Libre", 1.0, "Add the rum and lime juice into a highball glass with ice. Stir and top up with coke." },
+                    { 4, null, false, "Iceberg Paralyzer", 3.0, "Fill tall glass with ice to the top before adding the vodka and Kaluha. Next add the coke nearly to the top before adding in the milk to finish. Stir with a barspoon. Just remember to add a lot of ice or the milk can curdle with the coke." },
+                    { 1, null, false, "Black Russian", 5.0, "Pour the ingredients directly in a lowball glass with ice. Top up with coke. Stir and serve. Simple - yet a classic." }
                 });
 
             migrationBuilder.InsertData(

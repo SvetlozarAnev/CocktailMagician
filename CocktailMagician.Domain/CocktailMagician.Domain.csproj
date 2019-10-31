@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CockctailMagician.Contracts\CocktailMagician.Contracts.csproj" />
+    <ProjectReference Include="..\CocktailMagician.Data\CocktailMagician.Data.csproj" />
+  </ItemGroup>
+
+</Project>

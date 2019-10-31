@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace CocktailMagician.Data.Models
 {
     public class CocktailEntity
     {
+        [Required]
         public int Id { get; set; }
+        [Required]
+        [StringLength(70, MinimumLength = 3)]
         public string Name { get; set; }
+        [Required]
+        [StringLength(700)]
         public string Recipe { get; set; }
         public double? Rating { get; set; }
+        [Required]
         public bool IsHidden { get; set; }
         public string ImagePath { get; set; }
         public IEnumerable<BarCocktailEntity> BarCocktails { get; set; }

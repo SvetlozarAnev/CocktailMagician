@@ -46,5 +46,45 @@
   {
     "CocktailEntityId": 4,
     "IngredientEntityId": 8
+  },
+  {
+  "CocktailEntityId": 5,
+    "IngredientEntityId": 9
+  },
+  {
+    "CocktailEntityId": 5,
+    "IngredientEntityId": 10
+  },
+  {
+    "CocktailEntityId": 5,
+    "IngredientEntityId": 11
+  },
+  {
+    "CocktailEntityId": 5,
+    "IngredientEntityId": 12
+  },
+  {
+    "CocktailEntityId": 6,
+    "IngredientEntityId": 1
+  },
+  {
+    "CocktailEntityId": 6,
+    "IngredientEntityId": 11
+  },
+  {
+    "CocktailEntityId": 6,
+    "IngredientEntityId": 13
+  },
+  {
+    "CocktailEntityId": 7,
+    "IngredientEntityId": 1
+  },
+  {
+    "CocktailEntityId": 7,
+    "IngredientEntityId": 14
+  },
+  {
+    "CocktailEntityId": 7,
+    "IngredientEntityId": 15
   }
 ]

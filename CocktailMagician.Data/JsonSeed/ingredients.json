@@ -31,5 +31,45 @@
   {
     "Id": 8,
     "Name": "Vodka"
+  },
+  {
+    "Id": 9,
+    "Name": "Sprite"
+  },
+  {
+    "Id": 10,
+    "Name": "Orange Juice"
+  },
+  {
+    "Id": 11,
+    "Name": "Lemonade"
+  },
+  {
+    "Id": 12,
+    "Name": "Grenadine"
+  },
+  {
+    "Id": 13,
+    "Name": "Black Tea"
+  },
+  {
+    "Id": 14,
+    "Name": "Pineapple Juice"
+  },
+  {
+    "Id": 15,
+    "Name": "Pibb Xtra"
+  },
+  {
+    "Id": 16,
+    "Name": "Club Soda"
+  },
+  {
+    "Id": 17,
+    "Name": "Fanta"
+  },
+  {
+    "Id": 18,
+    "Name": "Yogurt"
   }
 ]

@@ -26,5 +26,19 @@
     "CocktailEntityId": 4,
     "Rating": 3,
     "Review": null
+  },
+  {
+    "Id": 5,
+    "UserEntityId": "dd6561c5-0244-4303-974b-bb9cdfc79d9a",
+    "CocktailEntityId": 6,
+    "Rating": 4,
+    "Review": "Really refreshing!"
+  },
+  {
+    "Id": 6,
+    "UserEntityId": "3e4aab82-7dc1-4541-99e4-ade2523d95e9",
+    "CocktailEntityId": 6,
+    "Rating": 5,
+    "Review": "Extremely nice taste ...for a non-alcoholic beverage!"
   }
 ]

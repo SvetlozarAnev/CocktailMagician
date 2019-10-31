@@ -26,5 +26,19 @@
     "Address": "1957  Braxton Street, Momence, Illinois",
     "Rating": 1,
     "IsHidden": false
+  },
+  {
+    "Id": 5,
+    "Name": "Dexter Lake Club",
+    "Address": "3710  Hall Valley Drive, Stonewood, West Virginia",
+    "Rating": 5,
+    "IsHidden": false
+  },
+  {
+    "Id": 6,
+    "Name": "The Lion and Unicorn ",
+    "Address": "1313  Jerome Avenue, Harlingen, Texas",
+    "Rating": null,
+    "IsHidden": false
   }
 ]

@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CocktailMagician", "CocktailMagician\CocktailMagician.csproj", "{643CBF3C-321B-4084-8C24-2EB8417A4905}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CocktailMagician.Data", "CocktailMagician.Data\CocktailMagician.Data.csproj", "{C1279165-DA29-43C9-A9D7-00E5002F1E14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CocktailMagician.Data", "CocktailMagician.Data\CocktailMagician.Data.csproj", "{C1279165-DA29-43C9-A9D7-00E5002F1E14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CockctailMagician.Contracts", "CockctailMagician.Contracts\CockctailMagician.Contracts.csproj", "{3E361CD1-788C-40E7-A33A-FCC852288266}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C1279165-DA29-43C9-A9D7-00E5002F1E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1279165-DA29-43C9-A9D7-00E5002F1E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1279165-DA29-43C9-A9D7-00E5002F1E14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E361CD1-788C-40E7-A33A-FCC852288266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E361CD1-788C-40E7-A33A-FCC852288266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E361CD1-788C-40E7-A33A-FCC852288266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E361CD1-788C-40E7-A33A-FCC852288266}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -38,6 +38,46 @@
   {
     "BarEntityId": 4,
     "CocktailEntityId": 4
-
+  },
+  {
+    "BarEntityId": 5,
+    "CocktailEntityId": 1
+  },
+  {
+    "BarEntityId": 5,
+    "CocktailEntityId": 2
+  },
+  {
+    "BarEntityId": 5,
+    "CocktailEntityId": 3
+  },
+  {
+    "BarEntityId":5,
+    "CocktailEntityId": 4
+  },
+  {
+    "BarEntityId": 5,
+    "CocktailEntityId": 5
+  },
+  {
+    "BarEntityId": 5,
+    "CocktailEntityId": 6
+  },
+  {
+    "BarEntityId": 5,
+    "CocktailEntityId": 7
+  },
+  {
+    "BarEntityId": 6,
+    "CocktailEntityId": 5
+  },
+  {
+    "BarEntityId": 6,
+    "CocktailEntityId": 6
+  },
+  {
+    "BarEntityId": 6,
+    "CocktailEntityId": 7
   }
+
 ]

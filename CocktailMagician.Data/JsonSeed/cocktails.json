@@ -27,5 +27,26 @@
     "Recipe": "Fill tall glass with ice to the top before adding the vodka and Kaluha. Next add the coke nearly to the top before adding in the milk to finish. Stir with a barspoon. Just remember to add a lot of ice or the milk can curdle with the coke.",
     "Rating": 3,
     "IsHidden": false
+  },
+  {
+    "Id": 5,
+    "Name": "Carribean Sunset Mocktail",
+    "Recipe": "No one will miss the alcohol in this tasty family-friendly drink combining Sprite, orange juice, lemonade and grenadine",
+    "Rating": null,
+    "IsHidden": false
+  },
+  {
+    "Id": 6,
+    "Name": "Long Island Iced Tea Mocktail",
+    "Recipe": "Coca-Cola, lemonade and black tea give this signature drink the taste of the original without the alcohol.",
+    "Rating": 4.5,
+    "IsHidden": false
+  },
+  {
+    "Id": 7,
+    "Name": "Coca-Cola Spice",
+    "Recipe": "Add Coca-Cola, pineapple juice and Pibb Xtra to make a non-alcoholic take on a traditional holiday beverage.",
+    "Rating": null,
+    "IsHidden": false
   }
 ]

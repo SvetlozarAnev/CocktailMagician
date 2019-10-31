@@ -30,8 +30,15 @@
   {
     "Id": 5,
     "UserEntityId": "dd6561c5-0244-4303-974b-bb9cdfc79d9a",
-    "BarEntityId": 3,
+    "BarEntityId": 5,
     "Rating": 5,
-    "Review": "Awesome place!!!"
+    "Review": "Great! Loved it!"
+  },
+  {
+    "Id": 6,
+    "UserEntityId": "3e4aab82-7dc1-4541-99e4-ade2523d95e9",
+    "BarEntityId": 5,
+    "Rating": 5,
+    "Review": "Really sweet spot!"
   }
 ]

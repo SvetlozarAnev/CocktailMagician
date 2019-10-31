@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CocktailMagician.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -327,9 +327,11 @@ namespace CocktailMagician.Data.Migrations
                 columns: new[] { "Id", "Address", "ImagePath", "IsHidden", "Name", "Rating" },
                 values: new object[,]
                 {
+                    { 6, "1313  Jerome Avenue, Harlingen, Texas", null, false, "The Lion and Unicorn ", null },
                     { 1, "3483  Stratford Court, Fayetteville, North Carolina", null, false, "Ace of Clubs", 4.5 },
-                    { 4, "1957  Braxton Street, Momence, Illinois", null, false, "Blue Boar Inn", 1.0 },
                     { 3, "3292  Oak Lane, Jamesport, Missouri", null, false, "The Brass Lantern", 4.0 },
+                    { 5, "3710  Hall Valley Drive, Stonewood, West Virginia", null, false, "Dexter Lake Club", 5.0 },
+                    { 4, "1957  Braxton Street, Momence, Illinois", null, false, "Blue Boar Inn", 1.0 },
                     { 2, "3234  Mesa Drive, Las Vegas, Nevada", null, false, "The Back Lane Bar", null }
                 });
 
@@ -338,10 +340,13 @@ namespace CocktailMagician.Data.Migrations
                 columns: new[] { "Id", "ImagePath", "IsHidden", "Name", "Rating", "Recipe" },
                 values: new object[,]
                 {
-                    { 2, null, false, "Whiskey And Coke", 4.0, "A classic combo, simply add the whisky into the bottom of a lowball glass with some ice cubes, then top up with the desired amount of coke. Classic and simple yet tasty!" },
-                    { 3, null, false, "Cuba Libre", 1.0, "Add the rum and lime juice into a highball glass with ice. Stir and top up with coke." },
+                    { 7, null, false, "Coca-Cola Spice", null, "Add Coca-Cola, pineapple juice and Pibb Xtra to make a non-alcoholic take on a traditional holiday beverage." },
+                    { 1, null, false, "Black Russian", 5.0, "Pour the ingredients directly in a lowball glass with ice. Top up with coke. Stir and serve. Simple - yet a classic." },
+                    { 5, null, false, "Carribean Sunset Mocktail", null, "No one will miss the alcohol in this tasty family-friendly drink combining Sprite, orange juice, lemonade and grenadine" },
                     { 4, null, false, "Iceberg Paralyzer", 3.0, "Fill tall glass with ice to the top before adding the vodka and Kaluha. Next add the coke nearly to the top before adding in the milk to finish. Stir with a barspoon. Just remember to add a lot of ice or the milk can curdle with the coke." },
-                    { 1, null, false, "Black Russian", 5.0, "Pour the ingredients directly in a lowball glass with ice. Top up with coke. Stir and serve. Simple - yet a classic." }
+                    { 3, null, false, "Cuba Libre", 1.0, "Add the rum and lime juice into a highball glass with ice. Stir and top up with coke." },
+                    { 2, null, false, "Whiskey And Coke", 4.0, "A classic combo, simply add the whisky into the bottom of a lowball glass with some ice cubes, then top up with the desired amount of coke. Classic and simple yet tasty!" },
+                    { 6, null, false, "Long Island Iced Tea Mocktail", 4.5, "Coca-Cola, lemonade and black tea give this signature drink the taste of the original without the alcohol." }
                 });
 
             migrationBuilder.InsertData(
@@ -349,14 +354,24 @@ namespace CocktailMagician.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Coca-Cola" },
-                    { 3, "Lime Juice" },
-                    { 4, "Milk" },
-                    { 5, "Kahlua" },
-                    { 6, "White Rum" },
-                    { 7, "Whiskey" },
+                    { 13, "Black Tea" },
+                    { 18, "Yogurt" },
+                    { 17, "Fanta" },
+                    { 16, "Club Soda" },
+                    { 15, "Pibb Xtra" },
+                    { 14, "Pineapple Juice" },
+                    { 12, "Grenadine" },
                     { 8, "Vodka" },
-                    { 2, "Coffee Liqueur" }
+                    { 10, "Orange Juice" },
+                    { 9, "Sprite" },
+                    { 7, "Whiskey" },
+                    { 6, "White Rum" },
+                    { 4, "Milk" },
+                    { 3, "Lime Juice" },
+                    { 2, "Coffee Liqueur" },
+                    { 1, "Coca-Cola" },
+                    { 11, "Lemonade" },
+                    { 5, "Kahlua" }
                 });
 
             migrationBuilder.InsertData(
@@ -373,16 +388,26 @@ namespace CocktailMagician.Data.Migrations
                 columns: new[] { "BarEntityId", "CocktailEntityId" },
                 values: new object[,]
                 {
+                    { 6, 7 },
+                    { 5, 7 },
+                    { 6, 6 },
+                    { 5, 6 },
+                    { 6, 5 },
+                    { 5, 5 },
+                    { 5, 4 },
                     { 4, 4 },
                     { 2, 4 },
+                    { 1, 1 },
                     { 4, 3 },
                     { 2, 3 },
-                    { 1, 1 },
+                    { 1, 3 },
+                    { 5, 2 },
                     { 3, 2 },
                     { 1, 2 },
+                    { 5, 1 },
                     { 3, 1 },
                     { 2, 1 },
-                    { 1, 3 }
+                    { 5, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -390,11 +415,12 @@ namespace CocktailMagician.Data.Migrations
                 columns: new[] { "Id", "BarEntityId", "Rating", "Review", "UserEntityId" },
                 values: new object[,]
                 {
-                    { 5, 3, 5, "Awesome place!!!", "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
-                    { 4, 4, 1, null, "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
-                    { 3, 1, 4, "Fine place, but the music was too loud.", "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
+                    { 1, 1, 5, "Great place :) I enjoyed myself a lot!!!", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" },
                     { 2, 3, 3, "Grumpy barman. Will not recommend.", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" },
-                    { 1, 1, 5, "Great place :) I enjoyed myself a lot!!!", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" }
+                    { 6, 5, 5, "Really sweet spot!", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" },
+                    { 4, 4, 1, null, "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
+                    { 5, 5, 5, "Great! Loved it!", "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
+                    { 3, 1, 4, "Fine place, but the music was too loud.", "dd6561c5-0244-4303-974b-bb9cdfc79d9a" }
                 });
 
             migrationBuilder.InsertData(
@@ -402,18 +428,28 @@ namespace CocktailMagician.Data.Migrations
                 columns: new[] { "IngredientEntityId", "CocktailEntityId" },
                 values: new object[,]
                 {
+                    { 15, 7 },
+                    { 14, 7 },
+                    { 13, 6 },
+                    { 12, 5 },
+                    { 11, 6 },
+                    { 11, 5 },
+                    { 10, 5 },
                     { 8, 4 },
                     { 8, 1 },
-                    { 7, 2 },
-                    { 5, 4 },
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 1, 3 },
+                    { 9, 5 },
+                    { 1, 4 },
+                    { 1, 6 },
                     { 3, 3 },
                     { 2, 1 },
-                    { 1, 4 },
-                    { 1, 3 },
-                    { 1, 2 },
-                    { 1, 1 },
+                    { 4, 4 },
+                    { 5, 4 },
                     { 6, 3 },
-                    { 4, 4 }
+                    { 7, 2 },
+                    { 1, 7 }
                 });
 
             migrationBuilder.InsertData(
@@ -421,10 +457,12 @@ namespace CocktailMagician.Data.Migrations
                 columns: new[] { "Id", "CocktailEntityId", "Rating", "Review", "UserEntityId" },
                 values: new object[,]
                 {
-                    { 1, 1, 5, "My all time favorite drink...", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" },
                     { 2, 2, 4, "The cocktail was prepared just the way I like it...", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" },
+                    { 6, 6, 5, "Extremely nice taste ...for a non-alcoholic beverage!", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" },
                     { 3, 3, 1, "This cocktail was a disaster..", "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
-                    { 4, 4, 3, null, "dd6561c5-0244-4303-974b-bb9cdfc79d9a" }
+                    { 4, 4, 3, null, "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
+                    { 5, 6, 4, "Really refreshing!", "dd6561c5-0244-4303-974b-bb9cdfc79d9a" },
+                    { 1, 1, 5, "My all time favorite drink...", "3e4aab82-7dc1-4541-99e4-ade2523d95e9" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CocktailMagician.Data.Migrations
 {
     [DbContext(typeof(DbContext))]
-    [Migration("20191030202915_initial")]
-    partial class initial
+    [Migration("20191031131132_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,6 +83,56 @@ namespace CocktailMagician.Data.Migrations
                         {
                             BarEntityId = 4,
                             CocktailEntityId = 4
+                        },
+                        new
+                        {
+                            BarEntityId = 5,
+                            CocktailEntityId = 1
+                        },
+                        new
+                        {
+                            BarEntityId = 5,
+                            CocktailEntityId = 2
+                        },
+                        new
+                        {
+                            BarEntityId = 5,
+                            CocktailEntityId = 3
+                        },
+                        new
+                        {
+                            BarEntityId = 5,
+                            CocktailEntityId = 4
+                        },
+                        new
+                        {
+                            BarEntityId = 5,
+                            CocktailEntityId = 5
+                        },
+                        new
+                        {
+                            BarEntityId = 5,
+                            CocktailEntityId = 6
+                        },
+                        new
+                        {
+                            BarEntityId = 5,
+                            CocktailEntityId = 7
+                        },
+                        new
+                        {
+                            BarEntityId = 6,
+                            CocktailEntityId = 5
+                        },
+                        new
+                        {
+                            BarEntityId = 6,
+                            CocktailEntityId = 6
+                        },
+                        new
+                        {
+                            BarEntityId = 6,
+                            CocktailEntityId = 7
                         });
                 });
 
@@ -137,6 +187,21 @@ namespace CocktailMagician.Data.Migrations
                             IsHidden = false,
                             Name = "Blue Boar Inn",
                             Rating = 1.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "3710  Hall Valley Drive, Stonewood, West Virginia",
+                            IsHidden = false,
+                            Name = "Dexter Lake Club",
+                            Rating = 5.0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Address = "1313  Jerome Avenue, Harlingen, Texas",
+                            IsHidden = false,
+                            Name = "The Lion and Unicorn "
                         });
                 });
 
@@ -197,10 +262,18 @@ namespace CocktailMagician.Data.Migrations
                         new
                         {
                             Id = 5,
-                            BarEntityId = 3,
+                            BarEntityId = 5,
                             Rating = 5,
-                            Review = "Awesome place!!!",
+                            Review = "Great! Loved it!",
                             UserEntityId = "dd6561c5-0244-4303-974b-bb9cdfc79d9a"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BarEntityId = 5,
+                            Rating = 5,
+                            Review = "Really sweet spot!",
+                            UserEntityId = "3e4aab82-7dc1-4541-99e4-ade2523d95e9"
                         });
                 });
 
@@ -256,6 +329,28 @@ namespace CocktailMagician.Data.Migrations
                             Name = "Iceberg Paralyzer",
                             Rating = 3.0,
                             Recipe = "Fill tall glass with ice to the top before adding the vodka and Kaluha. Next add the coke nearly to the top before adding in the milk to finish. Stir with a barspoon. Just remember to add a lot of ice or the milk can curdle with the coke."
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IsHidden = false,
+                            Name = "Carribean Sunset Mocktail",
+                            Recipe = "No one will miss the alcohol in this tasty family-friendly drink combining Sprite, orange juice, lemonade and grenadine"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            IsHidden = false,
+                            Name = "Long Island Iced Tea Mocktail",
+                            Rating = 4.5,
+                            Recipe = "Coca-Cola, lemonade and black tea give this signature drink the taste of the original without the alcohol."
+                        },
+                        new
+                        {
+                            Id = 7,
+                            IsHidden = false,
+                            Name = "Coca-Cola Spice",
+                            Recipe = "Add Coca-Cola, pineapple juice and Pibb Xtra to make a non-alcoholic take on a traditional holiday beverage."
                         });
                 });
 
@@ -331,6 +426,56 @@ namespace CocktailMagician.Data.Migrations
                         {
                             IngredientEntityId = 8,
                             CocktailEntityId = 4
+                        },
+                        new
+                        {
+                            IngredientEntityId = 9,
+                            CocktailEntityId = 5
+                        },
+                        new
+                        {
+                            IngredientEntityId = 10,
+                            CocktailEntityId = 5
+                        },
+                        new
+                        {
+                            IngredientEntityId = 11,
+                            CocktailEntityId = 5
+                        },
+                        new
+                        {
+                            IngredientEntityId = 12,
+                            CocktailEntityId = 5
+                        },
+                        new
+                        {
+                            IngredientEntityId = 1,
+                            CocktailEntityId = 6
+                        },
+                        new
+                        {
+                            IngredientEntityId = 11,
+                            CocktailEntityId = 6
+                        },
+                        new
+                        {
+                            IngredientEntityId = 13,
+                            CocktailEntityId = 6
+                        },
+                        new
+                        {
+                            IngredientEntityId = 1,
+                            CocktailEntityId = 7
+                        },
+                        new
+                        {
+                            IngredientEntityId = 14,
+                            CocktailEntityId = 7
+                        },
+                        new
+                        {
+                            IngredientEntityId = 15,
+                            CocktailEntityId = 7
                         });
                 });
 
@@ -387,6 +532,22 @@ namespace CocktailMagician.Data.Migrations
                             CocktailEntityId = 4,
                             Rating = 3,
                             UserEntityId = "dd6561c5-0244-4303-974b-bb9cdfc79d9a"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CocktailEntityId = 6,
+                            Rating = 4,
+                            Review = "Really refreshing!",
+                            UserEntityId = "dd6561c5-0244-4303-974b-bb9cdfc79d9a"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CocktailEntityId = 6,
+                            Rating = 5,
+                            Review = "Extremely nice taste ...for a non-alcoholic beverage!",
+                            UserEntityId = "3e4aab82-7dc1-4541-99e4-ade2523d95e9"
                         });
                 });
 
@@ -442,6 +603,56 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 8,
                             Name = "Vodka"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Sprite"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Orange Juice"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Lemonade"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Grenadine"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Black Tea"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Pineapple Juice"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Pibb Xtra"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Club Soda"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Fanta"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "Yogurt"
                         });
                 });
 

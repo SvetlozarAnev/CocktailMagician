@@ -3,9 +3,6 @@ using CocktailMagician.Contracts;
 using CocktailMagician.Data.Models;
 using CocktailMagician.Domain.Mappers.Contracts;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CocktailMagician.Domain.Mappers
 {
@@ -15,6 +12,8 @@ namespace CocktailMagician.Domain.Mappers
         {
             services.AddSingleton<IMapper<BarEntity, Bar>, BarMapper>();
             services.AddSingleton<IMapper<CocktailEntity, Cocktail>, CocktailMapper>();
+            services.AddSingleton<IMapper<BarReviewEntity, BarReview>, BarReviewMapper>();
+            services.AddSingleton<IMapper<CocktailReviewEntity, CocktailReview>, CocktailReviewMapper>();
 
             return services;
         }

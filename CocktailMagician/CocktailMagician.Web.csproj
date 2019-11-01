@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CocktailMagician.Data\CocktailMagician.Data.csproj" />
+    <ProjectReference Include="..\CocktailMagician.Domain\CocktailMagician.Domain.csproj" />
   </ItemGroup>
 
 </Project>

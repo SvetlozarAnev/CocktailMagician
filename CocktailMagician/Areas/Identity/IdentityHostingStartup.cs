@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-[assembly: HostingStartup(typeof(CocktailMagician.Areas.Identity.IdentityHostingStartup))]
-namespace CocktailMagician.Areas.Identity
+[assembly: HostingStartup(typeof(CocktailMagician.Web.Areas.Identity.IdentityHostingStartup))]
+namespace CocktailMagician.Web.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {

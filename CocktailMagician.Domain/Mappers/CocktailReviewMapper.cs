@@ -1,19 +1,24 @@
-﻿using CocktailMagician.Contracts.Objects;
+﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data.Models;
-using CocktailMagician.Domain.Mappers.Contracts;
 
 namespace CocktailMagician.Domain.Mappers
 {
-    public class CocktailReviewMapper : IMapper<CocktailReviewEntity, CocktailReview>
+    public static class CocktailReviewMapper
     {
-        public CocktailReview MapFrom(CocktailReviewEntity entity)
-        => new CocktailReview
+        public static CocktailReview ToContract(CocktailReviewEntity entity)
         {
-            Id = entity.Id,
-            UserEntityId = entity.UserEntityId,
-            CocktailEntityId = entity.CocktailEntityId,
-            Rating = entity.Rating,
-            Review = entity.Review
-        };
+            if (entity == null)
+            {
+                return null;
+            }
+            return new CocktailReview
+            {
+                Id = entity.Id,
+                UserEntityId = entity.UserEntityId,
+                CocktailEntityId = entity.CocktailEntityId,
+                Rating = entity.Rating,
+                Review = entity.Review
+            };
+        }
     }
 }

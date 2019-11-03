@@ -17,6 +17,8 @@ namespace CocktailMagician.Data.Configurations
                 .HasOne(x => x.Bar)
                 .WithMany(x => x.BarReviews)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            
         }
     }
 }

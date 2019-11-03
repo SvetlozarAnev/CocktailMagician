@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CocktailMagician.Contracts.Objects
+namespace CocktailMagician.Contracts
 {
     public class Cocktail
     {

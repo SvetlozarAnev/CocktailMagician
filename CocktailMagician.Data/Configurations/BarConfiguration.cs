@@ -12,7 +12,7 @@ namespace CocktailMagician.Data.Configurations
 
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.Address).IsRequired();
-
+                    
 
         }
 

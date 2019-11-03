@@ -1,16 +1,20 @@
-﻿using CocktailMagician.Contracts.Objects;
+﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data.Models;
-using CocktailMagician.Domain.Mappers.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CocktailMagician.Domain.Mappers
 {
-    public class CocktailMapper : IMapper<CocktailEntity, Cocktail>
+    public static class CocktailMapper
     {
-        public Cocktail MapFrom(CocktailEntity entity)
-            => new Cocktail
+        public static Cocktail ToContract(CocktailEntity entity)
+        {
+            if (entity == null)
+            {
+                return null;
+            }
+            return new Cocktail
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -20,5 +24,6 @@ namespace CocktailMagician.Domain.Mappers
                 ImagePath = entity.ImagePath
 
             };
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using CocktailMagician.Data;
 using CocktailMagician.Data.Models;
 using CocktailMagician.Domain.Mappers;
-using CocktailMagician.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -53,8 +52,7 @@ namespace CocktailMagician
                 options.AppSecret = "88f68cb7b61abd173dbef771b12f5138";
             });
 
-            services.AddMappers();
-            services.AddViewMappers();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

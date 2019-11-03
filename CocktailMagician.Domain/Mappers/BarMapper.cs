@@ -1,23 +1,30 @@
-﻿using CocktailMagician.Contracts.Objects;
+﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data.Models;
-using CocktailMagician.Domain.Mappers.Contracts;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CocktailMagician.Domain.Mappers
 {
-    public class BarMapper : IMapper<BarEntity, Bar>
+    public static class BarMapper 
     {
-        public Bar MapFrom(BarEntity entity)
-        => new Bar
+        public static Bar ToContract(this BarEntity entity)
         {
-            Id = entity.Id,
-            Name = entity.Name,
-            Address = entity.Address,
-            Rating = entity.Rating,
-            IsHidden = entity.IsHidden,
-            ImagePath = entity.ImagePath
-        };
+            if (entity == null)
+            {
+                return null;
+            }
+            return new Bar
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                Address = entity.Address,
+                Rating = entity.Rating,
+                IsHidden = entity.IsHidden,
+                ImagePath = entity.ImagePath
+            };
+
+        }
     }
 }

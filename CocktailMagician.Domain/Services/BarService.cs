@@ -4,7 +4,6 @@ using CocktailMagician.Data.Models;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -21,7 +20,7 @@ namespace CocktailMagician.Domain.Services
 
         public async Task<BarEntity> Create(Bar bar)
         {
-            if (await this.context.Bars.SingleOrDefaultAsync(x => x.Name == bar.Name) != null)
+            if (await this.context.Bars.SingleOrDefaultAsync(x => x.Id == bar.Id) != null)
             {
                 throw new ArgumentException("Bar already exists.");
             }
@@ -43,26 +42,13 @@ namespace CocktailMagician.Domain.Services
             {
                 throw new ArgumentException("The requested Bar is null.");
             }
-            return await this.context.Bars.SingleOrDefaultAsync(x => x.Name == bar.Name);
+            return await this.context.Bars.SingleOrDefaultAsync(x => x.Id == bar.Id);
         }
 
-        public async Task<BarEntity> Hide(Bar bar)
-        {
-            if (bar == null)
-            {
-                throw new ArgumentException("The requested Bar is null.");
-            }
-            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Name == bar.Name);
-            if (barEntity != null && barEntity.IsHidden == false)
-            {
-                barEntity.IsHidden = true;
-            }
-            return barEntity;
-        }
 
         public async Task<BarEntity> Update(Bar bar)
         {
-            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Name == bar.Name);
+            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Id == bar.Id);
             if (barEntity==null)
             {
                 throw new ArgumentException("There is no such bar in the database.");
@@ -74,6 +60,19 @@ namespace CocktailMagician.Domain.Services
             barEntity.IsHidden = bar.IsHidden;
             barEntity.ImagePath = bar.ImagePath;
 
+            return barEntity;
+        }
+        public async Task<BarEntity> Hide(Bar bar)
+        {
+            if (bar == null)
+            {
+                throw new ArgumentException("The requested Bar is null.");
+            }
+            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Name == bar.Name);
+            if (barEntity != null && barEntity.IsHidden == false)
+            {
+                barEntity.IsHidden = true;
+            }
             return barEntity;
         }
     }

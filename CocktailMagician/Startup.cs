@@ -1,6 +1,8 @@
 ﻿using CocktailMagician.Data;
 using CocktailMagician.Data.Models;
 using CocktailMagician.Domain.Mappers;
+using CocktailMagician.Domain.Services;
+using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,7 +34,7 @@ namespace CocktailMagician
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<Data.DbContext>(options =>
+            services.AddDbContext<Data.AppDBContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<UserEntity>(options =>
@@ -44,7 +46,7 @@ namespace CocktailMagician
             })
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<Data.DbContext>();
+                .AddEntityFrameworkStores<Data.AppDBContext>();
 
             services.AddAuthentication().AddFacebook(options =>
             {
@@ -52,6 +54,9 @@ namespace CocktailMagician
                 options.AppSecret = "88f68cb7b61abd173dbef771b12f5138";
             });
 
+            services.AddScoped<IBarService, BarService>();
+            //services.AddScoped<IUserService, UserService>();
+            //services.AddScoped<ICocktailService, CocktailService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

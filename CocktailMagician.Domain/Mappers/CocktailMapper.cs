@@ -8,7 +8,7 @@ namespace CocktailMagician.Domain.Mappers
 {
     public static class CocktailMapper
     {
-        public static Cocktail ToContract(CocktailEntity entity)
+        public static Cocktail ToContract(this CocktailEntity entity)
         {
             if (entity == null)
             {

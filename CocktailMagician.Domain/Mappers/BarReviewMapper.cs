@@ -16,7 +16,7 @@ namespace CocktailMagician.Domain.Mappers
             return new BarReview
             {
                 Id = entity.Id,
-                // User = entity.User.ToContract(),
+                User = entity.User.ToContract(),
                 Bar = entity.Bar.ToContract(),
                 Rating = entity.Rating,
                 Review = entity.Review

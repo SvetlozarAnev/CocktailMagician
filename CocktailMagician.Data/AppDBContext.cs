@@ -9,9 +9,9 @@ using System.IO;
 
 namespace CocktailMagician.Data
 {
-    public class DbContext : IdentityDbContext<UserEntity>
+    public class AppDBContext : IdentityDbContext<UserEntity>
     {
-        public DbContext(DbContextOptions/*<DbContext>*/ options)
+        public AppDBContext(DbContextOptions/*<DbContext>*/ options)
             : base(options)
         {
         }
@@ -125,6 +125,5 @@ namespace CocktailMagician.Data
 
             base.OnModelCreating(builder);
         }
-
     }
 }

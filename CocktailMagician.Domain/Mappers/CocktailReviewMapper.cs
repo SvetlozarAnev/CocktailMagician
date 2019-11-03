@@ -5,7 +5,7 @@ namespace CocktailMagician.Domain.Mappers
 {
     public static class CocktailReviewMapper
     {
-        public static CocktailReview ToContract(CocktailReviewEntity entity)
+        public static CocktailReview ToContract(this CocktailReviewEntity entity)
         {
             if (entity == null)
             {

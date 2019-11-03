@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CocktailMagician.Data.Migrations
 {
-    [DbContext(typeof(DbContext))]
+    [DbContext(typeof(AppDBContext))]
     [Migration("20191103135858_Initial")]
     partial class Initial
     {

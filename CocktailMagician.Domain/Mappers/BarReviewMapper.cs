@@ -1,4 +1,5 @@
 ﻿using CocktailMagician.Contracts;
+using CocktailMagician.Contracts.Objects;
 using CocktailMagician.Data.Models;
 using CocktailMagician.Domain.Mappers.Contracts;
 
@@ -13,7 +14,7 @@ namespace CocktailMagician.Domain.Mappers
             UserEntityId = entity.UserEntityId,
             BarEntityId = entity.BarEntityId,
             Rating = entity.Rating,
-            Review = entity.Review,
+            Review = entity.Review
         };
     }
 }

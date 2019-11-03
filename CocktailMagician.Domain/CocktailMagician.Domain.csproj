@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CockctailMagician.Contracts\CocktailMagician.Contracts.csproj" />
+    <ProjectReference Include="..\CocktailMagician.Contracts\CocktailMagician.Contracts.csproj" />
     <ProjectReference Include="..\CocktailMagician.Data\CocktailMagician.Data.csproj" />
   </ItemGroup>
 

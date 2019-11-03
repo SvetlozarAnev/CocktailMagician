@@ -140,13 +140,17 @@ namespace CocktailMagician.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(120);
 
                     b.Property<string>("ImagePath");
 
                     b.Property<bool>("IsHidden");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(70);
 
                     b.Property<double?>("Rating");
 
@@ -215,7 +219,8 @@ namespace CocktailMagician.Data.Migrations
 
                     b.Property<string>("Review");
 
-                    b.Property<string>("UserEntityId");
+                    b.Property<string>("UserEntityId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -285,11 +290,15 @@ namespace CocktailMagician.Data.Migrations
 
                     b.Property<bool>("IsHidden");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(70);
 
                     b.Property<double?>("Rating");
 
-                    b.Property<string>("Recipe");
+                    b.Property<string>("Recipe")
+                        .IsRequired()
+                        .HasMaxLength(700);
 
                     b.HasKey("Id");
 
@@ -489,7 +498,8 @@ namespace CocktailMagician.Data.Migrations
 
                     b.Property<string>("Review");
 
-                    b.Property<string>("UserEntityId");
+                    b.Property<string>("UserEntityId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 

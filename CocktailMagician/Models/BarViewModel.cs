@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace CockctailMagician.Contracts
+namespace CocktailMagician.Models
 {
-    public class Bar
+    public class BarViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

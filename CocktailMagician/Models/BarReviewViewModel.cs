@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace CocktailMagician.Contracts
+namespace CocktailMagician.Models
 {
-    public class BarReview
+    public class BarReviewViewModel
     {
         public int Id { get; set; }
         public string UserEntityId { get; set; }

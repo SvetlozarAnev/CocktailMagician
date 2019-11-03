@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CocktailMagician.Models;
 
-namespace CocktailMagician.Web.Controllers
+namespace CocktailMagician.Controllers
 {
     public class HomeController : Controller
     {

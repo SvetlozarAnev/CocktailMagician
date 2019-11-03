@@ -53,8 +53,8 @@ namespace CocktailMagician.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(maxLength: 70, nullable: false),
+                    Address = table.Column<string>(maxLength: 120, nullable: false),
                     Rating = table.Column<double>(nullable: true),
                     IsHidden = table.Column<bool>(nullable: false),
                     ImagePath = table.Column<string>(nullable: true)
@@ -70,8 +70,8 @@ namespace CocktailMagician.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    Recipe = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(maxLength: 70, nullable: false),
+                    Recipe = table.Column<string>(maxLength: 700, nullable: false),
                     Rating = table.Column<double>(nullable: true),
                     IsHidden = table.Column<bool>(nullable: false),
                     ImagePath = table.Column<string>(nullable: true)
@@ -206,7 +206,7 @@ namespace CocktailMagician.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserEntityId = table.Column<string>(nullable: true),
+                    UserEntityId = table.Column<string>(nullable: false),
                     BarEntityId = table.Column<int>(nullable: false),
                     Rating = table.Column<int>(nullable: false),
                     Review = table.Column<string>(nullable: true)
@@ -258,7 +258,7 @@ namespace CocktailMagician.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserEntityId = table.Column<string>(nullable: true),
+                    UserEntityId = table.Column<string>(nullable: false),
                     CocktailEntityId = table.Column<int>(nullable: false),
                     Rating = table.Column<int>(nullable: false),
                     Review = table.Column<string>(nullable: true)

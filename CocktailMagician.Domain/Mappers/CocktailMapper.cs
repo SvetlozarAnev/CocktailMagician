@@ -1,4 +1,4 @@
-﻿using CocktailMagician.Contracts;
+﻿using CocktailMagician.Contracts.Objects;
 using CocktailMagician.Data.Models;
 using CocktailMagician.Domain.Mappers.Contracts;
 using System;

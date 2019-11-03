@@ -1,4 +1,7 @@
-﻿using CocktailMagician.Data.Models;
+﻿using CocktailMagician.Data;
+using CocktailMagician.Data.Models;
+using CocktailMagician.Domain.Mappers;
+using CocktailMagician.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,10 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CocktailMagician.Domain.Mappers.Contracts;
-using CocktailMagician.Domain.Mappers;
 
-namespace CocktailMagician.Web
+namespace CocktailMagician
 {
     public class Startup
     {
@@ -53,6 +54,7 @@ namespace CocktailMagician.Web
             });
 
             services.AddMappers();
+            services.AddViewMappers();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

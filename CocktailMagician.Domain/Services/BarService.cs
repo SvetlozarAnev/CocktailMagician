@@ -1,9 +1,12 @@
 ﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data;
 using CocktailMagician.Data.Models;
+using CocktailMagician.Domain.Mappers;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -18,12 +21,13 @@ namespace CocktailMagician.Domain.Services
             this.context = context;
         }
 
-        public async Task<BarEntity> Create(Bar bar)
+        public async Task<Bar> Create(Bar bar)
         {
             if (await this.context.Bars.SingleOrDefaultAsync(x => x.Id == bar.Id) != null)
             {
                 throw new ArgumentException("Bar already exists.");
             }
+
             var barEntity = new BarEntity()
             {
                 Id = bar.Id,
@@ -33,23 +37,26 @@ namespace CocktailMagician.Domain.Services
                 IsHidden = bar.IsHidden,
                 ImagePath = bar.ImagePath
             };
-            return barEntity;
-        }
+            await this.context.SaveChangesAsync();
 
-        public async Task<BarEntity> Find(Bar bar)
+            return barEntity.ToContract();
+        }
+        public async Task<Bar> Find(int id)
         {
-            if (bar == null)
+            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Id == id);
+
+            if (barEntity == null)
             {
                 throw new ArgumentException("The requested Bar is null.");
             }
-            return await this.context.Bars.SingleOrDefaultAsync(x => x.Id == bar.Id);
+
+            return barEntity.ToContract();
         }
 
-
-        public async Task<BarEntity> Update(Bar bar)
+        public async Task<Bar> Update(Bar bar)
         {
             var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Id == bar.Id);
-            if (barEntity==null)
+            if (barEntity == null)
             {
                 throw new ArgumentException("There is no such bar in the database.");
             }
@@ -59,21 +66,30 @@ namespace CocktailMagician.Domain.Services
             barEntity.Rating = bar.Rating;
             barEntity.IsHidden = bar.IsHidden;
             barEntity.ImagePath = bar.ImagePath;
+            await this.context.SaveChangesAsync();
 
-            return barEntity;
+            return barEntity.ToContract();
         }
-        public async Task<BarEntity> Hide(Bar bar)
+        public async Task<Bar> Hide(Bar bar)
         {
             if (bar == null)
             {
                 throw new ArgumentException("The requested Bar is null.");
             }
-            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Name == bar.Name);
+            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Id == bar.Id);
             if (barEntity != null && barEntity.IsHidden == false)
             {
                 barEntity.IsHidden = true;
             }
-            return barEntity;
+            await this.context.SaveChangesAsync();
+            return barEntity.ToContract();
         }
+
+        public async Task<IEnumerable<Bar>> ListAll()
+        {
+            var bars = await this.context.Bars.Select(x => x.ToContract()).ToListAsync();
+            return bars;
+        }
+
     }
 }

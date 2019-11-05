@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CocktailMagician.Contracts.Bar>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Bars</h1>
+@Html.ActionLink("New Bar", "Create", "Bars", null, new { @class = "btn btn-primary" })
+@if (!Model.Any())
+{
+    <p>We don't have any movies yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Rating</th>
+                <th>Is Hidden</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bar in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(bar.Name, "Details", "Bars", new { id = bar.Id }, null)</td>
+                    <td>@bar.Address</td>
+                    <td>@bar.Rating</td>
+                    <td><a asp-controller="Bars" asp-action="Hide" asp-route-Id="@bar.Id" button type="submit" method="post" class="btn btn-primary">Hide</a></td>
+                
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
+<button type="submit" value="Create" class="btn btn-primary">Add Book</button>

@@ -1,14 +1,16 @@
 ﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CocktailMagician.Domain.Services.Interfaces
 {
     public interface IBarService
     {
-        Task<BarEntity> Create(Bar bar);
-        Task<BarEntity> Find (Bar bar);
-        Task<BarEntity> Update(Bar bar);
-        Task<BarEntity> Hide(Bar bar);
+        Task<Bar> Create(Bar bar);
+        Task<Bar> Find (int id);
+        Task<Bar> Update(Bar bar);
+        Task<Bar> Hide(Bar bar);
+        Task<IEnumerable<Bar>> ListAll();
     }
 }

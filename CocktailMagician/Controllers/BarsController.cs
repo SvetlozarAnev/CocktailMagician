@@ -74,7 +74,7 @@ namespace CocktailMagician.Controllers
             return RedirectToAction("Index", "Bars");
         }
 
-        [HttpPost, ActionName("Hide")]
+        [ActionName("Hide")]
         
         public async Task<IActionResult> Hide(int id)
         {

@@ -27,7 +27,7 @@ else
                     <td>@Html.ActionLink(bar.Name, "Details", "Bars", new { id = bar.Id }, null)</td>
                     <td>@bar.Address</td>
                     <td>@bar.Rating</td>
-                    <td><a asp-controller="Bars" asp-action="Hide" asp-route-Id="@bar.Id" button type="submit" method="post" class="btn btn-primary">Hide</a></td>
+                    <td><a asp-controller="Bars" asp-action="Hide" asp-route-Id="@bar.Id" button type="submit" method="post" class="btn btn-primary">Hide/Show</a></td>
                 
                 </tr>
             }

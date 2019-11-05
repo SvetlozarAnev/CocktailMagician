@@ -81,6 +81,10 @@ namespace CocktailMagician.Domain.Services
             {
                 barEntity.IsHidden = true;
             }
+            else if (barEntity != null && barEntity.IsHidden == true)
+            {
+                barEntity.IsHidden = false;
+            }
             await this.context.SaveChangesAsync();
             return barEntity.ToContract();
         }

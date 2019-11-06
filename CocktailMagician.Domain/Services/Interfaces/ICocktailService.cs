@@ -1,14 +1,16 @@
 ﻿using CocktailMagician.Contracts;
-using CocktailMagician.Data.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CocktailMagician.Domain.Services.Interfaces
 {
-    interface ICocktailService
+    public interface ICocktailService
     {
-        Task<CocktailEntity> Create(Cocktail cocktail);
-        Task<CocktailEntity> Find(Cocktail cocktail);
-        Task<CocktailEntity> Update(Cocktail cocktail);
-        Task<CocktailEntity> Hide(Cocktail cocktail);
+        Task<Cocktail> Create(Cocktail cocktail);
+        Task<Cocktail> Find(int id);
+        Task<Cocktail> Update(Cocktail cocktail);
+        Task<Cocktail> Hide(Cocktail cocktail);
+        Task<IEnumerable<Cocktail>> ListAll();
+
     }
 }

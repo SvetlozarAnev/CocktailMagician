@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CocktailMagician.Contracts;
-using CocktailMagician.Data;
+﻿using CocktailMagician.Contracts;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace CocktailMagician.Controllers
 {
@@ -16,8 +13,7 @@ namespace CocktailMagician.Controllers
         {
             this.barService = barService;
         }
-
-
+        
         public async Task<IActionResult> Index()
         {
             var bars = await this.barService.ListAll();
@@ -74,15 +70,13 @@ namespace CocktailMagician.Controllers
             return RedirectToAction("Index", "Bars");
         }
 
-        [ActionName("Hide")]
-        
+        [ActionName("Hide")]        
         public async Task<IActionResult> Hide(int id)
         {
             var bar = await this.barService.Find(id);
             await this.barService.Hide(bar);
 
             return RedirectToAction("Index", "Bars");
-
         }
     }
 }

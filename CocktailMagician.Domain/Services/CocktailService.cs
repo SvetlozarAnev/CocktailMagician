@@ -1,9 +1,12 @@
 ﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data;
 using CocktailMagician.Data.Models;
+using CocktailMagician.Domain.Mappers;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CocktailMagician.Domain.Services
@@ -17,7 +20,7 @@ namespace CocktailMagician.Domain.Services
             this.context = context;
         }
 
-        public async Task<CocktailEntity> Create(Cocktail cocktail)
+        public async Task<Cocktail> Create(Cocktail cocktail)
         {
             if (await this.context.Cocktails.SingleOrDefaultAsync(x => x.Id == cocktail.Id) != null)
             {
@@ -31,19 +34,23 @@ namespace CocktailMagician.Domain.Services
                 IsHidden = cocktail.IsHidden,
                 ImagePath = cocktail.ImagePath
             };
-            return cocktailEntity;
+            await this.context.SaveChangesAsync();
+
+            return cocktailEntity.ToContract();
         }
-        public async Task<CocktailEntity> Find(Cocktail cocktail)
+        public async Task<Cocktail> Find(int id)
         {
-            if (cocktail == null)
+            var cocktailEntity = await this.context.Cocktails.SingleOrDefaultAsync(x => x.Id == id);
+
+            if (cocktailEntity == null)
             {
                 throw new ArgumentException("The requested Cocktail is null.");
             }
-            return await this.context.Cocktails.SingleOrDefaultAsync(x => x.Id == cocktail.Id);
+            return cocktailEntity.ToContract();
         }
 
 
-        public async Task<CocktailEntity> Update(Cocktail cocktail)
+        public async Task<Cocktail> Update(Cocktail cocktail)
         {
             var cocktailEntity = await this.context.Cocktails.SingleOrDefaultAsync(x => x.Id == cocktail.Id);
             if (cocktailEntity == null)
@@ -55,10 +62,12 @@ namespace CocktailMagician.Domain.Services
             cocktailEntity.Rating = cocktail.Rating;
             cocktailEntity.IsHidden = cocktail.IsHidden;
             cocktailEntity.ImagePath = cocktail.ImagePath;
+            await this.context.SaveChangesAsync();
 
-            return cocktailEntity;
+
+            return cocktailEntity.ToContract();
         }
-        public async Task<CocktailEntity> Hide(Cocktail cocktail)
+        public async Task<Cocktail> Hide(Cocktail cocktail)
         {
             if (cocktail == null)
             {
@@ -69,7 +78,19 @@ namespace CocktailMagician.Domain.Services
             {
                 cocktailEntity.IsHidden = true;
             }
-            return cocktailEntity;
+            else if (cocktailEntity != null && cocktailEntity.IsHidden == true)
+            {
+                cocktailEntity.IsHidden = false;
+            }
+            await this.context.SaveChangesAsync();
+
+            return cocktailEntity.ToContract();
+        }
+
+        public async Task<IEnumerable<Cocktail>> ListAll()
+        {
+            var bars = await this.context.Cocktails.Select(x => x.ToContract()).ToListAsync();
+            return bars;
         }
     }
 }

@@ -23,14 +23,15 @@ namespace CocktailMagician.Domain.Services
 
         public async Task<Bar> Create(Bar bar)
         {
-            if (await this.context.Bars.SingleOrDefaultAsync(x => x.Id == bar.Id) != null)
+            if (await this.context.Bars.SingleOrDefaultAsync(x => x.Name == bar.Name) != null)
             {
                 throw new ArgumentException("Bar already exists.");
             }
+            
 
             var barEntity = new BarEntity()
             {
-                Id = bar.Id,
+               // Id = bar.Id,
                 Name = bar.Name,
                 Address = bar.Address,
                 Rating = bar.Rating,

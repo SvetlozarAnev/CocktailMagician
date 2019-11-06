@@ -1,5 +1,4 @@
 ﻿using CocktailMagician.Contracts;
-using CocktailMagician.Data.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

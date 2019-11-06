@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CocktailMagician.Contracts.Cocktail>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cocktails</h1>
+@Html.ActionLink("New Cocktail", "Create", "Cocktails", null, new { @class = "btn btn-primary" })
+@if (!Model.Any())
+{
+    <p>We don't have any movies yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Recipe</th>
+                <th>Rating</th>
+                <th>Is Hidden</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cocktail in Model)
+            {
+            <tr>
+                <td>@Html.ActionLink(cocktail.Name, "Details", "Bars", new { id = cocktail.Id }, null)</td>
+                <td>@cocktail.Recipe</td>
+                <td>@cocktail.Rating</td>
+                <td><a asp-controller="Cocktails" asp-action="Hide" asp-route-Id="@cocktail.Id" button type="submit" method="post" class="btn btn-primary">Hide/Show</a></td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,8 +1,11 @@
 ﻿using CocktailMagician.Contracts;
 using CocktailMagician.Domain.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
+
 
 namespace CocktailMagician.Controllers
 {
@@ -16,7 +19,8 @@ namespace CocktailMagician.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var bars = await this.barService.ListAll();
+            var role = this.User.FindFirstValue(ClaimTypes.Role);
+            var bars = await this.barService.ListAll(role);
             return View(bars);
         }
 
@@ -31,12 +35,14 @@ namespace CocktailMagician.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Bar bar)
         {
@@ -50,6 +56,7 @@ namespace CocktailMagician.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
             var bar = await this.barService.Get(id);
@@ -58,6 +65,7 @@ namespace CocktailMagician.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Bar bar)
         {
@@ -71,6 +79,7 @@ namespace CocktailMagician.Controllers
             return RedirectToAction("Index", "Bars");
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Toggle(int id)
         {
             await this.barService.Toggle(id);

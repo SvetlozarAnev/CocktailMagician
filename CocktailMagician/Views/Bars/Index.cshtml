@@ -17,20 +17,40 @@ else
                 <th>Name</th>
                 <th>Address</th>
                 <th>Rating</th>
-                <th>Is Hidden</th>
-                <th>Edit</th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>Edit</th>
+                    <th>Is Hidden</th>
+                }
             </tr>
         </thead>
         <tbody>
             @foreach (var bar in Model)
             {
-            <tr>
-                <td>@Html.ActionLink(bar.Name, "Details", "Bars", new { id = bar.Id }, null)</td>
-                <td>@bar.Address</td>
-                <td>@bar.Rating</td>
-                <td><a asp-controller="Bars" asp-action="Toggle" asp-route-Id="@bar.Id" button type="submit" method="post" class="btn btn-primary">Hide/Show</a></td>
-                <td><a asp-controller="Bars" asp-action="Edit" asp-route-Id="@bar.Id" button type="submit" method="post" class="btn btn-primary">Edit</a></td>
-            </tr>
+                <tr>
+                    <td>@Html.ActionLink(bar.Name, "Details", "Bars", new { id = bar.Id }, null)</td>
+                    <td>@bar.Address</td>
+                    <td>@bar.Rating</td>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td><a asp-controller="Bars" asp-action="Edit" asp-route-Id="@bar.Id" button type="submit" method="post" class="btn btn-primary">Edit</a></td>
+
+                        @if (bar.IsHidden == false)
+                        {
+                            <td>
+                                <a asp-controller="Bars" asp-action="Toggle" class="btn btn-danger" asp-route-Id="@bar.Id"><strong>Hide</strong></a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a asp-controller="Bars" asp-action="Toggle" class="btn btn-success" asp-route-Id="@bar.Id"><strong>Show</strong></a>
+
+                            </td>
+                        }
+                    }
+                </tr>
             }
         </tbody>
     </table>

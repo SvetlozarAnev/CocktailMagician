@@ -18,5 +18,18 @@ namespace CocktailMagician.Domain.Mappers
                 Email = entity.Email
             };
         }
+
+        public static UserEntity ToEntity(this User contract)
+        {
+            if (contract == null)
+            {
+                return null;
+            }
+            return new UserEntity
+            {
+                UserName = contract.Name,
+                Email = contract.Email
+            };
+        }
     }
 }

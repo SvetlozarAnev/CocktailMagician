@@ -9,8 +9,7 @@ namespace CocktailMagician.Domain.Services.Interfaces
         Task<Cocktail> Create(Cocktail cocktail);
         Task<Cocktail> Get(int id);
         Task<Cocktail> Update(Cocktail cocktail);
-        Task<Cocktail> Toggle(int Id);
-        Task<IEnumerable<Cocktail>> ListAll();
-
+        Task<Cocktail> Toggle(int id);
+        Task<IEnumerable<Cocktail>> ListAll(string role);
     }
 }

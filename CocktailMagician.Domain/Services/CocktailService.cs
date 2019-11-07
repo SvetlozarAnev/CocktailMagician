@@ -1,6 +1,5 @@
 ﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data;
-using CocktailMagician.Data.Models;
 using CocktailMagician.Domain.Mappers;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -29,13 +28,13 @@ namespace CocktailMagician.Domain.Services
             var cocktailEntity = cocktail.ToEntity();
             await this.context.Cocktails.AddAsync(cocktailEntity);
             await this.context.SaveChangesAsync();
-                       
+
             return cocktailEntity.ToContract();
         }
         public async Task<Cocktail> Get(int id)
         {
             var cocktailEntity = await this.context.Cocktails
-                .Include(x=> x.CocktailIngredients)
+                .Include(x => x.CocktailIngredients)
                 .ThenInclude(x => x.IngredientEntity)
                 .SingleOrDefaultAsync(x => x.Id == id);
 
@@ -59,8 +58,7 @@ namespace CocktailMagician.Domain.Services
             cocktailEntity.IsHidden = cocktail.IsHidden;
             cocktailEntity.ImagePath = cocktail.ImagePath;
             await this.context.SaveChangesAsync();
-
-
+            
             return cocktailEntity.ToContract();
         }
         public async Task<Cocktail> Toggle(int id)
@@ -77,10 +75,19 @@ namespace CocktailMagician.Domain.Services
             return cocktailEntity.ToContract();
         }
 
-        public async Task<IEnumerable<Cocktail>> ListAll()
+        public async Task<IEnumerable<Cocktail>> ListAll(string role)
         {
-            var bars = await this.context.Cocktails.Select(x => x.ToContract()).ToListAsync();
-            return bars;
+            var cocktails = await this.context.Cocktails
+                .Select(x => x.ToContract())
+                .ToListAsync();
+
+            if (role != "Admin" || role == null)
+            {
+                return cocktails.Where(x => x.IsHidden == false);
+            }
+
+            return cocktails;
         }
     }
 }
+

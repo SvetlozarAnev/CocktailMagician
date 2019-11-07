@@ -35,8 +35,8 @@ namespace CocktailMagician.Domain.Services
         public async Task<Bar> Get(int id)
         {
             var barEntity = await this.context.Bars
-                .Include(x=> x.BarCocktails)
-                .ThenInclude(x=> x.CocktailEntity)
+                .Include(x => x.BarCocktails)
+                .ThenInclude(x => x.CocktailEntity)
                 .SingleOrDefaultAsync(x => x.Id == id);
 
             if (barEntity == null)
@@ -63,9 +63,9 @@ namespace CocktailMagician.Domain.Services
 
             return barEntity.ToContract();
         }
-        public async Task<Bar> Toggle(int Id) 
+        public async Task<Bar> Toggle(int id)
         {
-            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Id == Id);
+            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Id == id);
             if (barEntity == null)
             {
                 throw new ArgumentException("The requested Bar is null.");
@@ -76,11 +76,19 @@ namespace CocktailMagician.Domain.Services
             return barEntity.ToContract();
         }
 
-        public async Task<IEnumerable<Bar>> ListAll()
+        public async Task<IEnumerable<Bar>> ListAll(string role)
         {
-            var bars = await this.context.Bars.Select(x => x.ToContract()).ToListAsync();
+
+            var bars = await this.context.Bars
+                               .Select(x => x.ToContract())
+                               .ToListAsync();
+
+            if (role != "Admin" || role == null)
+            {
+                return bars.Where(x => x.IsHidden == false);
+            }
+
             return bars;
         }
-
     }
 }

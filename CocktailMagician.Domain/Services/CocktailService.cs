@@ -22,25 +22,22 @@ namespace CocktailMagician.Domain.Services
 
         public async Task<Cocktail> Create(Cocktail cocktail)
         {
-            if (await this.context.Cocktails.SingleOrDefaultAsync(x => x.Id == cocktail.Id) != null)
+            if (await this.context.Cocktails.SingleOrDefaultAsync(x => x.Name == cocktail.Name) != null)
             {
                 throw new ArgumentException("Bar already exists.");
             }
-            var cocktailEntity = new CocktailEntity()
-            {
-                Id = cocktail.Id,
-                Name = cocktail.Name,
-                Rating = cocktail.Rating,
-                IsHidden = cocktail.IsHidden,
-                ImagePath = cocktail.ImagePath
-            };
+            var cocktailEntity = cocktail.ToEntity();
+            await this.context.Cocktails.AddAsync(cocktailEntity);
             await this.context.SaveChangesAsync();
-
+                       
             return cocktailEntity.ToContract();
         }
-        public async Task<Cocktail> Find(int id)
+        public async Task<Cocktail> Get(int id)
         {
-            var cocktailEntity = await this.context.Cocktails.SingleOrDefaultAsync(x => x.Id == id);
+            var cocktailEntity = await this.context.Cocktails
+                .Include(x=> x.CocktailIngredients)
+                .ThenInclude(x => x.IngredientEntity)
+                .SingleOrDefaultAsync(x => x.Id == id);
 
             if (cocktailEntity == null)
             {
@@ -48,7 +45,6 @@ namespace CocktailMagician.Domain.Services
             }
             return cocktailEntity.ToContract();
         }
-
 
         public async Task<Cocktail> Update(Cocktail cocktail)
         {
@@ -67,21 +63,15 @@ namespace CocktailMagician.Domain.Services
 
             return cocktailEntity.ToContract();
         }
-        public async Task<Cocktail> Hide(Cocktail cocktail)
+        public async Task<Cocktail> Toggle(int id)
         {
-            if (cocktail == null)
+            var cocktailEntity = await this.context.Cocktails.SingleOrDefaultAsync(x => x.Id == id);
+            if (cocktailEntity == null)
             {
                 throw new ArgumentException("The requested cocktail is null.");
             }
-            var cocktailEntity = await this.context.Cocktails.SingleOrDefaultAsync(x => x.Id == cocktail.Id);
-            if (cocktailEntity != null && cocktailEntity.IsHidden == false)
-            {
-                cocktailEntity.IsHidden = true;
-            }
-            else if (cocktailEntity != null && cocktailEntity.IsHidden == true)
-            {
-                cocktailEntity.IsHidden = false;
-            }
+            cocktailEntity.IsHidden = !cocktailEntity.IsHidden;
+
             await this.context.SaveChangesAsync();
 
             return cocktailEntity.ToContract();

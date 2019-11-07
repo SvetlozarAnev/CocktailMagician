@@ -7,7 +7,7 @@
 @Html.ActionLink("New Cocktail", "Create", "Cocktails", null, new { @class = "btn btn-primary" })
 @if (!Model.Any())
 {
-    <p>We don't have any movies yet.</p>
+    <p>We don't have any cocktails yet.</p>
 }
 else
 {
@@ -18,16 +18,18 @@ else
                 <th>Recipe</th>
                 <th>Rating</th>
                 <th>Is Hidden</th>
+                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var cocktail in Model)
             {
             <tr>
-                <td>@Html.ActionLink(cocktail.Name, "Details", "Bars", new { id = cocktail.Id }, null)</td>
+                <td>@Html.ActionLink(cocktail.Name, "Details", "Cocktails", new { id = cocktail.Id }, null)</td>
                 <td>@cocktail.Recipe</td>
                 <td>@cocktail.Rating</td>
-                <td><a asp-controller="Cocktails" asp-action="Hide" asp-route-Id="@cocktail.Id" button type="submit" method="post" class="btn btn-primary">Hide/Show</a></td>
+                <td><a asp-controller="Cocktails" asp-action="Toggle" asp-route-Id="@cocktail.Id" button type="submit" method="post" class="btn btn-primary">Hide/Show</a></td>
+                <td><a asp-controller="Cocktails" asp-action="Edit" asp-route-Id="@cocktail.Id" button type="submit" method="post" class="btn btn-primary">Edit</a></td>
 
             </tr>
             }

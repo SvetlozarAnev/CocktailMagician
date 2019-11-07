@@ -1,8 +1,6 @@
 ﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace CocktailMagician.Domain.Mappers
 {
@@ -21,8 +19,26 @@ namespace CocktailMagician.Domain.Mappers
                 Recipe = entity.Recipe,
                 Rating = entity.Rating,
                 IsHidden = entity.IsHidden,
-                ImagePath = entity.ImagePath
-
+                ImagePath = entity.ImagePath,
+                Ingredients = entity.CocktailIngredients?
+                .Select(x=> x.IngredientEntity.ToContract())
+                .ToList()
+              
+            };
+        }
+        public static CocktailEntity ToEntity(this Cocktail contract)
+        {
+            if (contract == null)
+            {
+                return null;
+            }
+            return new CocktailEntity
+            {
+                Name = contract.Name,
+                Recipe = contract.Recipe,
+                Rating = contract.Rating,
+                IsHidden = contract.IsHidden,
+                ImagePath = contract.ImagePath
             };
         }
     }

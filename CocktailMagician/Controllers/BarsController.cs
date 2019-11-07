@@ -13,7 +13,7 @@ namespace CocktailMagician.Controllers
         {
             this.barService = barService;
         }
-        
+
         public async Task<IActionResult> Index()
         {
             var bars = await this.barService.ListAll();
@@ -22,7 +22,7 @@ namespace CocktailMagician.Controllers
 
         public async Task<ActionResult> Details(int id)
         {
-            var bar = await this.barService.Find(id);
+            var bar = await this.barService.Get(id);
             if (bar == null)
             {
                 throw new ArgumentException("No such Bar!");
@@ -37,7 +37,7 @@ namespace CocktailMagician.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Bar bar)
         {
             if (!this.ModelState.IsValid)
@@ -52,12 +52,13 @@ namespace CocktailMagician.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var bar = await this.barService.Find(id);
+            var bar = await this.barService.Get(id);
 
             return View(bar);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Bar bar)
         {
             if (!this.ModelState.IsValid)
@@ -70,11 +71,9 @@ namespace CocktailMagician.Controllers
             return RedirectToAction("Index", "Bars");
         }
 
-        [ActionName("Hide")]        
-        public async Task<IActionResult> Hide(int id)
+        public async Task<IActionResult> Toggle(int id)
         {
-            var bar = await this.barService.Find(id);
-            await this.barService.Hide(bar);
+            await this.barService.Toggle(id);
 
             return RedirectToAction("Index", "Bars");
         }

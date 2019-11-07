@@ -22,7 +22,7 @@ namespace CocktailMagician.Controllers
 
         public async Task<ActionResult> Details(int id)
         {
-            var cocktail = await this.cocktailService.Find(id);
+            var cocktail = await this.cocktailService.Get(id);
             if (cocktail == null)
             {
                 throw new ArgumentException("No such Bar!");
@@ -37,7 +37,7 @@ namespace CocktailMagician.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Cocktail cocktail)
         {
             if (!this.ModelState.IsValid)
@@ -46,18 +46,19 @@ namespace CocktailMagician.Controllers
             }
             await this.cocktailService.Create(cocktail);
 
-            return RedirectToAction("Index", "Bars");
+            return RedirectToAction("Index", "Cocktails");
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var cocktail = await this.cocktailService.Find(id);
+            var cocktail = await this.cocktailService.Get(id);
 
             return View(cocktail);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Cocktail cocktail)
         {
             if (!this.ModelState.IsValid)
@@ -70,10 +71,9 @@ namespace CocktailMagician.Controllers
             return RedirectToAction("Index", "Cocktails");
         }
 
-        public async Task<IActionResult> Hide(int id)
+        public async Task<IActionResult> Toggle(int id)
         {
-            var cocktail = await this.cocktailService.Find(id);
-            await this.cocktailService.Hide(cocktail);
+            await this.cocktailService.Toggle(id);
 
             return RedirectToAction("Index", "Cocktails");
         }

@@ -10,3 +10,5 @@
     <li>Bar Address: @Model.Recipe</li>
     <li>Rating: @Model.Rating</li>
 </ul>
+<h6><strong>Ingredients:</strong></h6> @string.Join(", ", Model.Ingredients.Select(x => x.Name))
+

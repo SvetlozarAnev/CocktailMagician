@@ -1,6 +1,5 @@
 ﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data;
-using CocktailMagician.Data.Models;
 using CocktailMagician.Domain.Mappers;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -27,24 +26,18 @@ namespace CocktailMagician.Domain.Services
             {
                 throw new ArgumentException("Bar already exists.");
             }
-            
 
-            var barEntity = new BarEntity()
-            {
-               // Id = bar.Id,
-                Name = bar.Name,
-                Address = bar.Address,
-                Rating = bar.Rating,
-                IsHidden = bar.IsHidden,
-                ImagePath = bar.ImagePath
-            };
+            var barEntity = bar.ToEntity();
+            await this.context.Bars.AddAsync(barEntity);
             await this.context.SaveChangesAsync();
-
             return barEntity.ToContract();
         }
-        public async Task<Bar> Find(int id)
+        public async Task<Bar> Get(int id)
         {
-            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Id == id);
+            var barEntity = await this.context.Bars
+                .Include(x=> x.BarCocktails)
+                .ThenInclude(x=> x.CocktailEntity)
+                .SingleOrDefaultAsync(x => x.Id == id);
 
             if (barEntity == null)
             {
@@ -53,7 +46,6 @@ namespace CocktailMagician.Domain.Services
 
             return barEntity.ToContract();
         }
-
         public async Task<Bar> Update(Bar bar)
         {
             var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Id == bar.Id);
@@ -71,21 +63,15 @@ namespace CocktailMagician.Domain.Services
 
             return barEntity.ToContract();
         }
-        public async Task<Bar> Hide(Bar bar)
+        public async Task<Bar> Toggle(int Id) 
         {
-            if (bar == null)
+            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Id == Id);
+            if (barEntity == null)
             {
                 throw new ArgumentException("The requested Bar is null.");
             }
-            var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Id == bar.Id);
-            if (barEntity != null && barEntity.IsHidden == false)
-            {
-                barEntity.IsHidden = true;
-            }
-            else if (barEntity != null && barEntity.IsHidden == true)
-            {
-                barEntity.IsHidden = false;
-            }
+            barEntity.IsHidden = !barEntity.IsHidden;
+
             await this.context.SaveChangesAsync();
             return barEntity.ToContract();
         }

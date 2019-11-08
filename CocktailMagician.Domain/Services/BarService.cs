@@ -32,7 +32,7 @@ namespace CocktailMagician.Domain.Services
             await this.context.SaveChangesAsync();
             return barEntity.ToContract();
         }
-        public async Task<Bar> Get(int id)
+        public async Task<Bar> GetBar(int id)
         {
             var barEntity = await this.context.Bars
                 .Include(x => x.BarCocktails)

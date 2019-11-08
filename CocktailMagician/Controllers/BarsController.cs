@@ -12,9 +12,11 @@ namespace CocktailMagician.Controllers
     public class BarsController : Controller
     {
         private readonly IBarService barService;
-        public BarsController(IBarService barService)
+        private readonly IUserService userService;
+        public BarsController(IBarService barService, IUserService userService)
         {
             this.barService = barService;
+            this.userService = userService;
         }
 
         public async Task<IActionResult> Index()
@@ -26,7 +28,7 @@ namespace CocktailMagician.Controllers
 
         public async Task<ActionResult> Details(int id)
         {
-            var bar = await this.barService.Get(id);
+            var bar = await this.barService.GetBar(id);
             if (bar == null)
             {
                 throw new ArgumentException("No such Bar!");
@@ -59,7 +61,7 @@ namespace CocktailMagician.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
-            var bar = await this.barService.Get(id);
+            var bar = await this.barService.GetBar(id);
 
             return View(bar);
         }
@@ -77,6 +79,24 @@ namespace CocktailMagician.Controllers
             await this.barService.Update(bar);
 
             return RedirectToAction("Index", "Bars");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Review(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Review(BarReview barReview, int id)
+        {
+            var bar = await this.barService.GetBar(id);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            await this.userService.AddBarReview(barReview, bar, userId);
+
+            return RedirectToAction("Index", "Bars");                      
         }
 
         [Authorize(Roles = "Admin")]

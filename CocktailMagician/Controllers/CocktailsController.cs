@@ -25,7 +25,7 @@ namespace CocktailMagician.Controllers
 
         public async Task<ActionResult> Details(int id)
         {
-            var cocktail = await this.cocktailService.Get(id);
+            var cocktail = await this.cocktailService.GetCocktail(id);
             if (cocktail == null)
             {
                 throw new ArgumentException("No such Bar!");
@@ -58,7 +58,7 @@ namespace CocktailMagician.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
-            var cocktail = await this.cocktailService.Get(id);
+            var cocktail = await this.cocktailService.GetCocktail(id);
 
             return View(cocktail);
         }

@@ -31,7 +31,7 @@ namespace CocktailMagician.Domain.Services
 
             return cocktailEntity.ToContract();
         }
-        public async Task<Cocktail> Get(int id)
+        public async Task<Cocktail> GetCocktail(int id)
         {
             var cocktailEntity = await this.context.Cocktails
                 .Include(x => x.CocktailIngredients)

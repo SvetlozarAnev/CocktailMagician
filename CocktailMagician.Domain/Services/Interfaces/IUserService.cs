@@ -9,5 +9,6 @@ namespace CocktailMagician.Domain.Services.Interfaces
     public interface IUserService
     {
         Task<User> GetUser(string userId);
+        Task<BarReview> AddBarReview(BarReview review, Bar bar, string userId);
     }
 }

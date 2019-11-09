@@ -11,9 +11,12 @@ namespace CocktailMagician.Controllers
     public class CocktailsController : Controller
     {
         private readonly ICocktailService cocktailService;
-        public CocktailsController(ICocktailService cocktailService)
+        private readonly IUserService userService;
+
+        public CocktailsController(ICocktailService cocktailService, IUserService userService)
         {
             this.cocktailService = cocktailService;
+            this.userService = userService;
         }
 
         public async Task<IActionResult> Index()
@@ -74,6 +77,24 @@ namespace CocktailMagician.Controllers
             }
 
             await this.cocktailService.Update(cocktail);
+
+            return RedirectToAction("Index", "Cocktails");
+        }
+        [HttpGet]
+        [Authorize]
+        public IActionResult Review(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Review(CocktailReview cocktailReview, int id)
+        {
+           
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await this.userService.AddCocktailReview(cocktailReview, id, userId);
 
             return RedirectToAction("Index", "Cocktails");
         }

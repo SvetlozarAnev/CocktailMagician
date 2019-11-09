@@ -14,10 +14,25 @@ namespace CocktailMagician.Domain.Mappers
             return new CocktailReview
             {
                 Id = entity.Id,
-                UserEntityId = entity.UserEntityId,
-                CocktailEntityId = entity.CocktailEntityId,
+                User = entity.User.ToContract(),
+                Cocktail = entity.Cocktail.ToContract(),
                 Rating = entity.Rating,
                 Review = entity.Review
+            };
+
+        }
+        public static CocktailReviewEntity ToEntity(this CocktailReview contract)
+        {
+            if (contract == null)
+            {
+                return null;
+            }
+            return new CocktailReviewEntity
+            {
+                UserEntityId = contract.User?.Id,
+                CocktailEntityId = contract.Cocktail?.Id??0,
+                Rating = contract.Rating,
+                Review = contract.Review
             };
         }
     }

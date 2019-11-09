@@ -90,5 +90,14 @@ namespace CocktailMagician.Domain.Services
 
             return bars;
         }
+
+        public async Task<double> CalculateAverageRating(Bar bar, int newRating)
+        {
+            var currentRatingsCount = await this.context.BarReviews.Where(x => x.BarEntityId == bar.Id).CountAsync();
+
+            var oldRating = bar.Rating ?? 0;
+            var newAverage = oldRating + (newRating - oldRating) / (currentRatingsCount + 1);
+            return newAverage;
+        }
     }
 }

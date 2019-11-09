@@ -31,12 +31,12 @@ namespace CocktailMagician.Domain.Mappers
 
             return new BarReviewEntity
             {
-                // Bar = contract.Bar.ToEntity(),
-                BarEntityId = contract.Bar.Id,
-                UserEntityId = contract.User.Id,
+                UserEntityId = contract.User?.Id,
+                BarEntityId = contract.Bar?.Id??0,
                 Rating = contract.Rating,
                 Review = contract.Review
             };
+
         }
     }
 }

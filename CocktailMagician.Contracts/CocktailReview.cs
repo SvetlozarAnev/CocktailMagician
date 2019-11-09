@@ -7,8 +7,8 @@ namespace CocktailMagician.Contracts
     public class CocktailReview
     {
         public int Id { get; set; }
-        public string UserEntityId { get; set; }
-        public int CocktailEntityId { get; set; }
+        public User User { get; set; }
+        public Cocktail Cocktail { get; set; }
         public int Rating { get; set; }
         public string Review { get; set; }
     }

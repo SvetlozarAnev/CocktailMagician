@@ -88,6 +88,15 @@ namespace CocktailMagician.Domain.Services
 
             return cocktails;
         }
+
+        public async Task<double> CalculateAverageRating(Cocktail cocktail, int newRating)
+        {
+            var currentRatingsCount = await this.context.CocktailReviews.Where(x => x.CocktailEntityId == cocktail.Id).CountAsync();
+
+            var oldRating = cocktail.Rating ?? 0;
+            var newAverage = oldRating + (newRating - oldRating) / (currentRatingsCount + 1);
+            return newAverage;
+        }
     }
 }
 

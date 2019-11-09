@@ -17,6 +17,10 @@ else
                 <th>Name</th>
                 <th>Recipe</th>
                 <th>Rating</th>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <th>Review</th>
+                }
                 @if (User.IsInRole("Admin"))
                 {
                     <th>Edit</th>
@@ -27,30 +31,34 @@ else
         <tbody>
             @foreach (var cocktail in Model)
             {
-                <tr>
-                    <td>@Html.ActionLink(cocktail.Name, "Details", "Cocktails", new { id = cocktail.Id }, null)</td>
-                    <td>@cocktail.Recipe</td>
-                    <td>@cocktail.Rating</td>
+            <tr>
+                <td>@Html.ActionLink(cocktail.Name, "Details", "Cocktails", new { id = cocktail.Id }, null)</td>
+                <td>@cocktail.Recipe</td>
+                <td>@cocktail.Rating</td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td><a asp-controller="Cocktails" asp-action="Review" asp-route-Id="@cocktail.Id" button type="submit" method="post" class="btn btn-primary">Review</a></td>
+                }
 
-                    @if (User.IsInRole("Admin"))
+                @if (User.IsInRole("Admin"))
+                {
+                    <td><a asp-controller="Cocktails" asp-action="Edit" asp-route-Id="@cocktail.Id" button type="submit" method="post" class="btn btn-primary">Edit</a></td>
+
+                    @if (cocktail.IsHidden == false)
                     {
-                        <td><a asp-controller="Cocktails" asp-action="Edit" asp-route-Id="@cocktail.Id" button type="submit" method="post" class="btn btn-primary">Edit</a></td>
-
-                        @if (cocktail.IsHidden == false)
-                        {
-                            <td>
-                                <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-danger" asp-route-Id="@cocktail.Id"><strong>Hide</strong></a>
-                            </td>
-                        }
-                        else
-                        {
-                            <td>
-                                <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-success" asp-route-Id="@cocktail.Id"><strong>Show</strong></a>
-
-                            </td>
-                        }
+                        <td>
+                            <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-danger" asp-route-Id="@cocktail.Id"><strong>Hide</strong></a>
+                        </td>
                     }
-                </tr>
+                    else
+                    {
+                        <td>
+                            <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-success" asp-route-Id="@cocktail.Id"><strong>Show</strong></a>
+
+                        </td>
+                    }
+                }
+            </tr>
             }
         </tbody>
     </table>

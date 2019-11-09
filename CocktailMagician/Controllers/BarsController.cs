@@ -29,10 +29,10 @@ namespace CocktailMagician.Controllers
         public async Task<ActionResult> Details(int id)
         {
             var bar = await this.barService.GetBar(id);
-            if (bar == null)
-            {
-                throw new ArgumentException("No such Bar!");
-            }
+            //if (bar == null)
+            //{
+            //    throw new ArgumentException("No such Bar!");
+            //}
             return View(bar);
         }
 
@@ -92,11 +92,11 @@ namespace CocktailMagician.Controllers
         [Authorize]
         public async Task<IActionResult> Review(BarReview barReview, int id)
         {
-            var bar = await this.barService.GetBar(id);
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            await this.userService.AddBarReview(barReview, bar, userId);
 
-            return RedirectToAction("Index", "Bars");                      
+            await this.userService.AddBarReview(barReview, id, userId);
+
+            return RedirectToAction("Index", "Bars");
         }
 
         [Authorize(Roles = "Admin")]

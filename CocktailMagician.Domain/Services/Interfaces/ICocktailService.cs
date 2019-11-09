@@ -11,5 +11,6 @@ namespace CocktailMagician.Domain.Services.Interfaces
         Task<Cocktail> Update(Cocktail cocktail);
         Task<Cocktail> Toggle(int id);
         Task<IEnumerable<Cocktail>> ListAll(string role);
+        Task<double> CalculateAverageRating(Cocktail cocktail, int newRating);
     }
 }

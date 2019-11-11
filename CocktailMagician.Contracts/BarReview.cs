@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CocktailMagician.Contracts
+﻿namespace CocktailMagician.Contracts
 {
     public class BarReview
     {

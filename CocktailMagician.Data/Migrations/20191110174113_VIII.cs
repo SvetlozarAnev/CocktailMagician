@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CocktailMagician.Data.Migrations
 {
-    public partial class VI : Migration
+    public partial class VIII : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

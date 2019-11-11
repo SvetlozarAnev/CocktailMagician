@@ -15,6 +15,7 @@ else
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Pic</th>
                 <th>Address</th>
                 <th>Rating</th>
                 @if (User.Identity.IsAuthenticated)
@@ -33,6 +34,8 @@ else
             {
             <tr>
                 <td>@Html.ActionLink(bar.Name, "Details", "Bars", new { id = bar.Id }, null)</td>
+                
+                <td><img src="@bar.ImagePath"class="img-circle " width="255" height="255"></td>
                 <td>@bar.Address</td>
                 <td>@bar.Rating</td>
                 @if (User.Identity.IsAuthenticated)

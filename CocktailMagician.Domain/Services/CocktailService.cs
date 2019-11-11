@@ -1,5 +1,6 @@
 ﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data;
+using CocktailMagician.Data.Models;
 using CocktailMagician.Domain.Mappers;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -23,12 +24,14 @@ namespace CocktailMagician.Domain.Services
         {
             if (await this.context.Cocktails.SingleOrDefaultAsync(x => x.Name == cocktail.Name) != null)
             {
-                throw new ArgumentException("Bar already exists.");
+                throw new ArgumentException("Cocktail already exists.");
             }
             var cocktailEntity = cocktail.ToEntity();
             await this.context.Cocktails.AddAsync(cocktailEntity);
-            await this.context.SaveChangesAsync();
 
+            await AddIngredients(cocktailEntity.Id, cocktail.Ingredients);
+
+            await this.context.SaveChangesAsync();
             return cocktailEntity.ToContract();
         }
         public async Task<Cocktail> GetCocktail(int id)
@@ -58,7 +61,7 @@ namespace CocktailMagician.Domain.Services
             cocktailEntity.IsHidden = cocktail.IsHidden;
             cocktailEntity.ImagePath = cocktail.ImagePath;
             await this.context.SaveChangesAsync();
-            
+
             return cocktailEntity.ToContract();
         }
         public async Task<Cocktail> Toggle(int id)
@@ -78,8 +81,10 @@ namespace CocktailMagician.Domain.Services
         public async Task<IEnumerable<Cocktail>> ListAll(string role)
         {
             var cocktails = await this.context.Cocktails
-                .Select(x => x.ToContract())
-                .ToListAsync();
+               .Include(x => x.CocktailIngredients)
+                   .ThenInclude(x => x.IngredientEntity)
+               .Select(x => x.ToContract())
+               .ToListAsync();
 
             if (role != "Admin" || role == null)
             {
@@ -88,15 +93,35 @@ namespace CocktailMagician.Domain.Services
 
             return cocktails;
         }
+        public async Task<IEnumerable<Ingredient>> ListIngredients()
+        {
+            var ingredients = await this.context.Ingredients
+                .Select(x => x.ToContract())
+                .ToListAsync();
+
+            return ingredients;
+        }
+        public async Task AddIngredients(int cocktailId, IEnumerable<Ingredient> ingredients)
+        {
+            foreach (var item in ingredients)
+            {
+                var entity = new CocktailIngredientEntity
+                {
+                    CocktailEntityId = cocktailId,
+                    IngredientEntityId = int.Parse(item.Name)
+                };
+                this.context.CocktaiIngredients.Add(entity);
+            }
+            await this.context.SaveChangesAsync();
+        }
 
         public async Task<double> CalculateAverageRating(Cocktail cocktail, int newRating)
         {
             var currentRatingsCount = await this.context.CocktailReviews.Where(x => x.CocktailEntityId == cocktail.Id).CountAsync();
 
             var oldRating = cocktail.Rating ?? 0;
-            var newAverage = oldRating + (newRating - oldRating) / (currentRatingsCount + 1);
+            var newAverage = Math.Round(oldRating + (newRating - oldRating) / (currentRatingsCount + 1), 1);
             return newAverage;
         }
     }
 }
-

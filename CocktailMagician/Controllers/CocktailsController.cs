@@ -2,7 +2,9 @@
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -31,15 +33,18 @@ namespace CocktailMagician.Controllers
             var cocktail = await this.cocktailService.GetCocktail(id);
             if (cocktail == null)
             {
-                throw new ArgumentException("No such Bar!");
+                throw new ArgumentException("No such Cocktail!");
             }
             return View(cocktail);
         }
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var ingredients = await cocktailService.ListIngredients();
+            ViewData["Ingredients"] = ingredients.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+
             return View();
         }
 

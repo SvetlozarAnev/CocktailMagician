@@ -96,7 +96,7 @@ namespace CocktailMagician.Domain.Services
             var currentRatingsCount = await this.context.BarReviews.Where(x => x.BarEntityId == bar.Id).CountAsync();
 
             var oldRating = bar.Rating ?? 0;
-            var newAverage = oldRating + (newRating - oldRating) / (currentRatingsCount + 1);
+            var newAverage = Math.Round(oldRating + (newRating - oldRating) / (currentRatingsCount + 1), 1);
             return newAverage;
         }
     }

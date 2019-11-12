@@ -1,5 +1,6 @@
 ﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data;
+using CocktailMagician.Data.Models;
 using CocktailMagician.Domain.Mappers;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -28,10 +29,27 @@ namespace CocktailMagician.Domain.Services
             }
 
             var barEntity = bar.ToEntity();
+
             await this.context.Bars.AddAsync(barEntity);
             await this.context.SaveChangesAsync();
+            await AddCocktails(barEntity.Id, bar.Cocktails);
             return barEntity.ToContract();
         }
+
+        private async Task AddCocktails(int barId, IEnumerable<string> cocktails)
+        {
+            foreach (var item in cocktails)
+            {
+                var entity = new BarCocktailEntity
+                {
+                    BarEntityId = barId,
+                    CocktailEntityId = int.Parse(item)
+                };
+                this.context.BarCocktails.Add(entity);
+            }
+                await this.context.SaveChangesAsync();
+        }
+
         public async Task<Bar> GetBar(int id)
         {
             var barEntity = await this.context.Bars
@@ -80,6 +98,8 @@ namespace CocktailMagician.Domain.Services
         {
 
             var bars = await this.context.Bars
+                .Include(x => x.BarCocktails)
+                .ThenInclude(x => x.CocktailEntity)
                                .Select(x => x.ToContract())
                                .ToListAsync();
 
@@ -89,6 +109,14 @@ namespace CocktailMagician.Domain.Services
             }
 
             return bars;
+        }
+        public async Task<IEnumerable<Cocktail>> ListCocktails()
+        {
+            var cocktails = await this.context.Cocktails
+                .Select(x => x.ToContract())
+                .ToListAsync();
+
+            return cocktails;
         }
 
         public async Task<double> CalculateAverageRating(Bar bar, int newRating)

@@ -31,10 +31,7 @@ namespace CocktailMagician.Controllers
         public async Task<ActionResult> Details(int id)
         {
             var cocktail = await this.cocktailService.GetCocktail(id);
-            if (cocktail == null)
-            {
-                throw new ArgumentException("No such Cocktail!");
-            }
+          
             return View(cocktail);
         }
 

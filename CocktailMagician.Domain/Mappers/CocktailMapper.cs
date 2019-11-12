@@ -21,9 +21,7 @@ namespace CocktailMagician.Domain.Mappers
                 IsHidden = entity.IsHidden,
                 ImagePath = entity.ImagePath,
                 Ingredients = entity.CocktailIngredients?
-                .Select(x=> x.IngredientEntity.ToContract())
-                .ToList()
-              
+                .Select(x => x.IngredientEntity.ToContract().Name)
             };
         }
         public static CocktailEntity ToEntity(this Cocktail contract)

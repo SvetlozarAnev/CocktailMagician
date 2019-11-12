@@ -11,8 +11,7 @@ namespace CocktailMagician.Domain.Mappers
             if (entity == null)
             {
                 return null;
-            }
-            
+            }            
             return new Bar
             {
                 Id = entity.Id,
@@ -22,8 +21,7 @@ namespace CocktailMagician.Domain.Mappers
                 IsHidden = entity.IsHidden,
                 ImagePath = entity.ImagePath,
                 Cocktails = entity.BarCocktails?
-                .Select(x => x.CocktailEntity.ToContract())
-                .ToList()
+                .Select(x => x.CocktailEntity.ToContract().Name)           
             };
 
         }

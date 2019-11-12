@@ -10,6 +10,6 @@ namespace CocktailMagician.Contracts
         public double? Rating { get; set; }
         public bool IsHidden { get; set; }
         public string ImagePath { get; set; }
-        public IEnumerable<Cocktail> Cocktails { get; set; }
+        public IEnumerable<string> Cocktails { get; set; }
     }
 }

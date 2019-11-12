@@ -4,14 +4,16 @@
     "Name": "Ace of Clubs",
     "Address": "3483  Stratford Court, Fayetteville, North Carolina",
     "Rating": 4.5,
-    "IsHidden": false
+    "IsHidden": false,
+    "ImagePath": "/images/bars/bar1.jpg"
   },
   {
     "Id": 2,
     "Name": "The Back Lane Bar",
     "Address": "3234  Mesa Drive, Las Vegas, Nevada",
     "Rating": null,
-    "IsHidden": false
+    "IsHidden": false,
+    "ImagePath": "/images/bars/bar2.jpg"
   },
   {
     "Id": 3,

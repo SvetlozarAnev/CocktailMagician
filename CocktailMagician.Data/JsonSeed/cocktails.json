@@ -4,22 +4,24 @@
     "Name": "Black Russian",
     "Recipe": "Pour the ingredients directly in a lowball glass with ice. Top up with coke. Stir and serve. Simple - yet a classic.",
     "Rating": 5,
-    "IsHidden": false
-
+    "IsHidden": false,
+    "ImagePath": "/images/cocktails/blackRussian.jpg"
   },
   {
     "Id": 2,
     "Name": "Whiskey And Coke",
     "Recipe": "A classic combo, simply add the whisky into the bottom of a lowball glass with some ice cubes, then top up with the desired amount of coke. Classic and simple yet tasty!",
     "Rating": 4,
-    "IsHidden": false
+    "IsHidden": false,
+    "ImagePath": "/images/cocktails/whiskeyAndCoke.jpg"
   },
   {
     "Id": 3,
     "Name": "Cuba Libre",
     "Recipe": "Add the rum and lime juice into a highball glass with ice. Stir and top up with coke.",
     "Rating": 1,
-    "IsHidden": false
+    "IsHidden": false,
+    "ImagePath": "/images/cocktails/cubaLibre.jpg"
   },
   {
     "Id": 4,
@@ -33,20 +35,23 @@
     "Name": "Carribean Sunset Mocktail",
     "Recipe": "No one will miss the alcohol in this tasty family-friendly drink combining Sprite, orange juice, lemonade and grenadine",
     "Rating": null,
-    "IsHidden": false
+    "IsHidden": false,
+    "ImagePath": "/images/cocktails/caribbeanSunsetMocktail.jpg"
   },
   {
     "Id": 6,
     "Name": "Long Island Iced Tea Mocktail",
     "Recipe": "Coca-Cola, lemonade and black tea give this signature drink the taste of the original without the alcohol.",
     "Rating": 4.5,
-    "IsHidden": false
+    "IsHidden": false,
+    "ImagePath": "/images/cocktails/longIslandIcedTea.jpg"
   },
   {
     "Id": 7,
     "Name": "Coca-Cola Spice",
     "Recipe": "Add Coca-Cola, pineapple juice and Pibb Xtra to make a non-alcoholic take on a traditional holiday beverage.",
     "Rating": null,
-    "IsHidden": false
+    "IsHidden": false,
+    "ImagePath": "/images/cocktails/cocaColaSpice.jpg"
   }
 ]

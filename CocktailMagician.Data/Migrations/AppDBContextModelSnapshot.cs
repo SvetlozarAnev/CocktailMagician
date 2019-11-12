@@ -163,6 +163,7 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 1,
                             Address = "3483  Stratford Court, Fayetteville, North Carolina",
+                            ImagePath = "/images/bars/bar1.jpg",
                             IsHidden = false,
                             Name = "Ace of Clubs",
                             Rating = 4.5
@@ -171,6 +172,7 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 2,
                             Address = "3234  Mesa Drive, Las Vegas, Nevada",
+                            ImagePath = "/images/bars/bar2.jpg",
                             IsHidden = false,
                             Name = "The Back Lane Bar"
                         },
@@ -308,6 +310,7 @@ namespace CocktailMagician.Data.Migrations
                         new
                         {
                             Id = 1,
+                            ImagePath = "/images/cocktails/blackRussian.jpg",
                             IsHidden = false,
                             Name = "Black Russian",
                             Rating = 5.0,
@@ -316,6 +319,7 @@ namespace CocktailMagician.Data.Migrations
                         new
                         {
                             Id = 2,
+                            ImagePath = "/images/cocktails/whiskeyAndCoke.jpg",
                             IsHidden = false,
                             Name = "Whiskey And Coke",
                             Rating = 4.0,
@@ -324,6 +328,7 @@ namespace CocktailMagician.Data.Migrations
                         new
                         {
                             Id = 3,
+                            ImagePath = "/images/cocktails/cubaLibre.jpg",
                             IsHidden = false,
                             Name = "Cuba Libre",
                             Rating = 1.0,
@@ -340,6 +345,7 @@ namespace CocktailMagician.Data.Migrations
                         new
                         {
                             Id = 5,
+                            ImagePath = "/images/cocktails/caribbeanSunsetMocktail.jpg",
                             IsHidden = false,
                             Name = "Carribean Sunset Mocktail",
                             Recipe = "No one will miss the alcohol in this tasty family-friendly drink combining Sprite, orange juice, lemonade and grenadine"
@@ -347,6 +353,7 @@ namespace CocktailMagician.Data.Migrations
                         new
                         {
                             Id = 6,
+                            ImagePath = "/images/cocktails/longIslandIcedTea.jpg",
                             IsHidden = false,
                             Name = "Long Island Iced Tea Mocktail",
                             Rating = 4.5,
@@ -355,6 +362,7 @@ namespace CocktailMagician.Data.Migrations
                         new
                         {
                             Id = 7,
+                            ImagePath = "/images/cocktails/cocaColaSpice.jpg",
                             IsHidden = false,
                             Name = "Coca-Cola Spice",
                             Recipe = "Add Coca-Cola, pineapple juice and Pibb Xtra to make a non-alcoholic take on a traditional holiday beverage."

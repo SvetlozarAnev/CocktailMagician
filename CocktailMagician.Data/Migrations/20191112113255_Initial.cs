@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CocktailMagician.Data.Migrations
 {
-    public partial class VIII : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -328,11 +328,11 @@ namespace CocktailMagician.Data.Migrations
                 values: new object[,]
                 {
                     { 6, "1313  Jerome Avenue, Harlingen, Texas", null, false, "The Lion and Unicorn ", null },
-                    { 1, "3483  Stratford Court, Fayetteville, North Carolina", null, false, "Ace of Clubs", 4.5 },
+                    { 1, "3483  Stratford Court, Fayetteville, North Carolina", "/images/bars/bar1.jpg", false, "Ace of Clubs", 4.5 },
                     { 3, "3292  Oak Lane, Jamesport, Missouri", null, false, "The Brass Lantern", 4.0 },
                     { 5, "3710  Hall Valley Drive, Stonewood, West Virginia", null, false, "Dexter Lake Club", 5.0 },
                     { 4, "1957  Braxton Street, Momence, Illinois", null, false, "Blue Boar Inn", 1.0 },
-                    { 2, "3234  Mesa Drive, Las Vegas, Nevada", null, false, "The Back Lane Bar", null }
+                    { 2, "3234  Mesa Drive, Las Vegas, Nevada", "/images/bars/bar2.jpg", false, "The Back Lane Bar", null }
                 });
 
             migrationBuilder.InsertData(
@@ -340,13 +340,13 @@ namespace CocktailMagician.Data.Migrations
                 columns: new[] { "Id", "ImagePath", "IsHidden", "Name", "Rating", "Recipe" },
                 values: new object[,]
                 {
-                    { 7, null, false, "Coca-Cola Spice", null, "Add Coca-Cola, pineapple juice and Pibb Xtra to make a non-alcoholic take on a traditional holiday beverage." },
-                    { 1, null, false, "Black Russian", 5.0, "Pour the ingredients directly in a lowball glass with ice. Top up with coke. Stir and serve. Simple - yet a classic." },
-                    { 5, null, false, "Carribean Sunset Mocktail", null, "No one will miss the alcohol in this tasty family-friendly drink combining Sprite, orange juice, lemonade and grenadine" },
+                    { 7, "/images/cocktails/cocaColaSpice.jpg", false, "Coca-Cola Spice", null, "Add Coca-Cola, pineapple juice and Pibb Xtra to make a non-alcoholic take on a traditional holiday beverage." },
+                    { 1, "/images/cocktails/blackRussian.jpg", false, "Black Russian", 5.0, "Pour the ingredients directly in a lowball glass with ice. Top up with coke. Stir and serve. Simple - yet a classic." },
+                    { 5, "/images/cocktails/caribbeanSunsetMocktail.jpg", false, "Carribean Sunset Mocktail", null, "No one will miss the alcohol in this tasty family-friendly drink combining Sprite, orange juice, lemonade and grenadine" },
                     { 4, null, false, "Iceberg Paralyzer", 3.0, "Fill tall glass with ice to the top before adding the vodka and Kaluha. Next add the coke nearly to the top before adding in the milk to finish. Stir with a barspoon. Just remember to add a lot of ice or the milk can curdle with the coke." },
-                    { 3, null, false, "Cuba Libre", 1.0, "Add the rum and lime juice into a highball glass with ice. Stir and top up with coke." },
-                    { 2, null, false, "Whiskey And Coke", 4.0, "A classic combo, simply add the whisky into the bottom of a lowball glass with some ice cubes, then top up with the desired amount of coke. Classic and simple yet tasty!" },
-                    { 6, null, false, "Long Island Iced Tea Mocktail", 4.5, "Coca-Cola, lemonade and black tea give this signature drink the taste of the original without the alcohol." }
+                    { 3, "/images/cocktails/cubaLibre.jpg", false, "Cuba Libre", 1.0, "Add the rum and lime juice into a highball glass with ice. Stir and top up with coke." },
+                    { 2, "/images/cocktails/whiskeyAndCoke.jpg", false, "Whiskey And Coke", 4.0, "A classic combo, simply add the whisky into the bottom of a lowball glass with some ice cubes, then top up with the desired amount of coke. Classic and simple yet tasty!" },
+                    { 6, "/images/cocktails/longIslandIcedTea.jpg", false, "Long Island Iced Tea Mocktail", 4.5, "Coca-Cola, lemonade and black tea give this signature drink the taste of the original without the alcohol." }
                 });
 
             migrationBuilder.InsertData(

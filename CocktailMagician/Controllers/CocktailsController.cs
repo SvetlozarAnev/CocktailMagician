@@ -64,7 +64,8 @@ namespace CocktailMagician.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var cocktail = await this.cocktailService.GetCocktail(id);
-
+            var ingredients = await cocktailService.ListIngredients();
+            ViewData["Ingredients"] = ingredients.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
             return View(cocktail);
         }
 

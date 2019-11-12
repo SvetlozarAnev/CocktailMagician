@@ -47,7 +47,7 @@ namespace CocktailMagician.Domain.Services
                 };
                 this.context.BarCocktails.Add(entity);
             }
-                await this.context.SaveChangesAsync();
+            await this.context.SaveChangesAsync();
         }
 
         public async Task<Bar> GetBar(int id)
@@ -78,7 +78,7 @@ namespace CocktailMagician.Domain.Services
             barEntity.IsHidden = bar.IsHidden;
             barEntity.ImagePath = bar.ImagePath;
             await this.context.SaveChangesAsync();
-
+            await AddCocktails(barEntity.Id, bar.Cocktails);
             return barEntity.ToContract();
         }
         public async Task<Bar> Toggle(int id)

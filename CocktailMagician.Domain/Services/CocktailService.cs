@@ -74,7 +74,7 @@ namespace CocktailMagician.Domain.Services
             cocktailEntity.IsHidden = cocktail.IsHidden;
             cocktailEntity.ImagePath = cocktail.ImagePath;
             await this.context.SaveChangesAsync();
-
+            await AddIngredients(cocktailEntity.Id, cocktail.Ingredients);
             return cocktailEntity.ToContract();
         }
         public async Task<Cocktail> Toggle(int id)

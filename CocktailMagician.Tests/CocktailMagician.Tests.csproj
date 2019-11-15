@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.6" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
@@ -20,8 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CocktailMagician.Domain.Services.Tests\BarServiceTests\" />
     <Folder Include="CocktailMagician.Domain.Services.Tests\CocktailServiceTests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CocktailMagician.Data\CocktailMagician.Data.csproj" />
+    <ProjectReference Include="..\CocktailMagician.Domain\CocktailMagician.Domain.csproj" />
   </ItemGroup>
 
 </Project>

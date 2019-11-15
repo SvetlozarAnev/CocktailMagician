@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CocktailMagician.Contracts.Ingredient>
+@{
+    ViewData["Title"] = "Ingredients";
+}
+
+<h1>Ingredients</h1>
+@Html.ActionLink("New Ingredient", "AddIngredient", "Cocktails", null, new { @class = "btn btn-primary" })
+
+@if (!Model.Any())
+{
+    <p>We don't have any cocktails yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ingredient in Model)
+            {
+                <tr>
+                    <td>@ingredient.Name</td>
+                    @if ((User.IsInRole("Admin")))
+                    {
+                        <td><a asp-controller="Cocktails" asp-action="DeleteIngredient" asp-route-Id="@ingredient.Id" button type="submit" method="post" class="btn btn-primary">Delete</a></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}

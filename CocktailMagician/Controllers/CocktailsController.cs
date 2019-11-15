@@ -109,5 +109,39 @@ namespace CocktailMagician.Controllers
 
             return RedirectToAction("Index", "Cocktails");
         }
+
+        public async Task<IActionResult> Ingredients()
+        {
+            var ingredients = await this.cocktailService.ListIngredients();
+            return View(ingredients);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult AddIngredient()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddIngredient(Ingredient ingredient)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(ingredient);
+            }
+            await this.cocktailService.CreateIngredient(ingredient);
+
+            return RedirectToAction("Ingredients", "Cocktails");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteIngredient(int id)
+        {
+            await this.cocktailService.DeleteIngredient(id);
+            return RedirectToAction("Ingredients", "Cocktails");
+        }
     }
 }

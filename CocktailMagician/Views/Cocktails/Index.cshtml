@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CocktailMagician.Contracts.Cocktail>
+﻿@model IEnumerable<Cocktail>
 @{
     ViewData["Title"] = "Index";
 }
@@ -6,7 +6,7 @@
 <h1>Cocktails</h1>
 @Html.ActionLink("New Cocktail", "Create", "Cocktails", null, new { @class = "btn btn-primary" })
 @if ((User.IsInRole("Admin"))) {
-    @Html.ActionLink("Ingredients", "Ingredients", "Cocktails", null, new { @class = "btn btn-primary" })}
+    @Html.ActionLink("Ingredients", "Index", "Ingredients", null, new { @class = "btn btn-primary" })}
 @if (!Model.Any())
 {
     <p>We don't have any cocktails yet.</p>

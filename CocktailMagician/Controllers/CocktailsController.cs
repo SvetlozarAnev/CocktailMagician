@@ -14,11 +14,13 @@ namespace CocktailMagician.Controllers
     {
         private readonly ICocktailService cocktailService;
         private readonly IUserService userService;
+        private readonly IIngredientService ingredientService;
 
-        public CocktailsController(ICocktailService cocktailService, IUserService userService)
+        public CocktailsController(ICocktailService cocktailService, IUserService userService, IIngredientService ingredientService)
         {
             this.cocktailService = cocktailService;
             this.userService = userService;
+            this.ingredientService = ingredientService;
         }
 
         public async Task<IActionResult> Index()
@@ -31,7 +33,7 @@ namespace CocktailMagician.Controllers
         public async Task<ActionResult> Details(int id)
         {
             var cocktail = await this.cocktailService.GetCocktail(id);
-          
+
             return View(cocktail);
         }
 
@@ -39,7 +41,7 @@ namespace CocktailMagician.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create()
         {
-            var ingredients = await cocktailService.ListIngredients();
+            var ingredients = await ingredientService.ListAll();
             ViewData["Ingredients"] = ingredients.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
 
             return View();
@@ -64,7 +66,7 @@ namespace CocktailMagician.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var cocktail = await this.cocktailService.GetCocktail(id);
-            var ingredients = await cocktailService.ListIngredients();
+            var ingredients = await ingredientService.ListAll();
             ViewData["Ingredients"] = ingredients.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
             return View(cocktail);
         }
@@ -94,7 +96,7 @@ namespace CocktailMagician.Controllers
         [Authorize]
         public async Task<IActionResult> Review(CocktailReview cocktailReview, int id)
         {
-           
+
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             await this.userService.AddCocktailReview(cocktailReview, id, userId);
@@ -112,36 +114,8 @@ namespace CocktailMagician.Controllers
 
         public async Task<IActionResult> Ingredients()
         {
-            var ingredients = await this.cocktailService.ListIngredients();
+            var ingredients = await this.ingredientService.ListAll();
             return View(ingredients);
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public IActionResult AddIngredient()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddIngredient(Ingredient ingredient)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return View(ingredient);
-            }
-            await this.cocktailService.CreateIngredient(ingredient);
-
-            return RedirectToAction("Ingredients", "Cocktails");
-        }
-
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteIngredient(int id)
-        {
-            await this.cocktailService.DeleteIngredient(id);
-            return RedirectToAction("Ingredients", "Cocktails");
         }
     }
 }

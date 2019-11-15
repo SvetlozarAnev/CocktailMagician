@@ -1,14 +1,14 @@
-﻿@model IEnumerable<CocktailMagician.Contracts.Ingredient>
+﻿@model IEnumerable<Ingredient>
 @{
     ViewData["Title"] = "Ingredients";
 }
 
 <h1>Ingredients</h1>
-@Html.ActionLink("New Ingredient", "AddIngredient", "Cocktails", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("New Ingredient", "Create", "Ingredients", null, new { @class = "btn btn-primary" })
 
 @if (!Model.Any())
 {
-    <p>We don't have any cocktails yet.</p>
+    <p>We don't have any ingredients yet.</p>
 }
 else
 {
@@ -26,7 +26,7 @@ else
                     <td>@ingredient.Name</td>
                     @if ((User.IsInRole("Admin")))
                     {
-                        <td><a asp-controller="Cocktails" asp-action="DeleteIngredient" asp-route-Id="@ingredient.Id" button type="submit" method="post" class="btn btn-primary">Delete</a></td>
+                        <td><a asp-controller="Ingredients" asp-action="Delete" asp-route-Id="@ingredient.Id" button type="submit" method="post" class="btn btn-primary">Delete</a></td>
                     }
                 </tr>
             }

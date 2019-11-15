@@ -115,6 +115,38 @@ namespace CocktailMagician.Domain.Services
             return ingredients;
         }
 
+        public async Task<Ingredient> CreateIngredient(Ingredient ingredient)
+        {
+            if (await this.context.Ingredients.SingleOrDefaultAsync(x => x.Name == ingredient.Name) != null)
+            {
+                throw new ArgumentException("Ingredient already exists.");
+            }
+
+            var ingredientEntity = ingredient.ToEntity();
+            await this.context.Ingredients.AddAsync(ingredientEntity);
+            await this.context.SaveChangesAsync();
+           
+            return ingredientEntity.ToContract();
+        }
+
+        public async Task DeleteIngredient(int id)
+        {
+            var ingredientEntity = await this.context.Ingredients.SingleOrDefaultAsync(x => x.Id == id);
+            if (ingredientEntity == null)
+            {
+                throw new ArgumentException("The requested ingredient is null.");
+            }
+            if (!this.context.CocktaiIngredients.Select(x=>x.CocktailEntityId).Contains(id))
+            {
+            this.context.Ingredients.Remove(ingredientEntity);
+            }
+            else
+            {
+                throw new ArgumentException("The ingredient cannot be deleted.");
+            }
+            await this.context.SaveChangesAsync();
+        }
+
         public async Task<double> CalculateAverageRating(Cocktail cocktail, int newRating)
         {
             var currentRatingsCount = await this.context.CocktailReviews.Where(x => x.CocktailEntityId == cocktail.Id).CountAsync();

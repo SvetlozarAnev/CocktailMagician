@@ -27,7 +27,7 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServi
         public async Task ReturnBarContract()
         {
             var testBarID = 1;
-            
+
             var options = TestUtilities.GetOptions(nameof(ReturnBarContract));
             using (var arrangeContext = new AppDBContext(options))
             {
@@ -42,5 +42,16 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServi
                 Assert.AreEqual(testBarID, bar.Id);
             }
         }
+
+        //public async Task Retrun_AnInstanceOf_BarContract
+        //{
+        // var options = TestUtilities.GetOptions(nameof(ReturnBarContract));
+
     }
+
+
+
+    //public async Task ThrowArgumentException_WhenInvalidParameterPassed
+
 }
+

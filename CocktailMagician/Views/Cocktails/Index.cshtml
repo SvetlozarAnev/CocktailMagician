@@ -68,16 +68,18 @@ else
 }
 @if (ViewBag.Page > 0)
 {
-    <a asp-route-id="@ViewBag.Page" href="@Url.Action("Index", new { page = ViewBag.Page - 1 })"
+    <a asp-controller="Cocktails" asp-action="Index" asp-route-id="@(ViewBag.Page-1)"
        class="btn btn-default">
         &laquo; Prev
     </a>
 }
 @if (ViewBag.Page < ViewBag.MaxPage)
 {
-    <a  asp-route-id="@ViewBag.Page" href="@Url.Action("Index", new { page = ViewBag.Page + 1 })"
+    <a asp-controller="Cocktails" asp-action="Index" asp-route-id="@(ViewBag.Page+1)"
        class="btn btn-default">
         Next &raquo;
     </a>
 }
+
+<p>@ViewBag.Page</p>
 

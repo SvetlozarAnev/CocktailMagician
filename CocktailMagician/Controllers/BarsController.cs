@@ -49,6 +49,9 @@ namespace CocktailMagician.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Bar bar)
         {
+            //save image to wwwroot, method in image Provider to return path, get the path and assign to bar
+            //check what is the file type for saving the image
+
             if (!this.ModelState.IsValid)
             {
                 return View(bar);
@@ -56,6 +59,8 @@ namespace CocktailMagician.Controllers
             await this.barService.Create(bar);
 
             return RedirectToAction("Index", "Bars");
+
+            
         }
 
         [HttpGet]

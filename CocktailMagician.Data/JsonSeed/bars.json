@@ -20,14 +20,16 @@
     "Name": "The Brass Lantern",
     "Address": "3292  Oak Lane, Jamesport, Missouri",
     "Rating": 4,
-    "IsHidden": false
+    "IsHidden": false,
+    "ImagePath": "/images/bars/bar3.jpg"
   },
   {
     "Id": 4,
     "Name": "Blue Boar Inn",
     "Address": "1957  Braxton Street, Momence, Illinois",
     "Rating": 1,
-    "IsHidden": false
+    "IsHidden": false,
+    "ImagePath": "/images/bars/bar4.jpg"
   },
   {
     "Id": 5,

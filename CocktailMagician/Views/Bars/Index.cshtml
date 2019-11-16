@@ -1,67 +1,85 @@
 ﻿@model IEnumerable<Bar>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Bars";
 }
 
 <h1>Bars</h1>
+
+
 @Html.ActionLink("New Bar", "Create", "Bars", null, new { @class = "btn btn-primary" })
-@if (!Model.Any())
-{
-    <p>We don't have any bars yet.</p>
-}
-else
-{
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Rating</th>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <th>Review</th>
-                }
-                @if (User.IsInRole("Admin"))
-                {
-                    <th>Edit</th>
-                    <th>Is Hidden</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var bar in Model)
-            {
-                <tr>
-                    <td>@Html.ActionLink(bar.Name, "Details", "Bars", new { id = bar.Id }, null)</td>
+
+<div class="container">
+    @if (!Model.Any())
+    {<p>We don't have any bars yet.</p>
+    }
 
 
-                    <td>@bar.Address</td>
-                    <td>@bar.Rating</td>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <td><a asp-controller="Bars" asp-action="Review" asp-route-Id="@bar.Id" button type="submit" method="post" class="btn btn-primary">Review</a></td>
-                    }
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <td><a asp-controller="Bars" asp-action="Edit" asp-route-Id="@bar.Id" button type="submit" method="post" class="btn btn-primary">Edit</a></td>
 
-                        @if (bar.IsHidden == false)
+
+
+
+    <div class="row">
+        @foreach (var bar in Model)
+        {
+            <partial name="BarPartial" model="@bar" />
+        }
+    </div>
+
+
+
+    @*else
+        {
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Rating</th>
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <td>
-                                <a asp-controller="Bars" asp-action="Toggle" class="btn btn-danger" asp-route-Id="@bar.Id"><strong>Hide</strong></a>
-                            </td>
+                            <th>Review</th>
                         }
-                        else
+                        @if (User.IsInRole("Admin"))
                         {
-                            <td>
-                                <a asp-controller="Bars" asp-action="Toggle" class="btn btn-success" asp-route-Id="@bar.Id"><strong>Show</strong></a>
-
-                            </td>
+                            <th>Edit</th>
+                            <th>Is Hidden</th>
                         }
-                    }
-                </tr>
-            }
-        </tbody>
-    </table>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var bar in Model)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(bar.Name, "Details", "Bars", new { id = bar.Id }, null)</td>
 
-}
+
+                            <td>@bar.Address</td>
+                            <td>@bar.Rating</td>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <td><a asp-controller="Bars" asp-action="Review" asp-route-Id="@bar.Id" button type="submit" method="post" class="btn btn-primary">Review</a></td>
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <td><a asp-controller="Bars" asp-action="Edit" asp-route-Id="@bar.Id" button type="submit" method="post" class="btn btn-primary">Edit</a></td>
+
+                                @if (bar.IsHidden == false)
+                                {
+                                    <td>
+                                        <a asp-controller="Bars" asp-action="Toggle" class="btn btn-danger" asp-route-Id="@bar.Id"><strong>Hide</strong></a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <a asp-controller="Bars" asp-action="Toggle" class="btn btn-success" asp-route-Id="@bar.Id"><strong>Show</strong></a>
+
+                                    </td>
+                                }
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }*@
+</div>

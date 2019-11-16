@@ -8,5 +8,6 @@ namespace CocktailMagician.Contracts
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int TimesUsed { get; set; }
     }
 }

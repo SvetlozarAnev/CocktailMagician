@@ -180,6 +180,7 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 3,
                             Address = "3292  Oak Lane, Jamesport, Missouri",
+                            ImagePath = "/images/bars/bar3.jpg",
                             IsHidden = false,
                             Name = "The Brass Lantern",
                             Rating = 4.0
@@ -188,6 +189,7 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 4,
                             Address = "1957  Braxton Street, Momence, Illinois",
+                            ImagePath = "/images/bars/bar4.jpg",
                             IsHidden = false,
                             Name = "Blue Boar Inn",
                             Rating = 1.0
@@ -575,6 +577,8 @@ namespace CocktailMagician.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("TimesUsed");
+
                     b.HasKey("Id");
 
                     b.ToTable("Ingredients");
@@ -583,92 +587,110 @@ namespace CocktailMagician.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Coca-Cola"
+                            Name = "Coca-Cola",
+                            TimesUsed = 6
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Coffee Liqueur"
+                            Name = "Coffee Liqueur",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Lime Juice"
+                            Name = "Lime Juice",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Milk"
+                            Name = "Milk",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Kahlua"
+                            Name = "Kahlua",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 6,
-                            Name = "White Rum"
+                            Name = "White Rum",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 7,
-                            Name = "Whiskey"
+                            Name = "Whiskey",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 8,
-                            Name = "Vodka"
+                            Name = "Vodka",
+                            TimesUsed = 2
                         },
                         new
                         {
                             Id = 9,
-                            Name = "Sprite"
+                            Name = "Sprite",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 10,
-                            Name = "Orange Juice"
+                            Name = "Orange Juice",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 11,
-                            Name = "Lemonade"
+                            Name = "Lemonade",
+                            TimesUsed = 2
                         },
                         new
                         {
                             Id = 12,
-                            Name = "Grenadine"
+                            Name = "Grenadine",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 13,
-                            Name = "Black Tea"
+                            Name = "Black Tea",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 14,
-                            Name = "Pineapple Juice"
+                            Name = "Pineapple Juice",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 15,
-                            Name = "Pibb Xtra"
+                            Name = "Pibb Xtra",
+                            TimesUsed = 2
                         },
                         new
                         {
                             Id = 16,
-                            Name = "Club Soda"
+                            Name = "Club Soda",
+                            TimesUsed = 1
                         },
                         new
                         {
                             Id = 17,
-                            Name = "Fanta"
+                            Name = "Fanta",
+                            TimesUsed = 0
                         },
                         new
                         {
                             Id = 18,
-                            Name = "Yogurt"
+                            Name = "Yogurt",
+                            TimesUsed = 0
                         });
                 });
 

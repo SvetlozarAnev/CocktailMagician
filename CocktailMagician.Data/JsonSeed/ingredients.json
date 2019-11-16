@@ -1,75 +1,93 @@
 [
   {
     "Id": 1,
-    "Name": "Coca-Cola"
+    "Name": "Coca-Cola",
+    "TimesUsed": 6
   },
   {
     "Id": 2,
-    "Name": "Coffee Liqueur"
+    "Name": "Coffee Liqueur",
+    "TimesUsed": 1
   },
   {
     "Id": 3,
-    "Name": "Lime Juice"
+    "Name": "Lime Juice",
+    "TimesUsed": 1
   },
   {
     "Id": 4,
-    "Name": "Milk"
+    "Name": "Milk",
+    "TimesUsed": 1
   },
   {
     "Id": 5,
-    "Name": "Kahlua"
+    "Name": "Kahlua",
+    "TimesUsed": 1
   },
   {
     "Id": 6,
-    "Name": "White Rum"
+    "Name": "White Rum",
+    "TimesUsed": 1
   },
   {
     "Id": 7,
-    "Name": "Whiskey"
+    "Name": "Whiskey",
+    "TimesUsed": 1
 
   },
   {
     "Id": 8,
-    "Name": "Vodka"
+    "Name": "Vodka",
+    "TimesUsed": 2
   },
   {
     "Id": 9,
-    "Name": "Sprite"
+    "Name": "Sprite",
+    "TimesUsed": 1
   },
   {
     "Id": 10,
-    "Name": "Orange Juice"
+    "Name": "Orange Juice",
+    "TimesUsed": 1
   },
   {
     "Id": 11,
-    "Name": "Lemonade"
+    "Name": "Lemonade",
+    "TimesUsed": 2
   },
   {
     "Id": 12,
-    "Name": "Grenadine"
+    "Name": "Grenadine",
+    "TimesUsed": 1
   },
   {
     "Id": 13,
-    "Name": "Black Tea"
+    "Name": "Black Tea",
+    "TimesUsed": 1
   },
   {
     "Id": 14,
-    "Name": "Pineapple Juice"
+    "Name": "Pineapple Juice",
+    "TimesUsed": 1
   },
   {
     "Id": 15,
-    "Name": "Pibb Xtra"
+    "Name": "Pibb Xtra",
+    "TimesUsed": 2
   },
   {
     "Id": 16,
-    "Name": "Club Soda"
+    "Name": "Club Soda",
+    "TimesUsed": 1
   },
   {
     "Id": 17,
-    "Name": "Fanta"
+    "Name": "Fanta",
+    "TimesUsed": 0
   },
   {
     "Id": 18,
-    "Name": "Yogurt"
+    "Name": "Yogurt",
+    "TimesUsed": 0
   }
 ]

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CocktailMagician.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class II : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -87,7 +87,8 @@ namespace CocktailMagician.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    TimesUsed = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -329,9 +330,9 @@ namespace CocktailMagician.Data.Migrations
                 {
                     { 6, "1313  Jerome Avenue, Harlingen, Texas", null, false, "The Lion and Unicorn ", null },
                     { 1, "3483  Stratford Court, Fayetteville, North Carolina", "/images/bars/bar1.jpg", false, "Ace of Clubs", 4.5 },
-                    { 3, "3292  Oak Lane, Jamesport, Missouri", null, false, "The Brass Lantern", 4.0 },
+                    { 3, "3292  Oak Lane, Jamesport, Missouri", "/images/bars/bar3.jpg", false, "The Brass Lantern", 4.0 },
                     { 5, "3710  Hall Valley Drive, Stonewood, West Virginia", null, false, "Dexter Lake Club", 5.0 },
-                    { 4, "1957  Braxton Street, Momence, Illinois", null, false, "Blue Boar Inn", 1.0 },
+                    { 4, "1957  Braxton Street, Momence, Illinois", "/images/bars/bar4.jpg", false, "Blue Boar Inn", 1.0 },
                     { 2, "3234  Mesa Drive, Las Vegas, Nevada", "/images/bars/bar2.jpg", false, "The Back Lane Bar", null }
                 });
 
@@ -351,27 +352,27 @@ namespace CocktailMagician.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Ingredients",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Id", "Name", "TimesUsed" },
                 values: new object[,]
                 {
-                    { 13, "Black Tea" },
-                    { 18, "Yogurt" },
-                    { 17, "Fanta" },
-                    { 16, "Club Soda" },
-                    { 15, "Pibb Xtra" },
-                    { 14, "Pineapple Juice" },
-                    { 12, "Grenadine" },
-                    { 8, "Vodka" },
-                    { 10, "Orange Juice" },
-                    { 9, "Sprite" },
-                    { 7, "Whiskey" },
-                    { 6, "White Rum" },
-                    { 4, "Milk" },
-                    { 3, "Lime Juice" },
-                    { 2, "Coffee Liqueur" },
-                    { 1, "Coca-Cola" },
-                    { 11, "Lemonade" },
-                    { 5, "Kahlua" }
+                    { 13, "Black Tea", 1 },
+                    { 18, "Yogurt", 0 },
+                    { 17, "Fanta", 0 },
+                    { 16, "Club Soda", 1 },
+                    { 15, "Pibb Xtra", 2 },
+                    { 14, "Pineapple Juice", 1 },
+                    { 12, "Grenadine", 1 },
+                    { 8, "Vodka", 2 },
+                    { 10, "Orange Juice", 1 },
+                    { 9, "Sprite", 1 },
+                    { 7, "Whiskey", 1 },
+                    { 6, "White Rum", 1 },
+                    { 4, "Milk", 1 },
+                    { 3, "Lime Juice", 1 },
+                    { 2, "Coffee Liqueur", 1 },
+                    { 1, "Coca-Cola", 6 },
+                    { 11, "Lemonade", 2 },
+                    { 5, "Kahlua", 1 }
                 });
 
             migrationBuilder.InsertData(

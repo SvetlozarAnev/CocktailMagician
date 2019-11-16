@@ -30,6 +30,7 @@ namespace CocktailMagician.Domain.Services
             await this.context.Cocktails.AddAsync(cocktailEntity);
             await this.context.SaveChangesAsync();
             await AddIngredients(cocktailEntity.Id, cocktail.Ingredients);
+            await ManageIngredientCounter(cocktail.Ingredients);
             return cocktailEntity.ToContract();
         }
 
@@ -40,12 +41,26 @@ namespace CocktailMagician.Domain.Services
                 var entity = new CocktailIngredientEntity
                 {
                     CocktailEntityId = cocktailId,
-                    IngredientEntityId = int.Parse(item)
+                    IngredientEntityId = int.Parse(item),
+
                 };
+
                 this.context.CocktaiIngredients.Add(entity);
+            }
+
+            await this.context.SaveChangesAsync();
+        }
+
+        private async Task ManageIngredientCounter(IEnumerable<string> ingredients)
+        {
+            foreach (var item in ingredients)
+            {
+                var entity = await this.context.Ingredients.Where(x => x.Id == int.Parse(item)).SingleOrDefaultAsync();
+                 entity.TimesUsed++;
             }
             await this.context.SaveChangesAsync();
         }
+
 
         public async Task<Cocktail> GetCocktail(int id)
         {
@@ -98,7 +113,7 @@ namespace CocktailMagician.Domain.Services
                    .ThenInclude(x => x.IngredientEntity)
                .Select(x => x.ToContract())
                .ToListAsync();
-            
+
             if (role != "Admin" || role == null)
             {
                 return cocktails.Where(x => x.IsHidden == false);
@@ -114,7 +129,7 @@ namespace CocktailMagician.Domain.Services
 
             return ingredients;
         }
-                  
+
         public async Task<double> CalculateAverageRating(Cocktail cocktail, int newRating)
         {
             var currentRatingsCount = await this.context.CocktailReviews.Where(x => x.CocktailEntityId == cocktail.Id).CountAsync();

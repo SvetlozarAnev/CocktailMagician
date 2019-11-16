@@ -24,7 +24,7 @@ else
             {
                 <tr>
                     <td>@ingredient.Name</td>
-                    @if ((User.IsInRole("Admin")))
+                    @if ((User.IsInRole("Admin"))&& ingredient.TimesUsed == 0)
                     {
                         <td><a asp-controller="Ingredients" asp-action="Delete" asp-route-Id="@ingredient.Id" button type="submit" method="post" class="btn btn-primary">Delete</a></td>
                     }

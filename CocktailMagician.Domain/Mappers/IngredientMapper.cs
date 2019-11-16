@@ -17,7 +17,9 @@ namespace CocktailMagician.Domain.Mappers
             return new Ingredient
             {
                 Id = entity.Id,
-                Name = entity.Name
+                Name = entity.Name,
+                TimesUsed = entity.TimesUsed
+                
             };
         }
         public static IngredientEntity ToEntity(this Ingredient contract)
@@ -29,6 +31,7 @@ namespace CocktailMagician.Domain.Mappers
             return new IngredientEntity
             {
                 Name = contract.Name,
+                TimesUsed = contract.TimesUsed
             };
         }
     }

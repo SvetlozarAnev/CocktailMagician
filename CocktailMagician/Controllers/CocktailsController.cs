@@ -23,11 +23,25 @@ namespace CocktailMagician.Controllers
             this.ingredientService = ingredientService;
         }
 
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(int id)
         {
             var role = this.User.FindFirstValue(ClaimTypes.Role);
-            var cocktails = await this.cocktailService.ListAll(role);
-            return View(cocktails);
+            //var cocktails = await this.cocktailService.ListAll(role);
+            //return View(cocktails);
+
+            const int PageSize = 3; // you can always do something more elegant to set this
+
+            var counter = await this.cocktailService.ListAll(role);
+            var count = counter.Count();
+
+            var data = counter.OrderBy(x=>x.Id).Skip(id * PageSize).Take(PageSize).ToList();
+
+            this.ViewBag.MaxPage = (count / PageSize) - (count % PageSize == 0 ? 1 : 0);
+
+            this.ViewBag.Page = id;
+
+            return this.View(data);
         }
 
         public async Task<ActionResult> Details(int id)

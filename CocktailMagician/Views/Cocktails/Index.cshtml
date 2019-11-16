@@ -5,7 +5,8 @@
 
 <h1>Cocktails</h1>
 @Html.ActionLink("New Cocktail", "Create", "Cocktails", null, new { @class = "btn btn-primary" })
-@if ((User.IsInRole("Admin"))) {
+@if ((User.IsInRole("Admin")))
+{
     @Html.ActionLink("Ingredients", "Index", "Ingredients", null, new { @class = "btn btn-primary" })}
 @if (!Model.Any())
 {
@@ -65,3 +66,18 @@ else
         </tbody>
     </table>
 }
+@if (ViewBag.Page > 0)
+{
+    <a asp-route-id="@ViewBag.Page" href="@Url.Action("Index", new { page = ViewBag.Page - 1 })"
+       class="btn btn-default">
+        &laquo; Prev
+    </a>
+}
+@if (ViewBag.Page < ViewBag.MaxPage)
+{
+    <a  asp-route-id="@ViewBag.Page" href="@Url.Action("Index", new { page = ViewBag.Page + 1 })"
+       class="btn btn-default">
+        Next &raquo;
+    </a>
+}
+

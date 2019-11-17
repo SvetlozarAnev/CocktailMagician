@@ -1,4 +1,5 @@
 ﻿using CocktailMagician.Contracts;
+using CocktailMagician.Domain.Mappers;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,7 @@ namespace CocktailMagician.Controllers
         public async Task<ActionResult> Details(int id)
         {
             var bar = await this.barService.GetBar(id);
-           
+
             return View(bar);
         }
 
@@ -47,7 +48,7 @@ namespace CocktailMagician.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Bar bar)
+        public async Task<IActionResult> Create(BarCreateRequest bar)
         {
             //save image to wwwroot, method in image Provider to return path, get the path and assign to bar
             //check what is the file type for saving the image
@@ -60,7 +61,7 @@ namespace CocktailMagician.Controllers
 
             return RedirectToAction("Index", "Bars");
 
-            
+
         }
 
         [HttpGet]
@@ -70,13 +71,13 @@ namespace CocktailMagician.Controllers
             var bar = await this.barService.GetBar(id);
             var cocktails = await barService.ListCocktails();
             ViewData["Cocktails"] = cocktails.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
-            return View(bar);
+            return View(bar.ToUpdateRequest());
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Bar bar)
+        public async Task<IActionResult> Edit(BarUpdateRequest bar)
         {
             if (!this.ModelState.IsValid)
             {

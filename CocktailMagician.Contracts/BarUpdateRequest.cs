@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace CocktailMagician.Contracts
 {
-    public class Bar
+    public class BarUpdateRequest
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public double? Rating { get; set; }
         public bool IsHidden { get; set; }
         public string ImagePath { get; set; }
-       // public  Image { get; set; }
-        public IEnumerable<Cocktail> Cocktails { get; set; }
+        // public  Image { get; set; }
+        public List<int> CocktailIds { get; set; }
     }
 }

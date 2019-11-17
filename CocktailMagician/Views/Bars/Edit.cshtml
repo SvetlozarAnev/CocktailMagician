@@ -1,4 +1,4 @@
-﻿@model Bar
+﻿@model BarUpdateRequest
 
 @{
     ViewData["Title"] = "Edit";
@@ -21,8 +21,8 @@
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div>
-                <label asp-for="Cocktails" class="control-label">Cocktails</label>
-                <select asp-for="Cocktails" asp-items="ViewBag.Cocktails" class="form-control" multiple="multiple"></select>
+                <label asp-for="CocktailIds" class="control-label">Cocktails</label>
+                <select asp-for="CocktailIds" asp-items="ViewBag.Cocktails" class="form-control" multiple="multiple"></select>
             </div>
             
             

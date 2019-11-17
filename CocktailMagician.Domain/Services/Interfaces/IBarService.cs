@@ -6,9 +6,9 @@ namespace CocktailMagician.Domain.Services.Interfaces
 {
     public interface IBarService
     {
-        Task<Bar> Create(Bar bar);
+        Task<Bar> Create(BarCreateRequest bar);
         Task<Bar> GetBar (int id);
-        Task<Bar> Update(Bar bar);
+        Task<Bar> Update(BarUpdateRequest bar);
         Task<Bar> Toggle(int id);
         Task<IEnumerable<Bar>> ListAll(string role);
         Task<IEnumerable<Cocktail>> ListCocktails();

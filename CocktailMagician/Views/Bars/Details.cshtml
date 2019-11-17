@@ -87,7 +87,7 @@
 
 </div>
 <h3>Cocktails</h3>
-<h6><strong>Cocktails:</strong></h6> @string.Join(", ", Model.Cocktails)
+<h6><strong>Cocktails:</strong></h6> @string.Join(", ", Model.Cocktails.Select(x=>x.Name))
 
 @*@foreach (var cocktail in Model.Cocktails)
     {

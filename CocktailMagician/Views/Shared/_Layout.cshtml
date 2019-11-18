@@ -22,6 +22,16 @@
 
 
     <link rel="stylesheet" href="~/css/site.css" />
+    @* css styling *@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/kendo-ui/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="~/lib/kendo-ui/styles/kendo.material.min.css" />
+    @* jquery *@
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    @* kendo scripts have to be after jQuery *@
+    <script src="~/lib/kendo-ui/js/kendo.all.min.js"></script>
+    <script src="~/lib/kendo-ui/js/kendo.aspnetmvc.min.js"></script>
 </head>
 <body>
     <header>
@@ -93,5 +103,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
+    <partial name="_ValidationScriptsPartial" />
 </body>
 </html>

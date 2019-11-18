@@ -1,6 +1,4 @@
-﻿using CocktailMagician.Data;
-using CocktailMagician.Data.Models;
-using CocktailMagician.Domain.Mappers;
+﻿using CocktailMagician.Data.Models;
 using CocktailMagician.Domain.Services;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +30,8 @@ namespace CocktailMagician
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+
+                //services.AddKendo();
             });
 
             services.AddDbContext<Data.AppDBContext>(options =>

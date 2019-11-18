@@ -72,6 +72,7 @@ namespace CocktailMagician.Domain.Services
             {
                 throw new ArgumentException("There is no such bar in the database.");
             }
+
             this.context.Entry(barEntity).State = EntityState.Detached;
             foreach (var item in barEntity.BarCocktails)
             {

@@ -1,4 +1,4 @@
-﻿@model Cocktail
+﻿@model CocktailUpdateRequest
 @{
     ViewData["Title"] = "Edit";
 }
@@ -17,13 +17,14 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <span asp-validation-for="Recipe" class="text-danger"></span>
                 <label asp-for="Recipe" class="control-label"></label>
                 <input asp-for="Recipe" class="form-control" />
-                <span asp-validation-for="Recipe" class="text-danger"></span>
             </div>
             <div>
-                <label asp-for="Ingredients" class="control-label">Ingredients</label>
-                <select asp-for="Ingredients" asp-items="ViewBag.Ingredients" class="form-control" multiple="multiple"></select>
+                <label asp-for="IngredientIds" class="control-label">Ingredients</label>
+                <span asp-validation-for="IngredientIds" class="text-danger"></span>
+                <select asp-for="IngredientIds" asp-items="ViewBag.Ingredients" class="form-control" multiple="multiple"></select>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">

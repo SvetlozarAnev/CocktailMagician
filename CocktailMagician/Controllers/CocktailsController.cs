@@ -3,8 +3,8 @@ using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Linq;
+using CocktailMagician.Domain.Mappers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -30,12 +30,12 @@ namespace CocktailMagician.Controllers
             //var cocktails = await this.cocktailService.ListAll(role);
             //return View(cocktails);
 
-            const int PageSize = 3; // you can always do something more elegant to set this
+            const int PageSize = 3;
 
             var counter = await this.cocktailService.ListAll(role);
             var count = counter.Count();
 
-            var data = counter.OrderBy(x=>x.Id).Skip(id * PageSize).Take(PageSize).ToList();
+            var data = counter.OrderBy(x => x.Id).Skip(id * PageSize).Take(PageSize).ToList();
 
             this.ViewBag.MaxPage = (count / PageSize) - (count % PageSize == 0 ? 1 : 0);
 
@@ -64,7 +64,7 @@ namespace CocktailMagician.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Cocktail cocktail)
+        public async Task<IActionResult> Create(CocktailCreateRequest cocktail)
         {
             if (!this.ModelState.IsValid)
             {
@@ -82,13 +82,13 @@ namespace CocktailMagician.Controllers
             var cocktail = await this.cocktailService.GetCocktail(id);
             var ingredients = await ingredientService.ListAll();
             ViewData["Ingredients"] = ingredients.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
-            return View(cocktail);
+            return View(cocktail.ToUpdateRequest());
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Cocktail cocktail)
+        public async Task<IActionResult> Edit(CocktailUpdateRequest cocktail)
         {
             if (!this.ModelState.IsValid)
             {

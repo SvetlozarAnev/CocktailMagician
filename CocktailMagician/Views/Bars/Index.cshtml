@@ -5,7 +5,6 @@
 
 <h1>Bars</h1>
 
-
 @Html.ActionLink("New Bar", "Create", "Bars", null, new { @class = "btn btn-primary" })
 
 <div class="container">
@@ -21,7 +20,7 @@
     <div class="row">
         @foreach (var bar in Model)
         {
-            <partial name="BarPartial" model="@bar" />
+            <partial name="_BarPartial" model="@bar" />
         }
     </div>
 
@@ -83,3 +82,19 @@
             </table>
         }*@
 </div>
+@if (ViewBag.Page > 0)
+{
+    <a asp-controller="Bars" asp-action="Index" asp-route-id="@(ViewBag.Page-1)"
+       class="btn btn-default">
+        &laquo; Prev
+    </a>
+}
+@if (ViewBag.Page < ViewBag.MaxPage)
+{
+    <a asp-controller="Bars" asp-action="Index" asp-route-id="@(ViewBag.Page + 1)"
+       class="btn btn-default">
+        Next &raquo;
+    </a>
+}
+
+<p>@(ViewBag.Page + 1)</p>

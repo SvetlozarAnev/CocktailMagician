@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CocktailMagician.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20191116180718_II")]
-    partial class II
+    [Migration("20191120185218_III")]
+    partial class III
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -200,6 +200,7 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 5,
                             Address = "3710  Hall Valley Drive, Stonewood, West Virginia",
+                            ImagePath = "/images/bars/bar5.jpg",
                             IsHidden = false,
                             Name = "Dexter Lake Club",
                             Rating = 5.0
@@ -208,6 +209,7 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 6,
                             Address = "1313  Jerome Avenue, Harlingen, Texas",
+                            ImagePath = "/images/bars/bar6.jpg",
                             IsHidden = false,
                             Name = "The Lion and Unicorn "
                         });

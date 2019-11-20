@@ -22,11 +22,24 @@ namespace CocktailMagician.Controllers
             this.userService = userService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
             var role = this.User.FindFirstValue(ClaimTypes.Role);
-            var bars = await this.barService.ListAll(role);
-            return View(bars);
+            //var bars = await this.barService.ListAll(role);
+            //return View(bars);
+
+            const int PageSize = 3;
+
+            var counter = await this.barService.ListAll(role);
+            var count = counter.Count();
+
+            var data = counter.OrderBy(x => x.Id).Skip(id * PageSize).Take(PageSize).ToList();
+
+            this.ViewBag.MaxPage = (count / PageSize) - (count % PageSize == 0 ? 1 : 0);
+
+            this.ViewBag.Page = id;
+
+            return this.View(data);
         }
 
         public async Task<ActionResult> Details(int id)

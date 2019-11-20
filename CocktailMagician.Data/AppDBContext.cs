@@ -11,7 +11,7 @@ namespace CocktailMagician.Data
 {
     public class AppDBContext : IdentityDbContext<UserEntity>
     {
-        public AppDBContext(DbContextOptions/*<DbContext>*/ options)
+        public AppDBContext(DbContextOptions/*<DbContext> */options)
             : base(options)
         {
         }

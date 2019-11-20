@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CocktailMagician.Data.Migrations
 {
-    public partial class II : Migration
+    public partial class III : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -328,10 +328,10 @@ namespace CocktailMagician.Data.Migrations
                 columns: new[] { "Id", "Address", "ImagePath", "IsHidden", "Name", "Rating" },
                 values: new object[,]
                 {
-                    { 6, "1313  Jerome Avenue, Harlingen, Texas", null, false, "The Lion and Unicorn ", null },
+                    { 6, "1313  Jerome Avenue, Harlingen, Texas", "/images/bars/bar6.jpg", false, "The Lion and Unicorn ", null },
                     { 1, "3483  Stratford Court, Fayetteville, North Carolina", "/images/bars/bar1.jpg", false, "Ace of Clubs", 4.5 },
                     { 3, "3292  Oak Lane, Jamesport, Missouri", "/images/bars/bar3.jpg", false, "The Brass Lantern", 4.0 },
-                    { 5, "3710  Hall Valley Drive, Stonewood, West Virginia", null, false, "Dexter Lake Club", 5.0 },
+                    { 5, "3710  Hall Valley Drive, Stonewood, West Virginia", "/images/bars/bar5.jpg", false, "Dexter Lake Club", 5.0 },
                     { 4, "1957  Braxton Street, Momence, Illinois", "/images/bars/bar4.jpg", false, "Blue Boar Inn", 1.0 },
                     { 2, "3234  Mesa Drive, Las Vegas, Nevada", "/images/bars/bar2.jpg", false, "The Back Lane Bar", null }
                 });

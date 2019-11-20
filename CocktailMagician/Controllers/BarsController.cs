@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System;
 
 
 namespace CocktailMagician.Controllers
@@ -57,11 +58,26 @@ namespace CocktailMagician.Controllers
             {
                 return View(bar);
             }
+
+            // get stream
+
+            // create file /wwwroot/images/bar/+newguid+GetFileExtension()
+          //  bar.Image.CopyToAsync
+          //      bar.Image.ContentType
+
             await this.barService.Create(bar);
 
             return RedirectToAction("Index", "Bars");
+        }
 
+        private string GetFileExtension(string contentType)
+        {
+            if (contentType == "image/jpeg")
+                return ".jpg";
+            if (contentType == "image/png")
+                return ".png";
 
+            throw new System.Exception("message");
         }
 
         [HttpGet]

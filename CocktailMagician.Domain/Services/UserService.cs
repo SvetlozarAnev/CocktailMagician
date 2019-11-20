@@ -57,5 +57,6 @@ namespace CocktailMagician.Domain.Services
 
             return reviewEntity.ToContract();
         }
+
     }
 }

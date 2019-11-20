@@ -3,6 +3,20 @@
     ViewData["Title"] = "Details";
 }
 
+
+<div class="img-thumbnail">
+    <img alt="@Model.Name" src="@Model.ImagePath">
+    <div class="figure-caption">
+        <h3 class="align-items-end">@Model.Rating</h3>
+        <h3>
+            <a href="#">@Model.Name</a>
+        </h3>
+    </div>
+
+
+</div>
+
+
 <h3> @Model.Name</h3>
 <div style="display:inline-block;vertical-align:top;">
     <img src="@Model.ImagePath" alt="img" class="img-circle " width="255" height="255" />

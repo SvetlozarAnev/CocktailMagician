@@ -52,7 +52,6 @@ namespace CocktailMagician.Domain.Mappers
                 Name = contract.Name,
                 Address = contract.Address,
                 IsHidden = contract.IsHidden,
-                ImagePath = contract.ImagePath
             };
         }
         public static BarEntity ToEntity(this BarUpdateRequest contract, BarEntity entity)

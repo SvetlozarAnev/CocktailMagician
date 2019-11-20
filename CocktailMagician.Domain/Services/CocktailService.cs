@@ -43,7 +43,6 @@ namespace CocktailMagician.Domain.Services
                 {
                     CocktailEntityId = cocktailId,
                     IngredientEntityId = ingredientId,
-
                 };
 
                 this.context.CocktaiIngredients.Add(entity);

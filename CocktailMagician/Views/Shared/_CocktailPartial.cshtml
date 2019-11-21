@@ -1,16 +1,17 @@
 ﻿@model Cocktail
 <div class="row">
     <div class="col-sm-3">
-        <img src="@Model.ImagePath"class="img-fluid"8i alt="Cinque Terre" width="304" height="236">
+        <img src="@Model.ImagePath" class="img-fluid" 8i alt="Cinque Terre" width="304" height="236">
     </div>
     <div class="col-sm-3">
         <h3>
             <a asp-controller="Cocktails"
                asp-action="Details"
                asp-route-id="@Model.Id">@Model.Name</a>
-        <h3><p class="text-right">@Model.Rating</p></h3>
         </h3>
-        <p class="text-rght">@Model.Recipe</p>
+        <p><h3 class="text-right">@Model.Rating</h3></p>
+
+        <p>@Model.Recipe</p>
         <div class="addToCart">
             <p class="button">
                 <a class="btn btn-light"

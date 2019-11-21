@@ -76,6 +76,7 @@
                 </div>
             </div>
             <p>
+                <a asp-controller="Bars" asp-action="Review" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Review</a>
                 @if (User.IsInRole("Admin"))
                 {
                     <a asp-controller="Bars" asp-action="Edit" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Edit</a>

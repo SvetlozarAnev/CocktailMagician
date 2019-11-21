@@ -29,7 +29,7 @@ namespace CocktailMagician.Controllers
         {
             var role = this.User.FindFirstValue(ClaimTypes.Role);
 
-            const int PageSize = 3;
+            const int PageSize = 6;
 
             var counter = await this.barService.ListAll(role);
             var count = counter.Count();

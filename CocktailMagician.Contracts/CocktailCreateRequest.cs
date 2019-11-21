@@ -8,9 +8,12 @@ namespace CocktailMagician.Contracts
 {
     public class CocktailCreateRequest
     {
-        [Required(ErrorMessage = "Choose a name")]
+        [Required(ErrorMessage = "You must enter a valid name")]
+        [MaxLength(50)]
+        [MinLength(3)]
         public string Name { get; set; }
         [Required]
+        [StringLength(1000)]
         public string Recipe { get; set; }
         public bool IsHidden { get; set; }
         public IFormFile Image { get; set; }

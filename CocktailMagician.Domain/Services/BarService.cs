@@ -36,32 +36,6 @@ namespace CocktailMagician.Domain.Services
             return barEntity.ToContract();
         }
 
-        private void AddCocktails(int barId, IEnumerable<int> cocktailIds)
-        {            
-            foreach (var cocktailId in cocktailIds)
-            {
-                var entity = new BarCocktailEntity
-                {
-                    BarEntityId = barId,
-                    CocktailEntityId = cocktailId
-                };
-                this.context.BarCocktails.Add(entity);
-            }         
-        }
-
-        private void RemoveCocktails(int barId, IEnumerable<int> cocktailIds)
-        {
-            foreach (var cocktailId in cocktailIds)
-            {
-                var entity = new BarCocktailEntity
-                {
-                    BarEntityId = barId,
-                    CocktailEntityId = cocktailId
-                };
-                this.context.BarCocktails.Remove(entity);
-            }
-        }
-
         public async Task<Bar> GetBar(int id)
         {
             var barEntity = await this.context.Bars
@@ -134,6 +108,32 @@ namespace CocktailMagician.Domain.Services
                 .ToListAsync();
 
             return cocktails;
+        }
+
+        private void AddCocktails(int barId, IEnumerable<int> cocktailIds)
+        {            
+            foreach (var cocktailId in cocktailIds)
+            {
+                var entity = new BarCocktailEntity
+                {
+                    BarEntityId = barId,
+                    CocktailEntityId = cocktailId
+                };
+                this.context.BarCocktails.Add(entity);
+            }         
+        }
+
+        private void RemoveCocktails(int barId, IEnumerable<int> cocktailIds)
+        {
+            foreach (var cocktailId in cocktailIds)
+            {
+                var entity = new BarCocktailEntity
+                {
+                    BarEntityId = barId,
+                    CocktailEntityId = cocktailId
+                };
+                this.context.BarCocktails.Remove(entity);
+            }
         }
 
         public async Task<double> CalculateAverageRating(Bar bar, int newRating)

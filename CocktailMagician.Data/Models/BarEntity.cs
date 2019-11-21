@@ -13,7 +13,7 @@ namespace CocktailMagician.Data.Models
         [StringLength(70, MinimumLength = 3)]
         public string Name { get; set; }
         [Required]
-        [StringLength(120)]
+        [StringLength(220)]
         public string Address { get; set; }
         public double? Rating { get; set; }
         [Required]

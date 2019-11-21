@@ -7,8 +7,11 @@ namespace CocktailMagician.Contracts
     {
         public int Id { get; set; }
         [Required]
+        [MaxLength(50)]
+        [MinLength(3)]
         public string Name { get; set; }
         [Required]
+        [StringLength(1000)]
         public string Recipe { get; set; }
         public double? Rating { get; set; }
         public bool IsHidden { get; set; }

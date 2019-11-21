@@ -35,55 +35,6 @@ namespace CocktailMagician.Domain.Services
             return cocktailEntity.ToContract();
         }
 
-        private void AddIngredients(int cocktailId, IEnumerable<int> ingredientIds)
-        {
-            foreach (var ingredientId in ingredientIds)
-            {
-                var entity = new CocktailIngredientEntity
-                {
-                    CocktailEntityId = cocktailId,
-                    IngredientEntityId = ingredientId,
-                };
-
-                this.context.CocktaiIngredients.Add(entity);
-            }
-        }
-
-        private void RemoveIngredients(int cocktailId, IEnumerable<int> ingredientIds)
-        {
-            foreach (var ingredientId in ingredientIds)
-            {
-                var entity = new CocktailIngredientEntity
-                {
-                    CocktailEntityId = cocktailId,
-                    IngredientEntityId = ingredientId,
-
-                };
-
-                this.context.CocktaiIngredients.Remove(entity);
-            }
-        }
-
-        private async Task IncrementIngredientCounter(IEnumerable<int> ingredientIds)
-        {
-            foreach (var ingredientId in ingredientIds)
-            {
-                var entity = await this.context.Ingredients.Where(x => x.Id == ingredientId).SingleOrDefaultAsync();
-                entity.TimesUsed++;
-            }
-            await this.context.SaveChangesAsync();
-        }
-
-        private async Task DecrementIngredientCounter(IEnumerable<int> ingredientIds)
-        {
-            foreach (var ingredientId in ingredientIds)
-            {
-                var entity = await this.context.Ingredients.Where(x => x.Id == ingredientId).SingleOrDefaultAsync();
-                entity.TimesUsed--;
-            }
-            await this.context.SaveChangesAsync();
-        }
-
         public async Task<Cocktail> GetCocktail(int id)
         {
             var cocktailEntity = await this.context.Cocktails
@@ -161,6 +112,55 @@ namespace CocktailMagician.Domain.Services
 
             return ingredients;
         }
+        private void AddIngredients(int cocktailId, IEnumerable<int> ingredientIds)
+        {
+            foreach (var ingredientId in ingredientIds)
+            {
+                var entity = new CocktailIngredientEntity
+                {
+                    CocktailEntityId = cocktailId,
+                    IngredientEntityId = ingredientId,
+                };
+
+                this.context.CocktaiIngredients.Add(entity);
+            }
+        }
+
+        private void RemoveIngredients(int cocktailId, IEnumerable<int> ingredientIds)
+        {
+            foreach (var ingredientId in ingredientIds)
+            {
+                var entity = new CocktailIngredientEntity
+                {
+                    CocktailEntityId = cocktailId,
+                    IngredientEntityId = ingredientId,
+
+                };
+
+                this.context.CocktaiIngredients.Remove(entity);
+            }
+        }
+
+        private async Task IncrementIngredientCounter(IEnumerable<int> ingredientIds)
+        {
+            foreach (var ingredientId in ingredientIds)
+            {
+                var entity = await this.context.Ingredients.Where(x => x.Id == ingredientId).SingleOrDefaultAsync();
+                entity.TimesUsed++;
+            }
+            await this.context.SaveChangesAsync();
+        }
+
+        private async Task DecrementIngredientCounter(IEnumerable<int> ingredientIds)
+        {
+            foreach (var ingredientId in ingredientIds)
+            {
+                var entity = await this.context.Ingredients.Where(x => x.Id == ingredientId).SingleOrDefaultAsync();
+                entity.TimesUsed--;
+            }
+            await this.context.SaveChangesAsync();
+        }
+
         public async Task<double> CalculateAverageRating(Cocktail cocktail, int newRating)
         {
             var currentRatingsCount = await this.context.CocktailReviews.Where(x => x.CocktailEntityId == cocktail.Id).CountAsync();

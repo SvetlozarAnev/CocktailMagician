@@ -1,11 +1,15 @@
 ﻿using CocktailMagician.Contracts;
 using CocktailMagician.Data.Models;
+using Microsoft.AspNetCore.Hosting;
+using System;
+using System.IO;
 using System.Linq;
 
 namespace CocktailMagician.Domain.Mappers
 {
     public static class BarMapper
     {
+      
         public static Bar ToContract(this BarEntity entity)
         {
             if (entity == null)
@@ -47,11 +51,13 @@ namespace CocktailMagician.Domain.Mappers
             {
                 return null;
             }
+         
             return new BarEntity
             {
                 Name = contract.Name,
                 Address = contract.Address,
                 IsHidden = contract.IsHidden,
+                ImagePath = contract.ImagePath
             };
         }
         public static BarEntity ToEntity(this BarUpdateRequest contract, BarEntity entity)
@@ -60,6 +66,7 @@ namespace CocktailMagician.Domain.Mappers
             {
                 return null;
             }
+
             return new BarEntity
             {
                 Id = entity.Id,

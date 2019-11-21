@@ -17,7 +17,7 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServi
         {
             var testBarName = "peshoBar";
             var options = TestUtilities.GetOptions(nameof(ThrowArgumentException_WhenBarExists));
-            var barContract = new Bar() { Name = testBarName };
+            var barContract = new BarCreateRequest() { Name = testBarName };
 
             using (var arrangeContext = new AppDBContext(options))
             {
@@ -48,7 +48,7 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServi
             using (var actContext = new AppDBContext(options))
             {
                 var sut = new BarService(actContext);
-                var barContract = new Bar() { Name = testBarName, Address = testBarAddress };
+                var barContract = new BarCreateRequest() { Name = testBarName, Address = testBarAddress };
                 var bar = sut.Create(barContract);
             }
 
@@ -60,10 +60,6 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServi
                 Assert.AreEqual(testBarAddress, bar.Address);
             }
         }
-
-        // AddCocktails method to be tested..
-
-        
-
+        // AddCocktails method to be tested..       
     }
 }

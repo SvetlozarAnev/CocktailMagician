@@ -4,19 +4,6 @@
 }
 
 <h1>Cocktails</h1>
-<div class="container">
-
-    @if (!Model.Any())
-    {
-        <p>We don't have any cocktails yet.</p>
-    }
-
-
-    @foreach (var cocktail in Model)
-    {
-        <partial name="_CocktailPartial" model="cocktail" />
-    }
-</div>
 
 @Html.ActionLink("New Cocktail", "Create", "Cocktails", null, new { @class = "btn btn-primary" })
 @if ((User.IsInRole("Admin")))
@@ -80,6 +67,7 @@ else
         </tbody>
     </table>
 }
+
 @if (ViewBag.Page > 0)
 {
     <a asp-controller="Cocktails" asp-action="Index" asp-route-id="@(ViewBag.Page-1)"

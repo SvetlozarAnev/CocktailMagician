@@ -2,13 +2,14 @@
 using CocktailMagician.Domain.Mappers;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System;
-
 
 namespace CocktailMagician.Controllers
 {
@@ -16,17 +17,17 @@ namespace CocktailMagician.Controllers
     {
         private readonly IBarService barService;
         private readonly IUserService userService;
-        public BarsController(IBarService barService, IUserService userService)
+        private readonly IHostingEnvironment hostingEnvironment;
+        public BarsController(IBarService barService, IUserService userService, IHostingEnvironment hostingEnvironment)
         {
             this.barService = barService;
             this.userService = userService;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         public async Task<IActionResult> Index(int id)
         {
             var role = this.User.FindFirstValue(ClaimTypes.Role);
-            //var bars = await this.barService.ListAll(role);
-            //return View(bars);
 
             const int PageSize = 3;
 
@@ -64,19 +65,20 @@ namespace CocktailMagician.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(BarCreateRequest bar)
         {
-            //save image to wwwroot, method in image Provider to return path, get the path and assign to bar
-            //check what is the file type for saving the image
 
             if (!this.ModelState.IsValid)
             {
                 return View(bar);
             }
 
-            // get stream
-
-            // create file /wwwroot/images/bar/+newguid+GetFileExtension()
-          //  bar.Image.CopyToAsync
-          //      bar.Image.ContentType
+            if (bar.Image != null)
+            {
+                string destinationFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/bars");
+                string fileName = Guid.NewGuid().ToString() + "_" + bar.Image.FileName;
+                string imagePath = Path.Combine(destinationFolder, fileName);
+                bar.Image.CopyTo(new FileStream(imagePath, FileMode.Create));
+                bar.ImagePath = $"/images/bars/" + fileName;
+            }
 
             await this.barService.Create(bar);
 
@@ -90,7 +92,7 @@ namespace CocktailMagician.Controllers
             if (contentType == "image/png")
                 return ".png";
 
-            throw new System.Exception("message");
+            throw new Exception("message");
         }
 
         [HttpGet]

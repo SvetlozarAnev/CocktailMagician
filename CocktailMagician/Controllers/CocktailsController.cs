@@ -1,10 +1,13 @@
 ﻿using CocktailMagician.Contracts;
+using CocktailMagician.Domain.Mappers;
 using CocktailMagician.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.IO;
 using System.Linq;
-using CocktailMagician.Domain.Mappers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -15,12 +18,14 @@ namespace CocktailMagician.Controllers
         private readonly ICocktailService cocktailService;
         private readonly IUserService userService;
         private readonly IIngredientService ingredientService;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-        public CocktailsController(ICocktailService cocktailService, IUserService userService, IIngredientService ingredientService)
+        public CocktailsController(ICocktailService cocktailService, IUserService userService, IIngredientService ingredientService, IHostingEnvironment hostingEnvironment)
         {
             this.cocktailService = cocktailService;
             this.userService = userService;
             this.ingredientService = ingredientService;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         [HttpGet]
@@ -70,6 +75,16 @@ namespace CocktailMagician.Controllers
             {
                 return View(cocktail);
             }
+
+            if (cocktail.Image != null)
+            {
+                string destinationFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/cocktails");
+                string fileName = Guid.NewGuid().ToString() + "_" + cocktail.Image.FileName;
+                string imagePath = Path.Combine(destinationFolder, fileName);
+                cocktail.Image.CopyTo(new FileStream(imagePath, FileMode.Create));
+                cocktail.ImagePath = $"/images/cocktails/" + fileName;
+            }
+
             await this.cocktailService.Create(cocktail);
 
             return RedirectToAction("Index", "Cocktails");

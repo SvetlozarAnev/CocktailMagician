@@ -7,8 +7,7 @@ namespace CocktailMagician.Contracts
     {
         public int Id { get; set; }
         [Required]
-        [MaxLength(50)]
-        [MinLength(3)]
+        [StringLength(70, MinimumLength = 3)]
         public string Name { get; set; }
         [Required]
         [StringLength(1000)]

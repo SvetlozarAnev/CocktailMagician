@@ -98,25 +98,24 @@
         </div>
     </div>
 </div>
-
 <script>
-        // ratings
-        const rating = @Model.Rating;
+    // ratings
+    const rating = @Model.Rating;
 
-        //total stars
-        const starsTotal = 5;
+    //total stars
+    const starsTotal = 5;
 
-        // run getRatings when DOM loads
-        document.addEventListener('DOMContentLoaded', getRatings);
+    // run getRatings when DOM loads
+    document.addEventListener('DOMContentLoaded', getRatings);
 
-        // get ratings
-        function getRatings() {
+    // get ratings
+    function getRatings() {
 
-            // get percentage
-            const starPercentage = (rating / starsTotal) * 100;
-            //round to nearest 10
-            const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-            // set witdth of stars-inner to percentage
-            document.querySelector(` .stars-inner`).style.width = starPercentageRounded;
-        }
+        // get percentage
+        const starPercentage = (rating / starsTotal) * 100;
+        //round to nearest 10
+        const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+        // set witdth of stars-inner to percentage
+        document.querySelector(` .stars-inner`).style.width = starPercentageRounded;
+    }
 </script>

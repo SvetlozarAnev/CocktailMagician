@@ -8,6 +8,6 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServi
     [TestClass]
     public class Update_Should
     {
-
+        //private method Remove Cocktails to be tested here
     }
 }

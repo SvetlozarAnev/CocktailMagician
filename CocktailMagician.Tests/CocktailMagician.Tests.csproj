@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CocktailMagician.Domain.Services.Tests\CocktailServiceTests\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CocktailMagician.Contracts\CocktailMagician.Contracts.csproj" />
     <ProjectReference Include="..\CocktailMagician.Data\CocktailMagician.Data.csproj" />
     <ProjectReference Include="..\CocktailMagician.Domain\CocktailMagician.Domain.csproj" />

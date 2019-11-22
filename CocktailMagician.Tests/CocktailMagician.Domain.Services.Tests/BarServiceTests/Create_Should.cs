@@ -5,6 +5,8 @@ using CocktailMagician.Domain.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServiceTests
@@ -13,11 +15,11 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServi
     public class Create_Should
     {
         [TestMethod]
-        public async Task ThrowArgumentException_WhenBarExists()
+        public async Task ThrowArgumentException_When_BarAlreadyExists()
         {
-            var testBarName = "peshoBar";
-            var options = TestUtilities.GetOptions(nameof(ThrowArgumentException_WhenBarExists));
-            var barContract = new BarCreateRequest() { Name = testBarName };
+            var testBarName = "TestBarName";
+            var options = TestUtilities.GetOptions(nameof(ThrowArgumentException_When_BarAlreadyExists));
+            var barCreateRequest = new BarCreateRequest() { Name = testBarName };
 
             using (var arrangeContext = new AppDBContext(options))
             {
@@ -28,28 +30,29 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServi
             using (var assertContext = new AppDBContext(options))
             {
                 var sut = new BarService(assertContext);
-                await Assert.ThrowsExceptionAsync<ArgumentException>(() => sut.Create(barContract));
+                await Assert.ThrowsExceptionAsync<ArgumentException>(() => sut.Create(barCreateRequest));
             }
         }
         [TestMethod]
-        public async Task CreatesBar_When_BarDoesNotExist()
+        public async Task CreateBar_When_SuchBarDoesNotExist()
         {
-            var testBarName = "peshoBar";
-            var testBarAddress = "testAddress";
+            var testBarName = "TestBarName";
+            var testBarAddress = "TestBarAddress";
 
-            var options = TestUtilities.GetOptions(nameof(CreatesBar_When_BarDoesNotExist));
+            var options = TestUtilities.GetOptions(nameof(CreateBar_When_SuchBarDoesNotExist));
 
             using (var arrangeContext = new AppDBContext(options))
             {
-                await arrangeContext.Bars.AddAsync(new BarEntity() { Name = "randomBarName" });
+                await arrangeContext.Bars.AddAsync(new BarEntity() { Name = "RandomBarName" });
                 await arrangeContext.SaveChangesAsync();
             }
 
             using (var actContext = new AppDBContext(options))
             {
                 var sut = new BarService(actContext);
-                var barContract = new BarCreateRequest() { Name = testBarName, Address = testBarAddress };
-                var bar = sut.Create(barContract);
+                var barCreateRequest = new BarCreateRequest() { Name = testBarName, Address = testBarAddress };
+                var bar = sut.Create(barCreateRequest);
+                await actContext.SaveChangesAsync();
             }
 
             using (var assertContext = new AppDBContext(options))
@@ -60,6 +63,61 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServi
                 Assert.AreEqual(testBarAddress, bar.Address);
             }
         }
-        // AddCocktails method to be tested..       
+
+        [TestMethod]
+        public async Task AddCocktailsToBar_When_BarIsCreated()
+        {
+            var testBarName = "TestBarName";
+            var testBarAddress = "TestBarAddress";
+
+            var options = TestUtilities.GetOptions(nameof(AddCocktailsToBar_When_BarIsCreated));
+
+            using (var actContext = new AppDBContext(options))
+            {
+                var sut = new BarService(actContext);
+                var barCreateRequest = new BarCreateRequest()
+                {
+                    Name = testBarName,
+                    Address = testBarAddress,
+                    Cocktails = new List<int>() { 1, 2, 3 }
+                };
+                var bar = sut.Create(barCreateRequest);
+
+                await actContext.SaveChangesAsync();
+
+                var barEntity = await actContext.Bars.FirstOrDefaultAsync(x => x.Name == testBarName);
+
+                Assert.AreEqual(3, barEntity.BarCocktails.Count());
+            }
+        }
+
+        [TestMethod]
+        public async Task SaveBarInDatabase()
+        {
+            var testBarName = "TestBarName";
+            var testBarAddress = "TestBarAddress";
+
+            var options = TestUtilities.GetOptions(nameof(SaveBarInDatabase));
+
+            using (var actContext = new AppDBContext(options))
+            {
+                var sut = new BarService(actContext);
+
+                var bar = await sut.Create(new BarCreateRequest()
+                {
+                    Name = testBarName,
+                    Address = testBarAddress,
+                    Cocktails = new List<int>() { 1, 2, 3 }
+                });
+                await actContext.SaveChangesAsync();
+            }
+            using (var assertContext = new AppDBContext(options))
+            {
+                var barEntity = await assertContext.Bars.FirstOrDefaultAsync(b => b.Name == testBarName);
+
+                Assert.IsNotNull(barEntity);
+                Assert.AreEqual(1, assertContext.Bars.Count());
+            }
+        }
     }
 }

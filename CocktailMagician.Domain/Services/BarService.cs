@@ -77,7 +77,7 @@ namespace CocktailMagician.Domain.Services
             var barEntity = await this.context.Bars.SingleOrDefaultAsync(x => x.Id == id);
             if (barEntity == null)
             {
-                throw new ArgumentException("The requested Bar is null.");
+                throw new ArgumentException("There is no such bar.");
             }
             barEntity.IsHidden = !barEntity.IsHidden;
 

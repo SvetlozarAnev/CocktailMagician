@@ -12,9 +12,21 @@
     <div class="col-md-4">
         <form asp-action="Review">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="stars" action="">
+                <input class="star star-5" id="star-5" type="radio" name="star" />
+                <label class="star star-5" for="star-5" data-rating="5"></label>
+                <input class="star star-4" id="star-4" type="radio" name="star" />
+                <label class="star star-4" for="star-4" data-rating="4"></label>
+                <input class="star star-3" id="star-3" type="radio" name="star" />
+                <label class="star star-3" for="star-3" data-rating="3"></label>
+                <input class="star star-2" id="star-2" type="radio" name="star" />
+                <label class="star star-2" for="star-2" data-rating="2"></label>
+                <input class="star star-1" id="star-1" type="radio" name="star" checked />
+                <label class="star star-1" for="star-1" data-rating="1"></label>
+            </div>
+
             <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
+                <input asp-for="Rating" type="hidden" value="1" class="form-control" />
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -33,3 +45,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    <script src="~/js/rate.js" asp-append-version="true"></script>
+}

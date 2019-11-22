@@ -1,59 +1,19 @@
 ﻿@model Cocktail
-<div class="col-md-4 " align="center">
-
+<div class="col-sm-4 col-lg-4 col-md-4">
     <div class="margin-bar-card shadow">
-
-        <h5 class="card-title">@Model.Name</h5>
-
-        <img class="card-img-top image-bar-index" src="@Model.ImagePath" alt="Card image cap">
-
-        <div class="card-body">
-            <p>
-                Address: @Model.Recipe
-            </p>
-            <div class="container">
-                <div class="table table-striped">
-                    <div class="center">
-
-                        Rating
-
-                    </div>
-                    <div>
-                        <div class="@Model.Name" style="background-color:rgba(0, 0, 0, 0);">
-                            <div class="center">
-                                <div class="stars-outer">
-                                    <div class="stars-inner"></div>
-                                    <span class="number-rating"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <p>
-        </div>
-    </div>
-</div>
-@*<div class="row">
-        <div class="col-sm-3">
-            <img src="@Model.ImagePath" class="img-fluid" 8i alt="Cinque Terre" width="304" height="236">
-        </div>
-        <div class="col-sm-3">
+        <img src="@Model.ImagePath  " alt="">
+        <div class="caption">
+            <h3 class="pull-right">@Model.Rating</h3>
             <h3>
-                <a asp-controller="Cocktails"
+                <a asp-controller="Pie"
                    asp-action="Details"
                    asp-route-id="@Model.Id">@Model.Name</a>
             </h3>
-            <p><h3 class="text-right">@Model.Rating</h3></p>
-
             <p>@Model.Recipe</p>
-            <div class="addToCart">
-                <p class="button">
-                    <a class="btn btn-light"
-                       asp-controller="ShoppingCart"
-                       asp-action="AddToShoppingCart"
-                       asp-route-pieId="@Model.Id">Add to cart</a>
-                </p>
-            </div>
         </div>
-    </div>*@
+
+        <a asp-controller="Cocktails" asp-action="Review" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Review</a>
+
+    </div>
+</div>
+

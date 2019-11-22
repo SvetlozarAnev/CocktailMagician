@@ -24,14 +24,14 @@
 @if (ViewBag.Page > 0)
 {
     <a asp-controller="Bars" asp-action="Index" asp-route-id="@(ViewBag.Page-1)"
-       class="btn btn-default">
+       class="btn btn-light">
         &laquo; Prev
     </a>
 }
 @if (ViewBag.Page < ViewBag.MaxPage)
 {
     <a asp-controller="Bars" asp-action="Index" asp-route-id="@(ViewBag.Page + 1)"
-       class="btn btn-default">
+       class="btn btn-light">
         Next &raquo;
     </a>
 }

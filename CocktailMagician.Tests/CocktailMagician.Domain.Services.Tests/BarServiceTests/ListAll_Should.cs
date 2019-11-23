@@ -85,7 +85,7 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServi
                 IsHidden = true
             };
 
-            var options = TestUtilities.GetOptions(nameof(ReturnAllNotHiddenBars_WhenUserIsNotAdmin));
+            var options = TestUtilities.GetOptions(nameof(ReturnAllBars_WhenUserIsAdmin));
 
             using (var arrangeContext = new AppDBContext(options))
             {

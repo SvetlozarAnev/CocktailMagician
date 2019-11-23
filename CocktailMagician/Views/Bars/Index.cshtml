@@ -2,14 +2,14 @@
 @{
     ViewData["Title"] = "Bars";
 }
-
-<h1>Bars</h1>
 <div class="container">
-    @Html.ActionLink("New Bar", "Create", "Bars", null, new { @class = "btn btn-primary" })
-</div>
+    <h1>Bars</h1>
+    <div class="container">
+        @Html.ActionLink("New Bar", "Create", "Bars", null, new { @class = "btn btn-primary" })
+    </div>
 
     <div class="container">
-    <br>
+        <br>
         @if (!Model.Any())
         {
             <p>We don't have any bars yet.</p>
@@ -53,3 +53,4 @@
         }
 
     </div>
+</div>

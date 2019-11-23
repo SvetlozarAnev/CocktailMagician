@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Bar>
+
+
 @{
     ViewData["Title"] = "Bars";
 }
@@ -7,7 +9,6 @@
     <div class="container">
         @Html.ActionLink("New Bar", "Create", "Bars", null, new { @class = "btn btn-primary" })
     </div>
-
     <div class="container">
         <br>
         @if (!Model.Any())

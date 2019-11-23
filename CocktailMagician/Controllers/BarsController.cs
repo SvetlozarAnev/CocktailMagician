@@ -132,6 +132,11 @@ namespace CocktailMagician.Controllers
         [Authorize]
         public IActionResult Review(int id)
         {
+            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier)
+            //if (expr)
+            //{
+                
+            //}
             return View();
         }
 
@@ -140,8 +145,8 @@ namespace CocktailMagician.Controllers
         public async Task<IActionResult> Review(BarReview barReview, int id)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            await this.userService.AddBarReview(barReview, id, userId);
+            
+            await this.userService.AddBarReview(barReview, id, userId); //update
 
             return RedirectToAction("Index", "Bars");
         }

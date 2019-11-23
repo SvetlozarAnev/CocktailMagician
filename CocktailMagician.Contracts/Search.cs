@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CocktailMagician.Contracts
 {
-    class Search
+    public class Search
     {
+        [Required(ErrorMessage = "Required")]
+        [MinLength(1)]
+        [DataType(DataType.Text)]
+        public string Text { get; set; }
     }
 }

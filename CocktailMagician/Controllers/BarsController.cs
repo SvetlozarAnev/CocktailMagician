@@ -73,6 +73,13 @@ namespace CocktailMagician.Controllers
 
             if (bar.Image != null)
             {
+                var (extension, isValid) = GetFileExtension(bar.Image.ContentType);
+
+                if (!isValid)
+                {
+                    TempData["ErrorMessage"] = "Invalid file type, please upload image!";
+                    return RedirectToAction("Create", "Bars");
+                }
                 string destinationFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/bars");
                 string fileName = Guid.NewGuid().ToString() + "_" + bar.Image.FileName;
                 string imagePath = Path.Combine(destinationFolder, fileName);
@@ -85,15 +92,16 @@ namespace CocktailMagician.Controllers
             return RedirectToAction("Index", "Bars");
         }
 
-        private string GetFileExtension(string contentType)
+        private (string extension, bool isValid) GetFileExtension(string contentType)
         {
             if (contentType == "image/jpeg")
-                return ".jpg";
+                return (".jpg", true);
             if (contentType == "image/png")
-                return ".png";
+                return (".png", true);
 
-            throw new Exception("message");
+            return (string.Empty, false);
         }
+
 
         [HttpGet]
         [Authorize(Roles = "Admin")]

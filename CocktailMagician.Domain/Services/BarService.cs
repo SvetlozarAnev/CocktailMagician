@@ -111,7 +111,7 @@ namespace CocktailMagician.Domain.Services
         }
 
         private void AddCocktails(int barId, IEnumerable<int> cocktailIds)
-        {            
+        {
             foreach (var cocktailId in cocktailIds)
             {
                 var entity = new BarCocktailEntity
@@ -120,7 +120,7 @@ namespace CocktailMagician.Domain.Services
                     CocktailEntityId = cocktailId
                 };
                 this.context.BarCocktails.Add(entity);
-            }         
+            }
         }
 
         private void RemoveCocktails(int barId, IEnumerable<int> cocktailIds)
@@ -143,6 +143,17 @@ namespace CocktailMagician.Domain.Services
             var oldRating = bar.Rating ?? 0;
             var newAverage = Math.Round(oldRating + (newRating - oldRating) / (currentRatingsCount + 1), 1);
             return newAverage;
+        }
+
+        public async Task<ICollection<Bar>> GetTopRatedBars()
+        {
+            var topRatedBars = await this.context.Bars
+                .OrderByDescending(x => x.Rating)
+                .Take(5)
+                .Select(x=>x.ToContract())
+                .ToListAsync();
+
+            return topRatedBars;
         }
     }
 }

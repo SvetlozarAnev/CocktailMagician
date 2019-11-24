@@ -24,7 +24,20 @@ namespace CocktailMagician.Domain.Services
 
         public async Task<ICollection<Bar>> SearchByName(string input)
         {
-            var output = await this.context.Bars.Select(x => x.ToContract()).Where(x => x.Name.Contains(input)).ToListAsync();
+            List<Bar> output;
+            if (input == null)
+            {
+                output = await this.context.Bars.Select(x => x.ToContract()).ToListAsync();
+            }
+            else
+            {
+             
+                output = await this.context.Bars
+                    .Select(x => x.ToContract())
+                    .Where(x => x.Name.Contains(input))
+                    .ToListAsync();
+            }
+
             return output;
         }
     }

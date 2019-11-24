@@ -1,0 +1,30 @@
+﻿@model IPagedList<Bar>
+
+<div class="panel-body">
+    <table class="table  table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Bar</th>
+            <th>Address</th>
+            @*<th>Id</th>*@
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var bar in Model)
+        {
+            <tr id="tr-bar-id" data-bar-id="@bar.Id">
+                <td>@bar.Name</td>
+                <td>@bar.Address</td>
+                <td> @bar.Id </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<div id="content-pager">
+    @Html.PagedListPager(
+        Model, page => Url.Action("Search", new { page })
+        )
+</div>

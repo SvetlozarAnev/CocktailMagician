@@ -16,7 +16,7 @@
         <input class="form-control" placeholder="BarName" />
     </div>
 
-    <button id="barname-filter" class="btn btn-success col-lg-3" input type="submit">Search</button>
+    <button id="barname-filter" class="btn btn-success col-lg-3">Search</button>
 </div>
 
 <div class="row"></div>
@@ -30,15 +30,18 @@
 
 @section Scripts {
     <script>
-    let barId;
-    $('#table-content').on('click', "#tr-bar-id", function () {
-        barId = $(this).data("bar-id");
-        //$('#user-modal').modal('show');
-    });
+
+    //$('#table-content').on('click', "#tr-bar-id", function () {
+    //    barId = $(this).data("bar-id");
+    //    //$('#user-modal').modal('show');
+    //});
 
     $(document).on("click", "#content-pager a", function () {
         const barName = $("#barname-input").val();
-        const modUrl = $(this).attr("href") + '&barname=' + barName;
+        const pathname = window.location.pathname.toLowerCase();
+
+        const modUrl = pathname + `home/search?page=${$(this).text()}&barname=${barName}`;
+
         $.ajax({
             url: modUrl,
             type: 'GET',
@@ -54,8 +57,9 @@
 
     $("button#barname-filter").click(function () {
         const barName = $("#barname-input input").val();
-        const pathname = window.location.pathname.toLowerCase().replace(`@nameof(HomeController.Index).ToLower()`, `@nameof(HomeController.Search).ToLower()`);
-        const modUrl = pathname + '?barname=' + barName;
+        const pathname = window.location.pathname.toLowerCase();
+        const modUrl = pathname + `home/search?page=${$(this).text()}&barname=${barName}`;
+
         $.ajax({
             url: modUrl,
             type: 'GET',

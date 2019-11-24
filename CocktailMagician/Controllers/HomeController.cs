@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CocktailMagician.Domain.Services.Interfaces;
+using CocktailMagician.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using CocktailMagician.Contracts;
-using CocktailMagician.Domain.Mappers;
-using CocktailMagician.Domain.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using CocktailMagician.Models;
 using X.PagedList;
 
 namespace CocktailMagician.Controllers
@@ -36,13 +32,13 @@ namespace CocktailMagician.Controllers
             return View(pagedBars);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Search(int? page, string barname)
         {
             var bars = await this.searchService
                 .SearchByName(barname);
 
             var pagedBars = await bars
-                .OrderBy(x => x.Name)
                 .ToPagedListAsync(page ?? 1, pageSize);
 
             return PartialView("_BarGrid", pagedBars);

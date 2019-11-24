@@ -17,9 +17,55 @@
         <div class="row">
             @foreach (var bar in Model)
             {
-                <partial name="_BarPartial" model="@bar" />
+                @*<div class="partialViewWrapper">*@
+                <div class="bar-container" id="@bar.Id" rating="@bar.Rating">
+                    <partial name="_BarPartial" model="@bar" />
+
+                </div>
             }
+            <partial name="_Pagination" />
         </div>
     </div>
-    <partial name="_Pagination" />
+    <br />
 </div>
+<script>
+
+    const bars = $('.bar-container');
+    foreach(bar in bars);
+    {
+        const starsTotal = 5;
+
+        const barId = bar.attr('id');
+        const barRating = bar.attr('rating');
+
+        const starPercentage = (barRating / starsTotal) * 100;
+        //round to nearest 10
+        const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+
+        document.querySelector(` .stars-inner`).style.width = starPercentageRounded // the stuff you calculated
+
+    }
+</script>
+
+
+
+@*-- partial
+    <div>
+        <div class="bar-container" id="@Model.id" raiting="@Model.raiting">
+        </div>
+    </div>
+
+    <script>
+        const bars = $(.bar - container`);
+        foreach (bar in bars) {
+            const barId = bar.attr('id');
+            const barRaiting = bar.attr('raiting'); //maybe it should have val() ?
+            ... calcution
+            const classToAjustWidth = $(`${ barId }.star - rating`).width = // the stuff you calculated
+        }*@
+
+
+
+
+
+

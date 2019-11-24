@@ -1,5 +1,4 @@
 ﻿@model Bar
-
 <style>
     .center {
         text-align: center;
@@ -47,10 +46,17 @@
 <div class="col-md-4 " align="center">
 
     <div class="margin-bar-card shadow">
-
-        <h5 class="card-title">@Model.Name</h5>
-
-        <img class="card-img-top image-bar-index" src="@Model.ImagePath" alt="Card image cap">
+        <p>
+            <a asp-controller="Bars" asp-action="Details" asp-route-id="@Model.Id"> <h5 class="card-title">@Model.Name</h5></a>
+        </p>
+        @if (Model.ImagePath != null)
+        {
+            <a asp-controller="Bars" asp-action="Details" asp-route-id="@Model.Id"> <h5 class="card-title">  <img class="card-img-top image-bar-index" src="@Model.ImagePath" alt="Card image cap"></h5></a>
+        }
+        else
+        {
+            <img class="card-img-top image-bar-index" src="~/images/noPhotoAvailable.jpg" alt="Card image cap">
+        }
 
         <div class="card-body">
             <p>
@@ -91,9 +97,6 @@
                     }
                 }
 
-            </p>
-            <p>
-                <a asp-controller="Bars" asp-action="Details" asp-route-id="@Model.Id"> More info</a>
             </p>
         </div>
     </div>

@@ -35,7 +35,17 @@
 </style>
 
 <div style="display:inline-block;vertical-align:top;">
-    <img src="@Model.ImagePath" alt="img" class="img-circle " width="255" height="255" />
+
+
+    @if (Model.ImagePath != null)
+    {
+        @*<img src="@Model.ImagePath" alt="img" class="img-circle " width="255" height="255" />*@
+        <img class="card-img-top image-bar-index" src="@Model.ImagePath" alt="Image">
+    }
+    else
+    {
+        <img class="card-img-top image-bar-index" src="~/images/noPhotoAvailable.jpg" alt="Card image cap">
+    }
 </div>
 <div style="display:inline-block;">
     <div><strong>Address: @Model.Address</strong></div>

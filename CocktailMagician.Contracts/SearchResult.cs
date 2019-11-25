@@ -7,9 +7,6 @@ namespace CocktailMagician.Contracts
 {
     public class SearchResult
     {
-        [Required(ErrorMessage = "Required")]
-        [MinLength(1)]
-        [DataType(DataType.Text)]
-        public string Input { get; set; }
+        public List<Bar> Input { get; set; }
     }
 }

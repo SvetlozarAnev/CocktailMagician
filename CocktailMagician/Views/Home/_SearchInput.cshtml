@@ -1,0 +1,27 @@
+﻿@model SearchResult
+
+<form asp-controller="Home" asp-action="Search" method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <label for="Name">Search...</label>
+    <input asp-for="Input" placeholder="Enter title" class="form-control" />
+    <span asp-validation-for="Input" class="text-danger"></span>
+    <br />
+
+    <div class="custom-control custom-radio">
+        <input type="radio" id="getBar" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="customRadio1">Bars</label>
+    </div>
+    <div class="custom-control custom-radio">
+        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="customRadio2">Cocktails</label>
+    </div>
+    <div class="custom-control custom-radio">
+        <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="customRadio3">Both</label>
+    </div>
+
+    <button type="submit" value="Search" class="btn btn-primary">Search</button>
+
+</form>

@@ -1,0 +1,20 @@
+﻿@model SearchResult
+
+@if (Model.Input.Count() != 0)
+{
+    <br />
+    foreach (var result in Model.Input)
+    {
+        <div class="media search-result">
+            <div class="media-left">
+                 <i>@result.Name</i>,
+                @*<strong>Author</strong>: <i>@result.Author.Name</i>,
+                    <strong>Year</strong>: <i>@result.PublicationYear</i>,
+                    <strong>Rating</strong>: <i>@result.Rating</i>*@
+                @*<a asp-controller="Books" asp-action="CheckOut" asp-route-id="@result.Id" width="40" height="80" id="checkout-button" class="btn btn-info"><strong>Checkout Book</strong></a>
+                    </div>*@
+            </div>
+        </div>
+        <hr />
+    }
+}

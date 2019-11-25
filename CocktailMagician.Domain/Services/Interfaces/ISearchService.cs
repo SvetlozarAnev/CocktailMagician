@@ -8,6 +8,6 @@ namespace CocktailMagician.Domain.Services.Interfaces
 {
     public interface ISearchService
     {
-        Task<ICollection<Bar>> SearchByName(string input);
+        Task<ICollection<Bar>> SearchBarByName(string input);
     }
 }

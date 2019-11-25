@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CocktailMagician.Domain.Mappers;
+using System;
 
 namespace CocktailMagician.Domain.Services
 {
@@ -22,7 +23,7 @@ namespace CocktailMagician.Domain.Services
             this.context = context;
         }
 
-        public async Task<ICollection<Bar>> SearchByName(string input)
+        public async Task<ICollection<Bar>> SearchBarByName(string input)
         {
             List<Bar> output;
             if (input == null)
@@ -31,13 +32,11 @@ namespace CocktailMagician.Domain.Services
             }
             else
             {
-             
                 output = await this.context.Bars
                     .Select(x => x.ToContract())
-                    .Where(x => x.Name.Contains(input))
-                    .ToListAsync();
+                    .Where(x => x.Name.Contains(input, StringComparison.OrdinalIgnoreCase))
+                    .ToListAsync();                  
             }
-
             return output;
         }
     }

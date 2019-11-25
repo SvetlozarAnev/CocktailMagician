@@ -5,14 +5,23 @@
 
 <h1>Cocktails</h1>
 
-<div>
-    @Html.ActionLink("Search", "Search", "Cocktails", null, new { @class = "btn btn-primary" })
-    @if ((User.IsInRole("Admin")))
-    {
-        @Html.ActionLink("New Cocktail", "Create", "Cocktails", null, new { @class = "btn btn-primary" })
-        @Html.ActionLink("Ingredients", "Index", "Ingredients", null, new { @class = "btn btn-primary" })}
+<div class="col-md-4">
+    <p>
+        @Html.ActionLink("Search", "Search", "Cocktails", null, new { @class = "btn btn-primary" })
+
+        @if ((User.IsInRole("Admin")))
+        {
+            
+            @Html.ActionLink("New Cocktail", "Create", "Cocktails", null, new { @class = "btn btn-primary" })
+           
+            <div class="row"></div>
+
+            @Html.ActionLink("Ingredients", "Index", "Ingredients", null, new { @class = "btn btn-primary" })
+        }
+    </p>
     <br />
 </div>
+
 <br />
 @if (!Model.Any())
 {
@@ -54,5 +63,5 @@
             Next &raquo;
         </a>
     }
-
+    <div class="col">  </div>
 </div>

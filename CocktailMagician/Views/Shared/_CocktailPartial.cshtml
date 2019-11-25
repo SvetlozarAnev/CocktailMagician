@@ -1,9 +1,9 @@
 ﻿@model Cocktail
-<div class="col-sm-4 col-lg-4 col-md-4">
+<div class="col-sm-4 col-lg-4 col-md-4" align="center">
     <div class="margin-bar-card shadow">
         @if (Model.ImagePath != null)
         {
-            <img class="card-img-top image-bar-index" src="@Model.ImagePath" alt="Card image cap">
+            <a asp-controller="Cocktails" asp-action="Details" asp-route-id="@Model.Id"> <h5 class="card-title">  <img class="card-img-top image-cocktail-index" src="@Model.ImagePath" alt="Card image cap"></h5></a>
         }
         else
         {
@@ -16,10 +16,28 @@
                    asp-action="Details"
                    asp-route-id="@Model.Id">@Model.Name</a>
             </h3>
-            <p>@Model.Recipe</p>
+            @*<p>@Model.Recipe</p>*@
         </div>
+        <p>
+            <a asp-controller="Cocktails" asp-action="Review" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Review</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-controller="Cocktails" asp-action="Edit" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Edit</a>
 
-        <a asp-controller="Cocktails" asp-action="Review" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Review</a>
+                @if (Model.IsHidden == false)
+                {
+                    <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-danger" asp-route-Id="@Model.Id">Hide</a>
+                }
+                else
+                {
+                    <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-success" asp-route-Id="@Model.Id">Show</a>
+                }
+            }
+
+        </p>
+
+
+
 
     </div>
 </div>

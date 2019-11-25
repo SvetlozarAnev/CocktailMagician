@@ -1,0 +1,21 @@
+﻿@model CocktailSearchResult
+
+@if (Model.Input.Count() != 0)
+{
+    <br />
+    foreach (var result in Model.Input)
+    {
+        <div class="media search-result">
+            <div class="media-left">
+                <i>@result.Name</i>,
+                <i>@string.Join(", ", result.Ingredients)</i>,
+                @*<strong>author</strong>: <i>@result.author.name</i>,
+                    <strong>year</strong>: <i>@result.publicationyear</i>,
+                    <strong>rating</strong>: <i>@result.rating</i>*@
+                @*<a asp-controller="books" asp-action="checkout" asp-route-id="@result.id" width="40" height="80" id="checkout-button" class="btn btn-info"><strong>checkout book</strong></a>
+                    </div>*@
+            </div>
+        </div>
+        <hr />
+    }
+}

@@ -6,27 +6,29 @@
     <h1>Bars</h1>
     <div class="container">
         @Html.ActionLink("New Bar", "Create", "Bars", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Search", "Search", "Bars", null, new { @class = "btn btn-primary" })
     </div>
-    <div class="container">
-        <br>
-        @if (!Model.Any())
-        {
-            <p>We don't have any bars yet.</p>
-        }
+</div>
 
-        <div class="row">
-            @foreach (var bar in Model)
-            {
-                @*<div class="partialViewWrapper">*@
-                <div class="bar-container" id="@bar.Id" rating="@bar.Rating">
-                    <partial name="_BarPartial" model="@bar" />
+<br>
+@if (!Model.Any())
+{
+    <p>We don't have any bars yet.</p>
+}
 
-                </div>
-            }
-            <partial name="_Pagination" />
-        </div>
-    </div>
-    <br />
+<div class="row">
+    @foreach (var bar in Model)
+    {
+        @*<div class="partialViewWrapper">*@
+        @*<div class="bar-container" id="@bar.Id" rating="@bar.Rating">*@
+        <partial name="_BarPartial" model="@bar" />
+
+        @*</div>*@
+    }
+    <partial name="_Pagination" />
+</div>
+
+<br />
 </div>
 <script>
 

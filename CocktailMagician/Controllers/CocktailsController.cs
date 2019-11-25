@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -163,6 +164,46 @@ namespace CocktailMagician.Controllers
         {
             var ingredients = await this.ingredientService.ListAll();
             return View(ingredients);
+        }
+
+        [HttpGet]
+        public IActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Search(string input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+            var result = await this.cocktailService.SearchCocktailByName(input);
+            var output = new CocktailSearchResult
+            {
+                Input = new List<Cocktail>(result)
+            };
+
+            return View(output);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SearchIngredient(string input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+            var result = await this.cocktailService.SearchCocktailByIngredient(input);
+            var output = new CocktailSearchResult
+            {
+                Input = new List<Cocktail>(result)
+            };
+
+            return View(output);
         }
     }
 }

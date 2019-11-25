@@ -1,0 +1,15 @@
+﻿@model CocktailSearchResult
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+
+<partial name="_CocktailSearchInput" />
+
+@if (!(Model is null))
+{
+    <partial name="_CocktailSearchOutput" />
+}
+
+

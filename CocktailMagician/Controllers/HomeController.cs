@@ -1,24 +1,17 @@
-﻿using CocktailMagician.Contracts;
-using CocktailMagician.Domain.Services.Interfaces;
+﻿using CocktailMagician.Domain.Services.Interfaces;
 using CocktailMagician.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using X.PagedList;
 
 namespace CocktailMagician.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ISearchService searchService;
         private readonly IBarService barService;
         private readonly int pageSize = 3;
 
-        public HomeController(ISearchService searchService, IBarService barService)
+        public HomeController(IBarService barService)
         {
-            this.searchService = searchService;
             this.barService = barService;
         }
 
@@ -26,30 +19,7 @@ namespace CocktailMagician.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        public IActionResult Search()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Search(string input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View();
-            }
-            var result = await this.searchService.SearchBarByName(input);
-            var output = new SearchResult
-            {
-                Input = new List<Bar>(result)
-            };
-
-            return View(output);
-        }
-
+               
 
         //[HttpGet]
         //public async Task<IActionResult> Index(int? page, string barname)

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -157,6 +158,46 @@ namespace CocktailMagician.Controllers
             await this.barService.Toggle(id);
 
             return RedirectToAction("Index", "Bars");
+        }
+
+        [HttpGet]
+        public IActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Search(string input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+            var result = await this.barService.SearchBarByName(input);
+            var output = new BarSearchResult
+            {
+                Input = new List<Bar>(result)
+            };
+
+            return View(output);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SearchAddress (string input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+            var result = await this.barService.SearchBarAddress(input);
+            var output = new BarSearchResult
+            {
+                Input = new List<Bar>(result)
+            };
+
+            return View(output);
         }
     }
 }

@@ -155,5 +155,39 @@ namespace CocktailMagician.Domain.Services
 
             return topRatedBars;
         }
+
+        public async Task<ICollection<Bar>> SearchBarByName(string input)
+        {
+            List<Bar> output;
+            if (input == null)
+            {
+                output = await this.context.Bars.Select(x => x.ToContract()).ToListAsync();
+            }
+            else
+            {
+                output = await this.context.Bars
+                    .Select(x => x.ToContract())
+                    .Where(x => x.Name.Contains(input, StringComparison.OrdinalIgnoreCase))
+                    .ToListAsync();
+            }
+            return output;
+        }
+
+        public async Task<ICollection<Bar>> SearchBarAddress(string input)
+        {
+            List<Bar> output;
+            if (input == null)
+            {
+                output = await this.context.Bars.Select(x => x.ToContract()).ToListAsync();
+            }
+            else
+            {
+                output = await this.context.Bars
+                    .Select(x => x.ToContract())
+                    .Where(x => x.Address.Contains(input, StringComparison.OrdinalIgnoreCase))
+                    .ToListAsync();
+            }
+            return output;
+        }
     }
 }

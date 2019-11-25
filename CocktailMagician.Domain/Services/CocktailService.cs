@@ -169,5 +169,68 @@ namespace CocktailMagician.Domain.Services
             var newAverage = Math.Round(oldRating + (newRating - oldRating) / (currentRatingsCount + 1), 1);
             return newAverage;
         }
+
+        public async Task<ICollection<Cocktail>> SearchCocktailByName(string input)
+        {
+            List<Cocktail> output;
+            if (input == null)
+            {
+                output = await this.context.Cocktails.Select(x => x.ToContract()).ToListAsync();
+            }
+            else
+            {
+                output = await this.context.Cocktails
+                    .Select(x => x.ToContract())
+                    .Where(x => x.Name.Contains(input, StringComparison.OrdinalIgnoreCase))
+                    .ToListAsync();
+            }
+            return output;
+        }
+
+        public async Task<ICollection<Bar>> SearchCocktailByIngredient(string input)
+        {
+            //List<Cocktail> output;
+            //if (input == null)
+            //{
+            //    output = await this.context.Cocktails.Select(x => x.ToContract()).ToListAsync();
+            //}
+            //else
+            //{
+            //    output = await this.context.Cocktails
+            //        .Select(x => x.ToContract())
+            //        .Select(x => x.Ingredients).ForEachAsync(y=>y.Contains(input, StringComparison.OrdinalIgnoreCase))
+            //        .ToListAsync();
+            //}
+            //return output;
+            return new List<Bar>();
+        }
+
+        public async Task<ICollection<Bar>> SearchCocktailByBar(string input)
+        {
+            //List<Bar> output;
+            //if (input == null)
+            //{
+            //    output = await this.context.Bars.Select(x => x.ToContract()).ToListAsync();
+            //}
+            //else
+            //{
+            //    output = await this.context.Bars
+            //        .Select(x => x.ToContract())
+            //        .Where(x => x.Address.Contains(input, StringComparison.OrdinalIgnoreCase))
+            //        .ToListAsync();
+            //}
+            //return output;
+            return new List<Bar>();
+        }
+
+        Task<ICollection<Cocktail>> ICocktailService.SearchCocktailByIngredient(string input)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<ICollection<Cocktail>> ICocktailService.SearchCocktailByBar(string input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

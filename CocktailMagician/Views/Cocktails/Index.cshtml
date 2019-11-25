@@ -5,10 +5,15 @@
 
 <h1>Cocktails</h1>
 
-@Html.ActionLink("New Cocktail", "Create", "Cocktails", null, new { @class = "btn btn-primary" })
-@if ((User.IsInRole("Admin")))
-{
-    @Html.ActionLink("Ingredients", "Index", "Ingredients", null, new { @class = "btn btn-primary" })}
+<div>
+    @Html.ActionLink("Search", "Search", "Cocktails", null, new { @class = "btn btn-primary" })
+    @if ((User.IsInRole("Admin")))
+    {
+        @Html.ActionLink("New Cocktail", "Create", "Cocktails", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Ingredients", "Index", "Ingredients", null, new { @class = "btn btn-primary" })}
+    <br />
+</div>
+<br />
 @if (!Model.Any())
 {
     <p>We don't have any cocktails yet.</p>

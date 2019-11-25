@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CocktailMagician.Contracts
 {
-    public class SearchResult
+    public class BarSearchResult
     {
         public List<Bar> Input { get; set; }
     }

@@ -166,6 +166,14 @@ namespace CocktailMagician.Controllers
             return View(ingredients);
         }
 
+        public async Task<IActionResult> GetTopRatedCocktails()
+        {
+            var topRatedList = await this.cocktailService.GetTopRatedCoktails();
+            var topRatedCocktailList = topRatedList.Select(x => new Cocktail());
+
+            return View(topRatedCocktailList);
+        }
+
         [HttpGet]
         public IActionResult Search()
         {

@@ -170,6 +170,17 @@ namespace CocktailMagician.Domain.Services
             return newAverage;
         }
 
+        public async Task<ICollection<Cocktail>> GetTopRatedCoktails()
+        {
+            var topRatedCocktails = await this.context.Cocktails
+                .OrderByDescending(x => x.Rating)
+                .Take(3)
+                .Select(x => x.ToContract())
+                .ToListAsync();
+
+            return topRatedCocktails;
+        }
+
         public async Task<ICollection<Cocktail>> SearchCocktailByName(string input)
         {
             List<Cocktail> output;

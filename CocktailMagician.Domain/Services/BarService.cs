@@ -42,6 +42,7 @@ namespace CocktailMagician.Domain.Services
                 .Include(x => x.BarCocktails)
                 .ThenInclude(x => x.CocktailEntity)
                 .SingleOrDefaultAsync(x => x.Id == id);
+
             if (barEntity == null)
             {
                 throw new ArgumentException("There is no such bar in the database.");
@@ -149,8 +150,8 @@ namespace CocktailMagician.Domain.Services
         {
             var topRatedBars = await this.context.Bars
                 .OrderByDescending(x => x.Rating)
-                .Take(5)
-                .Select(x=>x.ToContract())
+                .Take(3)
+                .Select(x => x.ToContract())
                 .ToListAsync();
 
             return topRatedBars;

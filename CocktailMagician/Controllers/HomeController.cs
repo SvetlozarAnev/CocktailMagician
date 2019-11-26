@@ -1,23 +1,30 @@
-﻿using CocktailMagician.Domain.Services.Interfaces;
+﻿using CocktailMagician.Contracts;
+using CocktailMagician.Domain.Services.Interfaces;
 using CocktailMagician.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CocktailMagician.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IBarService barService;
+        private readonly ICocktailService cocktailService;
         private readonly int pageSize = 3;
 
-        public HomeController(IBarService barService)
+        public HomeController(IBarService barService, ICocktailService cocktailService)
         {
             this.barService = barService;
+            this.cocktailService = cocktailService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var topRated = await this.cocktailService.GetTopRatedCoktails();
+            
+            return View(topRated);
         }
                
 

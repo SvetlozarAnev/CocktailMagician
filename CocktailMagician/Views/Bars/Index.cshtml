@@ -5,7 +5,11 @@
 <div class="container">
     <h1>Bars</h1>
     <div class="container">
-        @Html.ActionLink("New Bar", "Create", "Bars", null, new { @class = "btn btn-primary" })
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("New Bar", "Create", "Bars", null, new { @class = "btn btn-primary" })
+        }
+
         @Html.ActionLink("Search", "Search", "Bars", null, new { @class = "btn btn-primary" })
     </div>
 </div>

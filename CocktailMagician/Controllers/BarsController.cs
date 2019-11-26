@@ -31,7 +31,7 @@ namespace CocktailMagician.Controllers
             var role = this.User.FindFirstValue(ClaimTypes.Role);
 
             const int PageSize = 3;
-
+            
             var counter = await this.barService.ListAll(role);
             var count = counter.Count();
 
@@ -88,9 +88,10 @@ namespace CocktailMagician.Controllers
                 bar.ImagePath = $"/images/bars/" + fileName;
             }
 
-            await this.barService.Create(bar);
+           var barContract =  await this.barService.Create(bar);
 
             return RedirectToAction("Index", "Bars");
+            
         }
 
         private (string extension, bool isValid) GetFileExtension(string contentType)

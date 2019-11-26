@@ -64,10 +64,36 @@ namespace CocktailMagician.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
+
+        [Route("Error/{statusCode}")]
+        public IActionResult Error(int? statusCode = null)
+        {
+            if (statusCode == null)
+                statusCode = HttpContext.Response.StatusCode;
+
+            if (statusCode.Value == 404)
+            {
+                return View(new Error { Message = "The page doesn't exist." });
+            }
+            else if (statusCode.Value == 401)
+            {
+                return View(new Error { Message = "User unauthorized." });
+            }
+            else
+            {
+                return View(new Error { Message = "Ooops something happened." });
+            }
+        }
+
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new Error { Message = "Ooops something happened." });
+
         }
     }
 }

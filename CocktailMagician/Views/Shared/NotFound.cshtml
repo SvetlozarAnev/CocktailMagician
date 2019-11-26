@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "NotFound";
+}
+<br />
+<script src="https://unpkg.com/sweetalert2@7.19.0/dist/sweetalert2.all.js"></script>
+<script>
+    swal({
+        title: 'Something went wrong...',
+        text: 'We couldn\'t find the what you are looking for.',
+        imageUrl: '/images/error-404.PNG',
+        imageAlt: 'Error 404'
+    })
+</script>

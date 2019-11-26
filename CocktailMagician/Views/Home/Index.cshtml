@@ -11,7 +11,7 @@
 <section>
     <div class="container-fluid">
 
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" align="center">
+        <div id="carouselExampleIndicators" class="carousel slide ltr" data-ride="carousel" align="center">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -36,7 +36,7 @@
                                     <span class="icon-star-o"></span>
                                 }
                             </span>
-                            @String.Format("{0:0.0}", Model.First().Rating)
+                            <strong>@String.Format("{0:0.0}", Model.First().Rating)</strong>
                         </p>
                     </div>
                 </div>

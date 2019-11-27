@@ -1,6 +1,7 @@
 ﻿using CocktailMagician.Contracts;
 using CocktailMagician.Domain.Mappers;
 using CocktailMagician.Domain.Services.Interfaces;
+using CocktailMagician.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -45,8 +46,13 @@ namespace CocktailMagician.Controllers
         public async Task<ActionResult> Details(int id)
         {
             var bar = await this.barService.GetBar(id);
+            var reviews = await this.barService.GetBarReviews(id);
 
-            return View(bar);
+            var barDetails = new BarDetailsViewModel();
+            barDetails.Bar = bar;
+            barDetails.BarReviews = reviews;
+
+            return View(barDetails);            
         }
 
         [HttpGet]

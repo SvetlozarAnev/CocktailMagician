@@ -1,7 +1,14 @@
 ﻿@model CocktailReview
 
-    <div class="col-sm-6 col-lg-4 col-md-4" align="center">
-        <h3 class="pull-right">@Model.Rating</h3>
-        <h3 class="pull-right">@Model.Review</h3>
-        <h3 class="pull-right">@Model.User</h3>
+    <div>
+        <h6 ><strong>User: </strong> @Model.User.Name</h6>
+        <h6><strong>Rating: </strong> @Model.Rating</h6>
+        @if (Model.Review != null)
+        {
+            <h6><strong>Comment: </strong>@Model.Review</h6>
+        }
+        else
+        {
+            <h6> No comment </h6>
+        }
     </div>

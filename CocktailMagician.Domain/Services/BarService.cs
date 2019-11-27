@@ -57,6 +57,17 @@ namespace CocktailMagician.Domain.Services
             return barEntity.ToContract();
         }
 
+        public async Task<IEnumerable<BarReview>> GetBarReviews(int barId)
+        {
+            var barReviews = await this.context.BarReviews
+                .Include(x => x.User)
+                .Where(x => x.BarEntityId == barId)
+                .Select(x => x.ToContract())
+                .ToListAsync();
+
+            return barReviews;
+        }
+
         public async Task<Bar> Update(BarUpdateRequest bar)
         {
             var existingBar = await GetBar(bar.Id);

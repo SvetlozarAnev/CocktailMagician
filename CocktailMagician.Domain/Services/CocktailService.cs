@@ -56,6 +56,17 @@ namespace CocktailMagician.Domain.Services
             return cocktailEntity.ToContract();
         }
 
+        public async Task<IEnumerable<CocktailReview>> GetCocktailReviews(int cocktailId)
+        {
+            var cocltailReviews = await this.context.CocktailReviews
+                .Include(x=>x.User)
+                .Where(x => x.CocktailEntityId == cocktailId)
+                .Select(x => x.ToContract())
+                .ToListAsync();
+
+            return cocltailReviews;
+        }
+
         public async Task<Cocktail> Update(CocktailUpdateRequest cocktail)
         {
             var existingCocktail = await GetCocktail(cocktail.Id);

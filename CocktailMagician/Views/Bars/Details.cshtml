@@ -1,8 +1,8 @@
-﻿@model Bar
+﻿@model BarDetailsViewModel
 @{
-    ViewData["Title"] = @Model.Name;
+    ViewData["Title"] = @Model.Bar.Name;
 }
-<h3>@Model.Name</h3>
+<h3>@Model.Bar.Name</h3>
 
 <style>
     .stars-outer {
@@ -39,9 +39,9 @@
         <div style="display:inline-block;vertical-align:top;">
 
 
-            @if (Model.ImagePath != null)
+            @if (Model.Bar.ImagePath != null)
             {
-                <img class="card-img-top image-bar-index" src="@Model.ImagePath" alt="Image">
+                <img class="card-img-top image-bar-index" src="@Model.Bar.ImagePath" alt="Image">
             }
             else
             {
@@ -54,11 +54,11 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Rating:  @Model.Rating</th>
+                            <th>Rating:  @Model.Bar.Rating</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="@Model.Name">
+                        <tr class="@Model.Bar.Name">
                             <td>
                                 <div class="stars-outer">
                                     <div class="stars-inner"></div>
@@ -72,7 +72,7 @@
 
             <script>
 
-        const rating = @Model.Rating;
+        const rating = @Model.Bar.Rating;
                 const starsTotal = 5;
         document.addEventListener('DOMContentLoaded', getRatings);
 
@@ -87,24 +87,38 @@
 
         </div>
         <h5>
-            <br><strong>Address: </strong>@Model.Address</br>
+            <br><strong>Address: </strong>@Model.Bar.Address</br>
             <br><strong>Cocktails:</strong>
-            @string.Join(", ", Model.Cocktails.Select(x => x.Name))
+            @string.Join(", ", Model.Bar.Cocktails.Select(x => x.Name))
         </h5>
         <p>
-            <a asp-controller="Bars" asp-action="Review" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Review</a>
+            <a asp-controller="Bars" asp-action="Review" asp-route-Id="@Model.Bar.Id" button type="submit" method="post" class="btn btn-primary">Review</a>
             @if (User.IsInRole("Admin"))
             {
-                <a asp-controller="Bars" asp-action="Edit" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Edit</a>
+                <a asp-controller="Bars" asp-action="Edit" asp-route-Id="@Model.Bar.Id" button type="submit" method="post" class="btn btn-primary">Edit</a>
 
-                @if (Model.IsHidden == false)
+                @if (Model.Bar.IsHidden == false)
                 {
-                    <a asp-controller="Bars" asp-action="Toggle" class="btn btn-danger" asp-route-Id="@Model.Id">Hide</a>
+                    <a asp-controller="Bars" asp-action="Toggle" class="btn btn-danger" asp-route-Id="@Model.Bar.Id">Hide</a>
                 }
                 else
                 {
-                    <a asp-controller="Bars" asp-action="Toggle" class="btn btn-success" asp-route-Id="@Model.Id">Show</a>
+                    <a asp-controller="Bars" asp-action="Toggle" class="btn btn-success" asp-route-Id="@Model.Bar.Id">Show</a>
                 }
+            }
+            <br />
+            @if (Model.BarReviews.Count() != 0)
+            {
+                <div class="container">
+                    <div class="pull-right">
+                        <h6><strong>Comments: </strong></h6>
+                        @foreach (var review in Model.BarReviews)
+                        {
+                            <partial name="_BarReviewPartial" model="@review" />
+                            <br />
+                        }
+                    </div>
+                </div>
             }
         </p>
     </div>

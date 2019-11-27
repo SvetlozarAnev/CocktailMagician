@@ -1,0 +1,14 @@
+﻿@model BarReview
+
+<div>
+    <h6><strong>User: </strong> @Model.User.Name</h6>
+    <h6><strong>Rating: </strong> @Model.Rating</h6>
+    @if (Model.Review != null)
+    {
+        <h6><strong>Comment: </strong>@Model.Review</h6>
+    }
+    else
+    {
+        <h6> No comment </h6>
+    }
+</div>

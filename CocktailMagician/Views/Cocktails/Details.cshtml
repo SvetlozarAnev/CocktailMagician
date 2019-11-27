@@ -1,4 +1,4 @@
-﻿@model Cocktail
+﻿@model CocktailDetailsViewModel
 @{
     ViewData["Title"] = "Details";
 }
@@ -8,14 +8,14 @@
 
         <div class="img-thumbnail">
             <div class="figure-caption">
-                <h3 class="pull-right">@Model.Rating</h3>
+                <h3 class="pull-right">@Model.Cocktail.Rating</h3>
                 <h3>
-                    <a href="#">@Model.Name</a>
+                    <a href="#">@Model.Cocktail.Name</a>
                 </h3>
             </div>
-            @if (Model.ImagePath != null)
+            @if (Model.Cocktail.ImagePath != null)
             {
-                <img alt="@Model.Name" src="@Model.ImagePath" width="100%">
+                <img alt="@Model.Cocktail.Name" src="@Model.Cocktail.ImagePath" width="100%">
             }
             else
             {
@@ -25,34 +25,45 @@
 
         <ul>
             <h5>
-                <br><strong>Recipe: </strong>@Model.Recipe</br>
+                <br><strong>Recipe: </strong>@Model.Cocktail.Recipe</br>
                 <br><strong>Ingredients:</strong>
-                @string.Join(", ", Model.Ingredients.Select(x => x.Name))
+                @string.Join(", ", Model.Cocktail.Ingredients.Select(x => x.Name))
             </h5>
         </ul>
         <p>
             <div class="container">
-                <a asp-controller="Cocktails" asp-action="Review" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Review</a>
+                <a asp-controller="Cocktails" asp-action="Review" asp-route-Id="@Model.Cocktail.Id" button type="submit" method="post" class="btn btn-primary">Review</a>
                 @if (User.IsInRole("Admin"))
                 {
-                    <a asp-controller="Cocktails" asp-action="Edit" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Edit</a>
+                    <a asp-controller="Cocktails" asp-action="Edit" asp-route-Id="@Model.Cocktail.Id" button type="submit" method="post" class="btn btn-primary">Edit</a>
 
-                    @if (Model.IsHidden == false)
+                    @if (Model.Cocktail.IsHidden == false)
                     {
-                        <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-danger" asp-route-Id="@Model.Id">Hide</a>
+                        <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-danger" asp-route-Id="@Model.Cocktail.Id">Hide</a>
                     }
                     else
                     {
-                        <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-success" asp-route-Id="@Model.Id">Show</a>
+                        <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-success" asp-route-Id="@Model.Cocktail.Id">Show</a>
                     }
                 }
             </div>
+            <br />
+            @if (Model.CocktailReviews.Count() != 0)
+            {
+                <div class="container">
+                    <div class="pull-right">
+                        <h6><strong>Comments: </strong></h6>
+                        @foreach (var review in Model.CocktailReviews)
+                        {
+                            <partial name="_CocktailReviewPartial" model="@review" />
+                            <br />
+                        }
+                    </div>
+                </div>
+            }
         </p>
     </div>
 </div>
-<div class="container">
-    <div class="col-md-6">
 
 
-    </div>
-</div>
+

@@ -16,5 +16,6 @@ namespace CocktailMagician.Domain.Services.Interfaces
         Task<ICollection<Bar>> GetTopRatedBars();
         Task<ICollection<Bar>> SearchBarByName(string input);
         Task<ICollection<Bar>> SearchBarAddress(string input);
+        Task<IEnumerable<BarReview>> GetBarReviews(int barId);
     }
 }

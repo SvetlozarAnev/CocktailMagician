@@ -178,6 +178,7 @@ namespace CocktailMagician.Domain.Services
         {
             var topRatedCocktails = await this.context.Cocktails
                 .OrderByDescending(x => x.Rating)
+                .Where(x => x.IsHidden == false)
                 .Take(3)
                 .Select(x => x.ToContract())
                 .ToListAsync();

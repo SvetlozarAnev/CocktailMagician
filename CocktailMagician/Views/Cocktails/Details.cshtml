@@ -3,26 +3,56 @@
     ViewData["Title"] = "Details";
 }
 
+<div class="container">
+    <div class="col-md-6">
 
-<div class="img-thumbnail">
-    <img alt="@Model.Name" src="@Model.ImagePath">
-    <div class="figure-caption">
-        <h3 class="align-items-end">@Model.Rating</h3>
-        <h3>
-            <a href="#">@Model.Name</a>
-        </h3>
+        <div class="img-thumbnail">
+            <div class="figure-caption">
+                <h3 class="pull-right">@Model.Rating</h3>
+                <h3>
+                    <a href="#">@Model.Name</a>
+                </h3>
+            </div>
+            @if (Model.ImagePath != null)
+            {
+                <img alt="@Model.Name" src="@Model.ImagePath" width="100%">
+            }
+            else
+            {
+                <img class="card-img-top image-bar-index" src="~/images/noPhotoAvailable.jpg" alt="Card image cap">
+            }
+        </div>
+
+        <ul>
+            <h5>
+                <br><strong>Recipe: </strong>@Model.Recipe</br>
+                <br><strong>Ingredients:</strong>
+                @string.Join(", ", Model.Ingredients.Select(x => x.Name))
+            </h5>
+        </ul>
+        <p>
+            <div class="container">
+                <a asp-controller="Cocktails" asp-action="Review" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Review</a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-controller="Cocktails" asp-action="Edit" asp-route-Id="@Model.Id" button type="submit" method="post" class="btn btn-primary">Edit</a>
+
+                    @if (Model.IsHidden == false)
+                    {
+                        <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-danger" asp-route-Id="@Model.Id">Hide</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Cocktails" asp-action="Toggle" class="btn btn-success" asp-route-Id="@Model.Id">Show</a>
+                    }
+                }
+            </div>
+        </p>
     </div>
 </div>
+<div class="container">
+    <div class="col-md-6">
 
 
-<h3> @Model.Name</h3>
-<div style="display:inline-block;vertical-align:top;">
-    <img src="@Model.ImagePath" alt="img" class="img-circle " width="255" height="255" />
+    </div>
 </div>
-<ul>
-    <li>Recipe: @Model.Recipe</li>
-    <li>Rating: @Model.Rating</li>
-</ul>
-<h6><strong>Ingredients:</strong></h6> @string.Join(", ", Model.Ingredients.Select(x=>x.Name))
-
-

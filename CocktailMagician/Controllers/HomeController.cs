@@ -10,18 +10,25 @@ namespace CocktailMagician.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IBarService barService;
         private readonly ICocktailService cocktailService;
 
         public HomeController(IBarService barService, ICocktailService cocktailService)
-        {          
+        {
+            this.barService = barService;
             this.cocktailService = cocktailService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var topRated = await this.cocktailService.GetTopRatedCoktails();
+            var topRatedBars = await this.barService.GetTopRatedBars();
+            var topRatedCocktails = await this.cocktailService.GetTopRatedCoktails();
+
+            var topRatedPage = new TopRatedViewModel();
+            topRatedPage.TopRatedBars = topRatedBars;
+            topRatedPage.TopRatedCocktails = topRatedCocktails;
             
-            return View(topRated);
+            return View(topRatedPage);
         }              
 
         [Route("Error/{statusCode}")]

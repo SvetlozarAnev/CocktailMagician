@@ -150,6 +150,7 @@ namespace CocktailMagician.Domain.Services
         {
             var topRatedBars = await this.context.Bars
                 .OrderByDescending(x => x.Rating)
+                .Where(x => x.IsHidden == false)
                 .Take(3)
                 .Select(x => x.ToContract())
                 .ToListAsync();

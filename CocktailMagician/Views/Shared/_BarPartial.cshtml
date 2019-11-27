@@ -43,7 +43,7 @@
     }
 </style>
 
-<div class="col-md-4 " align="center">
+<div class="col-md-4 col-lg-4 col-md-4" align="center">
 
     <div class="margin-bar-card shadow">
         <p>
@@ -66,11 +66,16 @@
             <div class="container">
                 <div class="table table-striped">
                     <div class="center">
-
-                        Rating
-
+                        @if (Model.Rating != null)
+                        {
+                            <h5> Rating: @Model.Rating </h5>
+                        }
+                        else
+                        {
+                            <h5>  Not rated yet </h5>
+                        }
                     </div>
-                    <div>
+                    @*<div>
                         <div class="@Model.Name" style="background-color:rgba(0, 0, 0, 0);">
                             <div class="center">
                                 <div class="stars-outer">
@@ -79,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <p>
@@ -97,7 +102,6 @@
                         <a asp-controller="Bars" asp-action="Toggle" class="btn btn-success" asp-route-Id="@Model.Id">Show</a>
                     }
                 }
-
             </p>
         </div>
     </div>

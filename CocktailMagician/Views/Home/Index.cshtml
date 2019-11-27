@@ -1,17 +1,19 @@
-﻿@model IEnumerable<Cocktail>
+﻿@model TopRatedViewModel
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to the Cocktails Magician</h1>
-
 </div>
 
 <section>
     <div class="container-fluid">
 
+
         <div id="carouselExampleIndicators" class="carousel slide ltr" data-ride="carousel" align="center">
+            <h3>Top Rated Cocktails</h3>
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -20,28 +22,39 @@
 
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a asp-controller="Cocktails" asp-action="Details" asp-route-id="@Model.First().Id"> <h5 class="card-title">  <img class="d-block" src="@Model.First().ImagePath" alt="Card image cap"></h5></a>
+                    <a asp-controller="Cocktails" asp-action="Details" asp-route-id="@Model.TopRatedCocktails.First().Id"> <h5 class="card-title">  <img class="d-block" src="@Model.TopRatedCocktails.First().ImagePath" alt="Card image cap"></h5></a>
 
                     <div class="carousel-caption">
-                        <h3 class="font-cinzel">@Model.First().Name</h3>
+                        <h3 class="font-cinzel">@Model.TopRatedCocktails.First().Name</h3>
                         <p>
 
-                            <strong>@String.Format("{0:0.0}", Model.First().Rating)</strong>
+                            <strong>@String.Format("{0:0.0}", Model.TopRatedCocktails.First().Rating)</strong>
                         </p>
                     </div>
                 </div>
 
-                @foreach (var item in Model.Skip(1))
+                @foreach (var item in Model.TopRatedCocktails.Skip(1))
                 {
-            <div class="carousel-item">
-                <a asp-controller="Cocktail" asp-action="Details" asp-route-id="@item.Id"> <h5 class="card-title">  <img class="d-block " src="@item.ImagePath" alt="Card image cap"></h5></a>
+                    <div class="carousel-item">
+                        @if (item.ImagePath != null)
+                        {
+                            <a asp-controller="Cocktails" asp-action="Details" asp-route-id="@item.Id">
+                                <h5 class="card-title">  <img class="d-block " src="@item.ImagePath" alt="Card image cap"></h5>
+                            </a>
+                        }
+                        else
+                        {
+                            <h5 class="card-title">
+                                <img class="card-img-top image-bar-index" src="~/images/noPhotoAvailable.jpg" alt="Card image cap">
+                            </h5>
+                        }
 
-                <div class="carousel-caption">
-                    <h3 class="font-cinzel">@item.Name</h3>
-                    @String.Format("{0:0.0}", item.Rating)
+                        <div class="carousel-caption">
+                            <h3 class="font-cinzel">@item.Name</h3>
+                            @String.Format("{0:0.0}", item.Rating)
 
-                </div>
-            </div>
+                        </div>
+                    </div>
                 }
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -55,4 +68,18 @@
         </div>
     </div>
 </section>
+
+<div class="container">
+    <div class="text-center">
+        <h3>Top Rated Bars</h3>
+    </div>
+    <div class="row">
+        @foreach (var bar in Model.TopRatedBars)
+        {
+
+            <partial name="_BarPartial" model="@bar" />
+        }
+
+    </div>
+</div>
 <partial name="_ValidationScriptsPartial" />

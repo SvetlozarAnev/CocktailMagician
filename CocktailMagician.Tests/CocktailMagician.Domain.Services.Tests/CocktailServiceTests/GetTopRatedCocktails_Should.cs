@@ -36,7 +36,7 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.Cocktail
             {
                 Name = "TestCocktail3",
                 Recipe = "TestCocktailRecipe3",
-                IsHidden = true,
+                IsHidden = false,
                 Rating = 3
             };
 
@@ -44,14 +44,14 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.Cocktail
             {
                 Name = "TestCocktail4",
                 Recipe = "TestCocktailRecipe3",
-                IsHidden = true,
+                IsHidden = false,
                 Rating = 2
             };
             var cocktailEntity5 = new CocktailEntity()
             {
                 Name = "TestCocktail5",
                 Recipe = "TestCocktailRecipe3",
-                IsHidden = true,
+                IsHidden = false,
                 Rating = 1
             };
 
@@ -101,7 +101,7 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.Cocktail
             {
                 Name = "TestCocktail3",
                 Recipe = "TestCocktailRecipe3",
-                IsHidden = true,
+                IsHidden = false,
                 Rating = 3
             };
 

@@ -30,10 +30,7 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.UserServ
                     Email = "pesho@gosho.com"
                 },
 
-                Bar = new Bar()
-
                 Rating = testBarRating,
-
             };
 
             var options = TestUtilities.GetOptions(nameof(AddReviewToTheCorrectBar));

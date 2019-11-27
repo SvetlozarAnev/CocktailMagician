@@ -46,7 +46,6 @@
 <div class="col-md-4 " align="center">
 
     <div class="margin-bar-card shadow">
-        @*<div class="partialPhotoWrapper">*@
         <p>
             <a asp-controller="Bars" asp-action="Details" asp-route-id="@Model.Id"> <h5 class="card-title">@Model.Name</h5></a>
         </p>
@@ -59,11 +58,8 @@
         {
             <img class="card-img-top image-bar-index" src="~/images/noPhotoAvailable.jpg" alt="Card image cap">
         }
-        @*</div>*@
 
-
-        <div class="card-body">
-            @*<div class="partialTextWrapper">*@
+        <div class="card-body">        
             <p>
                 Address: @Model.Address
             </p>
@@ -106,27 +102,3 @@
         </div>
     </div>
 </div>
-
-@*<script>
-        // ratings
-        const rating = @Model.Rating;
-
-        //total stars
-        const starsTotal = 5;
-
-        // run getRatings when DOM loads
-        document.addEventListener('DOMContentLoaded', getRatings);
-
-        // get ratings
-        function getRatings() {
-
-            // get percentage
-            const starPercentage = (rating / starsTotal) * 100;
-            //round to nearest 10
-            const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-            // set witdth of stars-inner to percentage
-            document.querySelector(` .stars-inner`).style.width = starPercentageRounded;
-        }
-    </script>*@
-
-

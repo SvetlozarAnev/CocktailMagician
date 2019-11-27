@@ -39,7 +39,6 @@
 
     @if (Model.ImagePath != null)
     {
-        @*<img src="@Model.ImagePath" alt="img" class="img-circle " width="255" height="255" />*@
         <img class="card-img-top image-bar-index" src="@Model.ImagePath" alt="Image">
     }
     else
@@ -72,23 +71,14 @@
     </div>
 
     <script>
-        // ratings
-        const rating = @Model.Rating;
-        
-        //total stars
-        const starsTotal = 5;
 
-        // run getRatings when DOM loads
+        const rating = @Model.Rating;
+                const starsTotal = 5;
         document.addEventListener('DOMContentLoaded', getRatings);
 
-        // get ratings
         function getRatings() {
-
-            // get percentage
             const starPercentage = (rating / starsTotal) * 100;
-            //round to nearest 10
             const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-            // set witdth of stars-inner to percentage
             document.querySelector(` .stars-inner`).style.width = starPercentageRounded;
         }
     </script>
@@ -97,16 +87,4 @@
 
 </div>
 <h3>Cocktails</h3>
-<h6><strong>Cocktails:</strong></h6> @string.Join(", ", Model.Cocktails.Select(x=>x.Name))
-
-@*@foreach (var cocktail in Model.Cocktails)
-    {
-        <ul>
-            <li>Cocktail Name: @cocktail.Name</li>
-            <li>Cocktail Recipe: @cocktail.Recipe</li>
-            <li>Rating: @cocktail.Rating</li>
-        </ul>
-    }*@
-
-
-
+<h6><strong>Cocktails:</strong></h6> @string.Join(", ", Model.Cocktails.Select(x => x.Name))

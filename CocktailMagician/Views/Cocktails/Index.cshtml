@@ -11,11 +11,9 @@
 
         @if ((User.IsInRole("Admin")))
         {
-            
-            @Html.ActionLink("New Cocktail", "Create", "Cocktails", null, new { @class = "btn btn-primary" })
-           
-            <div class="row"></div>
 
+            @Html.ActionLink("New Cocktail", "Create", "Cocktails", null, new { @class = "btn btn-primary" })
+            <div class="row"></div>
             @Html.ActionLink("Ingredients", "Index", "Ingredients", null, new { @class = "btn btn-primary" })
         }
     </p>
@@ -63,5 +61,4 @@
             Next &raquo;
         </a>
     }
-    <div class="col">  </div>
 </div>

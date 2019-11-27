@@ -33,11 +33,7 @@ namespace CocktailMagician.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var role = this.User.FindFirstValue(ClaimTypes.Role);
-            //var cocktails = await this.cocktailService.ListAll(role);
-            //return View(cocktails);
-
             const int PageSize = 3;
-
             var counter = await this.cocktailService.ListAll(role);
             var count = counter.Count();
 

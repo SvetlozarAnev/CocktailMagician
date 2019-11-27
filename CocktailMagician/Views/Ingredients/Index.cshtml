@@ -11,25 +11,25 @@
     <p>We don't have any ingredients yet.</p>
 }
 else
-{   
-        <table class="table table-borderless">
-            <thead>
+{
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ingredient in Model)
+            {
                 <tr>
-                    <th>Name</th>
-                    <th>Delete</th>
+                    <td>@ingredient.Name</td>
+                    @if ((User.IsInRole("Admin")) && ingredient.TimesUsed == 0)
+                    {
+                        <td><a asp-controller="Ingredients" asp-action="Delete" asp-route-Id="@ingredient.Id" button type="submit" method="post" class="btn btn-primary">Delete</a></td>
+                    }
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var ingredient in Model)
-                {
-                    <tr>
-                        <td>@ingredient.Name</td>
-                        @if ((User.IsInRole("Admin")) && ingredient.TimesUsed == 0)
-                        {
-                            <td><a asp-controller="Ingredients" asp-action="Delete" asp-route-Id="@ingredient.Id" button type="submit" method="post" class="btn btn-primary">Delete</a></td>
-                        }
-                    </tr>
-                }
-            </tbody>
-        </table>
-        }
+            }
+        </tbody>
+    </table>
+}

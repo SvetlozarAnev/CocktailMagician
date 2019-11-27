@@ -29,9 +29,7 @@ namespace CocktailMagician.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var role = this.User.FindFirstValue(ClaimTypes.Role);
-
-            const int PageSize = 3;
-            
+            const int PageSize = 3;            
             var counter = await this.barService.ListAll(role);
             var count = counter.Count();
 
@@ -90,8 +88,7 @@ namespace CocktailMagician.Controllers
 
            var barContract =  await this.barService.Create(bar);
 
-            return RedirectToAction("Index", "Bars");
-            
+            return RedirectToAction("Index", "Bars");            
         }
 
         private (string extension, bool isValid) GetFileExtension(string contentType)
@@ -103,7 +100,6 @@ namespace CocktailMagician.Controllers
 
             return (string.Empty, false);
         }
-
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
@@ -133,12 +129,7 @@ namespace CocktailMagician.Controllers
         [HttpGet]
         [Authorize]
         public IActionResult Review(int id)
-        {
-            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier)
-            //if (expr)
-            //{
-                
-            //}
+        {           
             return View();
         }
 
@@ -148,7 +139,7 @@ namespace CocktailMagician.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             
-            await this.userService.AddBarReview(barReview, id, userId); //update
+            await this.userService.AddBarReview(barReview, id, userId);
 
             return RedirectToAction("Index", "Bars");
         }

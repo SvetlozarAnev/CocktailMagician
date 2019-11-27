@@ -20,22 +20,12 @@
 
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="">
-                        <img class="d-block"  src="@Model.First().ImagePath">
-                    </a>
+                    <a asp-controller="Cocktails" asp-action="Details" asp-route-id="@Model.First().Id"> <h5 class="card-title">  <img class="d-block" src="@Model.First().ImagePath" alt="Card image cap"></h5></a>
+
                     <div class="carousel-caption">
                         <h3 class="font-cinzel">@Model.First().Name</h3>
                         <p>
-                            <span class="yellow-color">
-                                @for (int i = 1; i <= Model.First().Rating; i++)
-                                {
-                                    <span class="icon-star"></span>
-                                }
-                                @for (int i = 5; i > Model.First().Rating; i--)
-                                {
-                                    <span class="icon-star-o"></span>
-                                }
-                            </span>
+
                             <strong>@String.Format("{0:0.0}", Model.First().Rating)</strong>
                         </p>
                     </div>
@@ -43,27 +33,15 @@
 
                 @foreach (var item in Model.Skip(1))
                 {
-                    <div class="carousel-item">
-                        <img class="d-block " src="@item.ImagePath">
-                        <div class="carousel-caption">
-                            <h3 class="font-cinzel">@item.Name</h3>
-                            @String.Format("{0:0.0}", item.Rating)
+            <div class="carousel-item">
+                <a asp-controller="Cocktail" asp-action="Details" asp-route-id="@item.Id"> <h5 class="card-title">  <img class="d-block " src="@item.ImagePath" alt="Card image cap"></h5></a>
 
-                            @*<p>
-            <span class="yellow-color">
-                @for (int i = 1; i <= item.AverageRating; i++)
-                {
-                    <span class="icon-star"></span>
-                }
-                @for (int i = 5; i > item.AverageRating; i--)
-                {
-                    <span class="icon-star-o"></span>
-                }
-            </span>
-            @String.Format("{0:0.0}", item.AverageRating)
-        </p>*@
-                        </div>
-                    </div>
+                <div class="carousel-caption">
+                    <h3 class="font-cinzel">@item.Name</h3>
+                    @String.Format("{0:0.0}", item.Rating)
+
+                </div>
+            </div>
                 }
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

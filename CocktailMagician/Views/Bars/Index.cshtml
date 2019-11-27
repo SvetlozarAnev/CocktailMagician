@@ -23,17 +23,45 @@
 <div class="row">
     @foreach (var bar in Model)
     {
-        @*<div class="partialViewWrapper">*@
-        @*<div class="bar-container" id="@bar.Id" rating="@bar.Rating">*@
+
         <partial name="_BarPartial" model="@bar" />
 
-        @*</div>*@
     }
-    <partial name="_Pagination" />
+
+    <div class="container">
+        <br>
+        @if (ViewBag.Page > 0)
+        {
+            <a asp-controller="Bars" asp-action="Index" asp-route-id="@(ViewBag.Page-1)"
+               class="btn btn-primary">
+                &laquo; Prev
+            </a>
+            <a asp-controller="Bars" asp-action="Index" asp-route-id="@(ViewBag.Page-1)"
+               class="btn btn-light">
+                @(ViewBag.Page)
+            </a>
+        }
+        <a asp-controller="Bars" asp-action="Index" asp-route-id="@(ViewBag.Page)"
+           class="btn btn-primary">
+            @(ViewBag.Page + 1)
+        </a>
+        @if (ViewBag.Page < ViewBag.MaxPage)
+        {
+            <a asp-controller="Bars" asp-action="Index" asp-route-id="@(ViewBag.Page+1)"
+               class="btn btn-light">
+                @(ViewBag.Page + 2)
+            </a>
+            <a asp-controller="Bars" asp-action="Index" asp-route-id="@(ViewBag.Page + 1)"
+               class="btn btn-primary">
+                Next &raquo;
+            </a>
+        }
+
+    </div>
 </div>
 
 <br />
-</div>
+
 <script>
 
     const bars = $('.bar-container');

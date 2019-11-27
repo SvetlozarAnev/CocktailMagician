@@ -107,12 +107,10 @@ namespace CocktailMagician.Data
             }
             catch (Exception)
             {
-
                 return;
             }
         }
-
-
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             LoadJsonInDb(builder);

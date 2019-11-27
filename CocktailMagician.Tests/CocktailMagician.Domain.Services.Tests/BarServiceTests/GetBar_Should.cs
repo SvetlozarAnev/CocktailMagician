@@ -24,11 +24,11 @@ namespace CocktailMagician.Tests.CocktailMagician.Domain.Services.Tests.BarServi
 
 
         [TestMethod]
-        public async Task ReturnBarContract()
+        public async Task ReturnCorrectBarContract()
         {
             var testBarID = 1;
 
-            var options = TestUtilities.GetOptions(nameof(ReturnBarContract));
+            var options = TestUtilities.GetOptions(nameof(ReturnCorrectBarContract));
             using (var arrangeContext = new AppDBContext(options))
             {
                 arrangeContext.Bars.Add(new BarEntity() { Id = testBarID });

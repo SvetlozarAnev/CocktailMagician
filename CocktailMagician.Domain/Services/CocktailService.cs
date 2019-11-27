@@ -76,6 +76,7 @@ namespace CocktailMagician.Domain.Services
             await this.context.SaveChangesAsync();
             return await GetCocktail(cocktail.Id);
         }
+
         public async Task<Cocktail> Toggle(int id)
         {
             var cocktailEntity = await this.context.Cocktails.SingleOrDefaultAsync(x => x.Id == id);
@@ -89,6 +90,7 @@ namespace CocktailMagician.Domain.Services
 
             return cocktailEntity.ToContract();
         }
+
         public async Task<IEnumerable<Cocktail>> ListAll(string role)
         {
             var cocktails = await this.context.Cocktails
@@ -104,6 +106,7 @@ namespace CocktailMagician.Domain.Services
 
             return cocktails;
         }
+
         public async Task<IEnumerable<Ingredient>> ListIngredients()
         {
             var ingredients = await this.context.Ingredients
@@ -112,6 +115,7 @@ namespace CocktailMagician.Domain.Services
 
             return ingredients;
         }
+
         private void AddIngredients(int cocktailId, IEnumerable<int> ingredientIds)
         {
             foreach (var ingredientId in ingredientIds)

@@ -7,7 +7,6 @@ using System.Text;
 
 namespace CocktailMagician.Data.Configurations
 {
-
     internal class CocktailReviewConfiguration : IEntityTypeConfiguration<CocktailReviewEntity>
     {
         public void Configure(EntityTypeBuilder<CocktailReviewEntity> builder)
@@ -21,7 +20,6 @@ namespace CocktailMagician.Data.Configurations
                 .HasOne(x => x.Cocktail)
                 .WithMany(x => x.CocktailReviews)
                 .OnDelete(DeleteBehavior.Restrict);
-
         }
     }
 }

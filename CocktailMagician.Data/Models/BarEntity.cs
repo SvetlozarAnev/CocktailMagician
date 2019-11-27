@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace CocktailMagician.Data.Models
 {
@@ -21,6 +19,5 @@ namespace CocktailMagician.Data.Models
         public string ImagePath { get; set; }
         public IEnumerable <BarCocktailEntity> BarCocktails { get; set; }
         public IEnumerable<BarReviewEntity> BarReviews { get; set; }
-
     }
 }

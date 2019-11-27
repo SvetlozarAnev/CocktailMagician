@@ -37,7 +37,7 @@ namespace CocktailMagician.Domain.Services
             var ingredientEntity = await this.context.Ingredients.SingleOrDefaultAsync(x => x.Id == id);
             if (ingredientEntity == null)
             {
-                throw new ArgumentException("The requested ingredient is null.");
+                throw new ArgumentException("The requested ingredient doesn't exist.");
             }
             if (!this.context.CocktaiIngredients.Select(x => x.CocktailEntityId).Contains(id))
             {

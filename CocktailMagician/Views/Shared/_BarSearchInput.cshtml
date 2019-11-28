@@ -1,15 +1,11 @@
 ﻿@model BarSearchResult
 
-    <form asp-controller="Bars" asp-action="Search" method="post">
+<form asp-controller="Bars" asp-action="Search" method="post">
 
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <input asp-for="Input" placeholder="Enter Name" class="form-control" />
-        <span asp-validation-for="Input" class="text-danger"></span>
-        <button type="submit" value="Search" class="btn btn-primary">Search</button>
-        <br />
-        <input asp-for="Input" placeholder="Enter Address" class="form-control" />
-        <span asp-validation-for="Input" class="text-danger"></span>
-        <button type="submit" value="SearchAddress" class="btn btn-primary">Search</button>
-        <br />
-    </form>
+    <input asp-for="Input" placeholder="Enter Name" class="form-control" />
+    <span asp-validation-for="Input" class="text-danger"></span>
+    <button type="submit" value="Search" class="btn btn-primary">Search</button>
+    <br />
+</form>

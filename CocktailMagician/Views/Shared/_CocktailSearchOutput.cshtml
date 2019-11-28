@@ -1,16 +1,10 @@
 ﻿@model CocktailSearchResult
 
-@if (Model.Input.Count() != 0)
-{
-    <br />
-    foreach (var result in Model.Input)
+
+<br />
+<div class="row">
+    @foreach (var result in Model.Input)
     {
-        <div class="media search-result">
-            <div class="media-left">
-                <i>@result.Name</i>,
-                <i>@string.Join(", ", result.Ingredients)</i>,
-            </div>
-        </div>
-        <hr />
+        <partial name="_CocktailPartial" model="@result" />
     }
-}
+</div>

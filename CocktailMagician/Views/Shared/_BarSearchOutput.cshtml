@@ -1,7 +1,4 @@
 ﻿@model BarSearchResult
-
-@if (Model.Input.Count() != 0)
-{ }
 <br />
 <div class="row">
     @foreach (var result in Model.Input)
@@ -9,6 +6,3 @@
         <partial name="_BarPartial" model="@result" />
     }
 </div>
-
-
-

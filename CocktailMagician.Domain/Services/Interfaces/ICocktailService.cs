@@ -14,9 +14,6 @@ namespace CocktailMagician.Domain.Services.Interfaces
         Task<IEnumerable<Ingredient>> ListIngredients();
         Task<double> CalculateAverageRating(Cocktail cocktail, int newRating);
         Task<ICollection<Cocktail>> SearchCocktailByName(string input);
-        Task<ICollection<Cocktail>> SearchCocktailByIngredient(string input);
-        Task<ICollection<Cocktail>> SearchCocktailByBar(string input);
-
         Task<ICollection<Cocktail>> GetTopRatedCoktails();
         Task<IEnumerable<CocktailReview>> GetCocktailReviews(int cocktailId);
     }

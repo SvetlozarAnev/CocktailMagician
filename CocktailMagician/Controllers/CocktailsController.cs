@@ -58,7 +58,7 @@ namespace CocktailMagician.Controllers
 
             return View(cocktailDetails);
         }
-               
+
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create()
@@ -191,23 +191,6 @@ namespace CocktailMagician.Controllers
                 return this.View();
             }
             var result = await this.cocktailService.SearchCocktailByName(input);
-            var output = new CocktailSearchResult
-            {
-                Input = new List<Cocktail>(result)
-            };
-
-            return View(output);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SearchIngredient(string input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View();
-            }
-            var result = await this.cocktailService.SearchCocktailByIngredient(input);
             var output = new CocktailSearchResult
             {
                 Input = new List<Cocktail>(result)

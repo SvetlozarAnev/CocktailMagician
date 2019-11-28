@@ -113,6 +113,7 @@ namespace CocktailMagician.Domain.Services
 
             return bars;
         }
+
         public async Task<IEnumerable<Cocktail>> ListCocktails()
         {
             var cocktails = await this.context.Cocktails
